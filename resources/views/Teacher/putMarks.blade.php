@@ -5,16 +5,14 @@
         var x = document.getElementById(':'+num).checked;
         if(x)
         {
-            document.getElementById(num).min = "-2";
             document.getElementById(num).value = "-2";
             document.getElementById(num).style.display = 'none';
             document.getElementById(num).required = false;
         }
         else
         {
-            document.getElementById(num).min = "0";
             document.getElementById(num).value = "";
-            document.getElementById(num).required = true; 
+            document.getElementById(num).required = true;
             document.getElementById(num).style.display = 'inline';
         }
     }
@@ -52,7 +50,7 @@
             <div class="card-body">
          <div class="row ">
                                 <div class="col-md-12 text-md-left">
-                                    <h4 >Update Marks</h4>
+                                    <h4 >Update Marks for Test {{$test_no}}</h4>
                                    <hr style="border:1px solid #FFC312"> 
                                 </div>
                             </div>
@@ -75,9 +73,10 @@
                                 <td>{{$loop -> index+1 }}</td>
                                 <td>{{$student->roll_no }}</td>
                                 <td>{{$student->name }}</td>
-                            <td><input id = "{{$loop->index}}"type = "number" min = '0' max = '20' name = {{$student->roll_no}} required></td>
-                            <td><input id = ":{{$loop->index}}"type="checkbox" onchange = "disable({{$loop->index}})"></td>
-
+                            <td>
+                            <input  id = "{{$loop->index}}" type = "number" min = '-2' max = '30' name = {{$student->id}} required></td>
+                             <td><input id = ":{{$loop->index}}"type="checkbox"  onchange = "disable({{$loop->index}})"></td>
+                                        
                             </tr>
                         @endforeach
                     </tbody>
@@ -89,3 +88,4 @@
             </div>
         </div>
 @endsection
+

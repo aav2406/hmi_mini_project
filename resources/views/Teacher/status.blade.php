@@ -60,7 +60,7 @@
                                      $test_no == 1 
                                     ? 
                                     (
-                                            $student->ia1 != -1
+                                            $student->ia1 != -1 && $student->ia1 != -2
                                             ?
                                                 $student->ia1
                                             :
@@ -68,7 +68,7 @@
                                     )
                                      :
                                      (
-                                        $student->ia2 != -1
+                                        $student->ia2 != -1 && $student->ia2 != -2
                                             ?
                                                 $student->ia2
                                             :
@@ -76,25 +76,27 @@
                                      )
                                      }}
                                 </td>
-                                <td>{{ 
+                                <td>
+                                
+                                {{ 
                                 (
                                 $test_no == 1 
                                 ? 
                                 (  
-                                    $student->status1 != -1 ?($student->status1 == 0 ? 'INCORRECT': 'Correct'): 'Not yet checked'
+                                        $student->ia1 != -2 ? ($student->status1 != -1 ?($student->status1 == 0 ? 'INCORRECT': 'Correct'): 'Not yet checked'): 'ABSENT'
                                 )
                                 :
                                 (
-                                    $student->status2 != -1 ? ($student->status2 == 0 ? 'INCORRECT': 'Correct' ): 'Not yet checked' 
+                                        $student->ia2 != -2? ($student->status2 != -1 ?($student->status2 == 0 ? 'INCORRECT': 'Correct'): 'Not yet checked'): 'ABSENT'
                                 ) 
                                 )
-                            }}
+                                }}
                             </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                    <button type ="submit" class ="btn sub_btn " ><i class="fas fa-backward" style="margin-right:8px"></i>Back</button>
+                    <button type ="submit" class ="btn sub_btn " ><i class="fas fa-paper-plane"></i>Submit</button>
                     </form>
                     
                 </div>

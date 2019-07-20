@@ -13,15 +13,16 @@ class CreateInternalTestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('internal_tests', function (Blueprint $table) {
+        Schema::create('internal_test', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('division_id');
-            $table->integer('roll_no');
             $table->integer('subject_id');
-            $table->integer('ia1');
-            $table->integer('ia2');
-            $table->integer('status1');
-            $table->integer('status2');
+            $table->integer('student_id');
+            $table->integer('IA1')->default(-1);
+            $table->integer('status1')->default(0);
+            $table->integer('IA2')->default(-1);
+            $table->integer('status2')->default(0);;
+            $table->integer('Avg')->default(-1);;
         });
     }
 

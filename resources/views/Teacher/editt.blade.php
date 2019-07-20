@@ -5,14 +5,12 @@
         var x = document.getElementById(':'+num).checked;
         if(x)
         {
-            document.getElementById(num).min = "0";
             document.getElementById(num).value = "-2";
             document.getElementById(num).style.display = 'none';
             document.getElementById(num).required = false;
         }
         else
         {
-            document.getElementById(num).min = "-2";
             document.getElementById(num).value = "";
             document.getElementById(num).required = true;
             document.getElementById(num).style.display = 'inline';
@@ -57,7 +55,7 @@
                                 </div>
                             </div>
                 <div class="table-responsive">
-                        <form method= "POST" action = "{{action('TeachersController@')}}">
+                        <form method= "POST" action = "{{action('TeachersController@storeMarks')}}">
                                 @csrf
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
@@ -77,15 +75,15 @@
                                 <td>{{$student->name }}</td>
                             <td>
                                         @if($test_no == 1)
-                                            <input id = "{{$loop->index}}" value = "{{$student->IA1}}" type = "number" min = '0' max = '20' name = "{{$student->id}}" required {{ $student->IA1 == -2 ?'style=display:none;': "" }}   ></td>
-                                            <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->IA1 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
+                                            <input id = "{{$loop->index}}" value = "{{$student->ia1}}" type = "number" min = '-2' max = '30' name = "{{$student->id}}" required {{ $student->ia1 == -2 ?'style=display:none;': "" }}   ></td>
+                                            <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->ia1 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
                                         @elseif($test_no == 2)
-                                            @if($student->IA2 == -1)
-                                                <input  id = "{{$loop->index}}" type = "number" min = '0' max = '20' name = {{$student->roll_no}} required></td>
+                                            @if($student->ia2 == -1)
+                                                <input  id = "{{$loop->index}}" type = "number" min = '-2' max = '30' name = {{$student->roll_no}} required></td>
                                                 <td><input id = ":{{$loop->index}}"type="checkbox"  onchange = "disable({{$loop->index}})"></td>
                                             @else
-                                                <input  id = "{{$loop->index}}" value = "{{$student->IA2}}" type = "number" min = '0' max = '20' name = {{$student->id}} required {{ $student->IA2 == -2?'style=display:none;': "" }} ></td>
-                                                <td><input id = ":{{$loop->index}}"type="checkbox" {{ $student->IA2 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
+                                                <input  id = "{{$loop->index}}" value = "{{$student->ia2}}" type = "number" min = '-2' max = '30' name = {{$student->id}} required {{ $student->ia2 == -2?'style=display:none;': "" }} ></td>
+                                                <td><input id = ":{{$loop->index}}"type="checkbox" {{ $student->ia2 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
                                             @endif
                                         @endif
 

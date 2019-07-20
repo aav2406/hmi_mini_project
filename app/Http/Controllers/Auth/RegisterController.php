@@ -79,18 +79,6 @@ class RegisterController extends Controller
                 'phone_no' =>$request['phone_no'],
                 'emp_id' =>$request['emp_id'],
             ]);
-            // $checked = $request->has('class_2') ? true: false;
-            // if($checked)
-            // {     
-            //     $teacher_div = Teacher::where('email', $request['email'])->first();
-            //     $teacher_div->divisions()->attach($request['class_1'],['subject_id' =>$request['sub_1']]);
-            //     $teacher_div->divisions()->attach($request['class_2'],['subject_id' =>$request['sub_2']]);
-            // }
-            // else
-            // {
-            //     $teacher_div = Teacher::where('email', $request['email'])->first();
-            //     $teacher_div->divisions()->attach($request['class_1'],['subject_id' =>$request['sub_1']]);
-            // }
         return redirect()->intended('login/teacher')->with('success','You are Registered Successfully!');
         }
         else{

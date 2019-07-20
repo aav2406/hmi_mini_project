@@ -36,16 +36,16 @@
                             {{$loop->index+1}}
                         </td>
                         <td>
-                                {{$application->name}}
+                                {{$application->user->name}}
                         </td>
                         <td>
-                                {{$application->class}}
+                                {{$application->division->class}}
                         </td>
                         <td>
-                                {{$application->subject_name}}
+                                {{$application->subject->subjec}}
                         </td>
                         <td>
-                                {{$application->roll_no}}
+                                {{$application->user->roll_no}}
                         </td>
                         <td>
                                 @if($application->test_no == 1)

@@ -6,7 +6,7 @@ class InternalTest extends Model
     protected $table = 'internal_tests';
     public $timestamps = false;
     protected $fillable = [
-         'ia1','subject_id','roll_no','division_id','ia2','status1','status2',
+         'ia1','subject_id','student_id','division_id','ia2','status1','status2','Avg'
     ];
     public function subject()
     {
