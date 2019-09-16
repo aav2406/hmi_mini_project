@@ -18,7 +18,28 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 */
 // Auth::routes();
 Auth::routes(['verify'=>true]);
+
 Route::view('/about','pages.about');
+Route::get('{filename}', function($filename)
+{
+    // Check if file exists in public/storage/news folder
+    $file_path = public_path().'\storage\news\\'.$filename;
+   // return $file_path;
+    if (file_exists($file_path))
+    {
+        // Send Download
+        return Response::download($file_path, $filename, [
+            'Content-Length: '. filesize($file_path)
+        ]);
+    }
+    else
+    {
+        // Error
+        return $file_path;
+        exit('Requested file does not exist on our server!');
+    }
+})
+->where('filename', '[A-Za-z0-9\-\s\_\.]+');
 Route::get('/','PagesController@index');
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
@@ -75,9 +96,17 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth']], function ()
 );
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () 
 {
+    Route::get('teachers','AdminsController@showTeacher');
+    Route::post('teachers','AdminsController@storeTeacher');
+    Route::get('managenews','AdminsController@showNews');
+    Route::post('managenews','AdminsController@storeNews');
+    Route::post('deletenews/{id}','AdminsController@deleteNews');
+    Route::post('teachers/{id}','AdminsController@deleteTeacher');
     Route::get('','AdminsController@index');
     Route::get('applications','AdminsController@showApplications');
     Route::get('applications/{id}','AdminsController@Application');
     Route::post('applications/{id}','AdminsController@storeApplication');
 }  
 );
+Route::get('/download','TestController@export');
+Route::get('/download1','UserController@export');

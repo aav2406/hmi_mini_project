@@ -21,27 +21,12 @@
             background-color:rgba(0,0,0,0.7) !important;
             }
             
-            /* .social_icon span{
-            font-size: 60px;
-            margin-left: 10px;
-            color: #FFC312;
-            } */
-            
-            /* .social_icon span:hover{
-            color: white;
-            cursor: pointer;
-            } */
             
             .card-header h4,p{
             margin-top: 80px;
             color: white;
             }
             
-            /* .social_icon{
-            position: absolute;
-            right: 150px;
-            top: 20px;
-            } */
             
             .input-group-prepend span{
             width: 50px;

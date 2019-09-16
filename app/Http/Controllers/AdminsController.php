@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\TestThreeStatus;
 use App\Application;
 use App\Subject;
+use Carbon\Carbon;
 use App\Division;
+use App\News;
 use App\User;
 use Illuminate\Http\Request;
 class AdminsController extends Controller
@@ -65,5 +67,68 @@ class AdminsController extends Controller
         ->cc($admin['email'])
         ->send(new TestThreeStatus($student,$status,$subject));
         return redirect('/admin/applications')->with('Success','The application was '.$status.' and the student was emailed about the same.');
+    }
+    public function showTeacher(){
+        $teacher =  DB::table('teachers_data')
+                        ->leftjoin('teachers', 'teachers_data.emp_id', '=', 'teachers.emp_id')
+                        ->select('teachers.name', 'teachers_data.*')
+                        ->get();
+        return view('Admin.showteacher')->with('teacher',$teacher); 
+    }
+
+    public function storeTeacher(Request $request){
+        $teacher = new teachersData;
+        $teacher->email = $request['email'];
+        $teacher->emp_id = $request['emp'];
+        $teacher->save();
+        return redirect('/admin/teachers');
+
+    }
+    public function deleteTeacher(Request $request, $id){
+        $teacher = teachersData::find($id);
+        $teacher->delete();
+        return redirect('/admin/teachers');
+    }
+    public function showNews()
+    {
+        $news = News::orderBy('created_at', 'desc')->get();
+        return view('Admin.news')->with('news',$news);
+    }
+    public function storeNews(Request $request)
+    {
+        $this->validate($request,[
+            'news_image' => ['image','max:1999'],
+            'days' => ['integer','required'],
+            'content' =>['string','required'],
+        ]);
+        if($request->has('news_image'))
+        {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('news_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('news_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('news_image')->storeAs('public/news', $fileNameToStore);
+        }
+        else
+        {
+            $fileNameToStore = NULL;
+        }
+        $news = new News();
+        $news->Notification = $request->content;
+        $news->expiry = now()->addDays($request->days);
+        $news->news_image = $fileNameToStore;
+        $news->save();
+        return redirect('/admin/managenews');
+    }
+    public function deleteNews(Request $request,$id)
+    {
+        $news = News::find($id);
+        $news->delete();
+        return redirect('/admin/managenews')->with('success','News Deleted Successfully');
     }
 }
