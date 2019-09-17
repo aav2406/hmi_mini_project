@@ -92,23 +92,18 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-   //     return $request;
         $teacher = Teacher::find($id);
         $teacher->name = $request['name'];
         $teacher_div = Teacher::where('email', $request['email'])->first();
         $teacher_div->divisions()->detach();
         if($request->has('class_2'))
         {     
-            $teacher_div->divisions()->syncWithoutDetaching([
-                $request['class_1'] => ['subject_id' =>$request['sub_1']],
-                $request['class_2'] => ['subject_id' =>$request['sub_2']]
-            ]);
+            $teacher_div->divisions()->attach($request['class_1'],['subject_id' =>$request['sub_1']]);
+            $teacher_div->divisions()->attach($request['class_2'],['subject_id' =>$request['sub_2']]);
         }
         elseif($request->has('class_1'))
         {
-            $teacher_div->divisions()->syncWithoutDetaching([
-                $request['class_1'] => ['subject_id' =>$request['sub_1']],
-            ]);
+            $teacher_div->divisions()->attach($request['class_1'],['subject_id' =>$request['sub_1']]);
         }
         $teacher->phone_no = $request['phone_no'];
         $teacher->save();
@@ -119,7 +114,7 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request['name'];
         $user->phone_no = $request['phone_no'];
-        $user->roll_no = $request['roll_no'];
+        // $user->roll_no = $request['roll_no'];
         $user->save();
         return redirect("home");
     }

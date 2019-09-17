@@ -51,7 +51,6 @@ class TeachersController extends Controller
             $test_no = session()->get('test_no'.$teacher->id,'Error');
             $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))->orderBy('roll_no')                       
                                 ->get();
-                            // return $students;
             return view('Teacher.putMarks')->with('students',$students)->with('test_no',$test_no);
         }
         else
@@ -63,7 +62,6 @@ class TeachersController extends Controller
     {
         $teacher = Auth::user();
         $students = Application::where('status','1')->where('teacher_id',$teacher->id)->with('user:id,name,roll_no,division')->with('division')->with('subject:id,subject')->get();
-        // return $students;
         return view('Teacher.test3')->with('students',$students);
     }
     public function storeTestThree(Request $request)
@@ -96,20 +94,6 @@ class TeachersController extends Controller
         $cases = implode(' ', $cases);
         return \DB::update("UPDATE `{$table}` SET `marks` = CASE `id` {$cases} END WHERE `id` in ({$ids})");
     }
-    // public static function updateTestTwoValues(array $values)
-    // {
-    //     $table = Internal::getModel()->getTable();
-    //     $cases = [];
-    //     $ids = [];
-    //     foreach ($values as $id => $value) {
-    //         $id = (int) $id;
-    //         $cases[] = "WHEN {$id} then $value";
-    //         $ids[] = $id;
-    //     }
-    //     $ids = implode(',', $ids);
-    //     $cases = implode(' ', $cases);
-    //     return \DB::update("UPDATE `{$table}` SET `marks` = CASE `id` {$cases} END WHERE `id` in ({$ids})");
-    // }
     /**
      * Store a newly created resource in storage.
      *
@@ -119,23 +103,26 @@ class TeachersController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        $data = array();
+        $subject_id = $request->session()->get('subject_no'.$user->id,'Error');
+        $division_id = $request->session()->get('division_no'.$user->id,'Error');
         if($request->session()->get('test_no'.$user->id) == '1')
         {
             foreach($_POST as $id=>$mark)
             {
                 if(is_numeric($id))
-                InternalTest::updateOrCreate
-                (
-                    [
-                    'division_id' =>$request->session()->get('division_no'.$user->id,'Error'),
-                    'student_id' => $id,
-                    'subject_id' => $request->session()->get('subject_no'.$user->id,'Error')
-                ],
-                    [
-                        'ia1' => $mark,
-                ]
-            );
+                {
+                        $data[] = array( 'student_id' => $id, 
+                                         'division_id' => $division_id, 
+                                         'subject_id' => $subject_id, 
+                                         'IA1' => $mark,
+                                           'status1'=> 0,
+                                           'IA2' => -1, 
+                                           'status2' => 0,
+                                           'Avg' => -1);
+                }
             }
+            InternalTest::insert($data);
             $divtoteacher = DivisionTeacher::where('teacher_id',$user->id)
                                             ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
                                             ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
@@ -144,36 +131,39 @@ class TeachersController extends Controller
         }
         else if($request->session()->get('test_no'.$user->id) == '2')
         {
+            $table = InternalTest::getModel()->getTable();
+            $cases = [];
+            $ids = [];
             foreach($_POST as $id=>$mark)
             {
                 if(is_numeric($id))
                 {
-                    $data=InternalTest::where('student_id',$id)->where('subject_id',session()->get('subject_no'.$user->id,'Error'))->first();
-             //       return $data;
-                    $data->ia2=$mark;
-                    $data->Avg = ceil(($data->ia1 + $mark)/2);
-                    
-                        if($data->ia2 == -2 || $data->ia1 == -2)
-                        {
-                            $data->Avg = 0;
-                        }
-                    $data->save();
+                    $id = (int) $id;
+                    $cases[] = "WHEN {$id} then $mark";
+                    $ids[] = $id;
                 }
             }
+                $ids = implode(',', $ids);
+                $cases = implode(' ', $cases);
+                // If student is absent for any test, set his average to 0
+                \DB::update("UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})");
+            
             $divtoteacher = DivisionTeacher::where('teacher_id',$user->id)
                                              ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
                                              ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
             $divtoteacher->Expiry_2 = now()->addHours(48);
             $divtoteacher->save();  
         }
-        $request->session()->forget(['division_no'.$user->id, 'subject_no'.$user->id,'test_no'.$user->id]);
-        return redirect('teacher/putmarks');
+        $subject = Subject::where('id',$subject_id)->first();
+        $division = Division::where('id',$division_id)->first();
+        session()->forget(['division_no'.$user->id, 'subject_no'.$user->id,'test_no'.$user->id]);
+
+        return $this->send($subject,$division);
     }
     public function editMarks()
     {
         $user = Auth::user();
         $details = DivisionTeacher::where('teacher_id',$user->id)->with('division')->with('subject')->get();
-        
         return view('Teacher.editmarks')->with('details',$details);
     }
     public function editMarksCreateSession(Request $request)
@@ -218,11 +208,14 @@ class TeachersController extends Controller
     {
         $teacher = Auth::user();
         $subject_id = session()->get('subject_no'.$teacher->id,'Error');
+        $division_id = session()->get('division_no'.$teacher->id,'Error');
         $test_no = session()->get('test_no'.$teacher->id,'Error');
         $test = $test_no == 1 ? 'ia1':'ia2';
+        
         $search = $test_no==1?'Expiry_1':'Expiry_2';
-        $exists = DivisionTeacher::where('division_id',session()->get('division_no'.$teacher->id,'Error'))
-                                 ->where('subject_id',$subject_id)->value($search);
+        $exists = DivisionTeacher::where('division_id',$division_id)
+                                 ->where('subject_id',$subject_id)
+                                 ->get();
         if(isset($exists))
         {
         $users = DB::select("select users.roll_no,users.name,internal_tests.id,internal_tests.".$test." FROM users INNER JOIN internal_tests ON internal_tests.student_id = users.id WHERE internal_tests.division_id = ? AND internal_tests.subject_id = ? ORDER BY internal_tests.student_id"
@@ -253,7 +246,10 @@ class TeachersController extends Controller
         Mail::to($division['email'])
         ->cc($teacher->email)
         ->send(new Email($subject , $division));
-        return $this->index();
+       // return $this->index();
+      // session()->forget(['division_no'.$user->id, 'subject_no'.$user->id,'test_no'.$user->id]);
+      return redirect('teacher/putmarks');
+        
     }
     public function status(Request $request)
     {

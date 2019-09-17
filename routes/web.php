@@ -20,7 +20,7 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 Auth::routes(['verify'=>true]);
 
 Route::view('/about','pages.about');
-Route::get('{filename}', function($filename)
+Route::get('download/{filename}', function($filename)
 {
     // Check if file exists in public/storage/news folder
     $file_path = public_path().'\storage\news\\'.$filename;
@@ -84,7 +84,8 @@ function ()
     Route::post('editt','TeachersController@storeMarks');
 }
 );
-Route::group(['prefix' => 'home', 'middleware' => ['auth']], function () 
+Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], 
+function () 
 {
     Route::view('','auth.home');
     Route::get('application/{id}','HomeController@application')->name('home.application');
@@ -92,8 +93,7 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth']], function ()
     Route::get('marks','HomeController@index');
     Route::get('profile', 'ProfileController@indexStudent');
     Route::patch('profile/{id}', 'ProfileController@updateStudent');
-}  
-);
+});
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () 
 {
     Route::get('teachers','AdminsController@showTeacher');

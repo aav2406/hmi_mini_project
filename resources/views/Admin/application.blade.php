@@ -42,7 +42,7 @@
                                 {{$application->division->class}}
                         </td>
                         <td>
-                                {{$application->subject->subjec}}
+                                {{$application->subject->subject}}
                         </td>
                         <td>
                                 {{$application->user->roll_no}}

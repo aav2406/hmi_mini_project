@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 namespace App\Http\Controllers;
 use Auth;
 use App\Application;
@@ -7,6 +10,7 @@ use App\InternalTest;
 use App\Division;
 use App\Subject;
 use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 class HomeController extends Controller
 {
@@ -124,7 +128,7 @@ class HomeController extends Controller
             {
                 $ans = 1;
             }
-            elseif($record['IA1'] == -2)
+            elseif($record['IA2'] == -2)
             {
                 $ans = 2;
             }

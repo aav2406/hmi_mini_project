@@ -7,7 +7,7 @@ use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\UserController;
 
-class UserController extends Controller
+class UserController extends Controller 
 {
     public function export() 
     {

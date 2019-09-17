@@ -11,7 +11,7 @@
                                 <p class="text-justify"><h4>Roll No</h4>{{$student->roll_no}}</p>                                                       
                                 <p class="text-justify"><h4>Class</h4>{{$student->class}}</p>   
                                 <p class="text-justify"><h4>Subject</h4>{{$student->subject_name}}</p>          
-                                <h4>Certificate</h4><img style = "width:100%"src ="/storage/certificate/{{$application->certificate}}"> 
+                                <h4>Certificate</h4><img alt = "image" style = "width:100%"src ="/storage/certificate/{{$application->certificate}}"> 
                                 <p class="text-justify"><h4>Reason</h4>{{$application->reason}}</p>   
                                 <br>
                                 <hr style="border:1px solid #FFC312"> 
