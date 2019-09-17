@@ -81,25 +81,27 @@
                     </div>
                 </div>
             </a>
-            <a href="http://www.vesitrail.ves.ac.in/index.php/user/student_profile">
+            @if($testthreestatus)
+            <a href="/home/marks">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
                         <div class="card-body">
                                  <div class="card-title text-right">
                                     <div class="social_icon">
-                                     <span><i class="fas fa-user-cog"></i></span>
+                                    <span><i class="far fa-check-circle"></i></span>
                                     </div>
-                                    <h4>Settings</h4>
+                                    <h4>Test 3 Marks</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <span class="float-left">Go to Settings</span>
+                            <span class="float-left">View</span>
                             <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
             </a>
+            @endif
     
             <a href="http://www.vesitrail.ves.ac.in/index.php/user/student_profile">
                 <div class="col-lg-3 col-md-6">

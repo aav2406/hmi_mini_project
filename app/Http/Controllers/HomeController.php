@@ -10,7 +10,6 @@ use App\InternalTest;
 use App\Division;
 use App\Subject;
 use Carbon\Carbon;
-
 use Illuminate\Http\Request;
 class HomeController extends Controller
 {
@@ -28,6 +27,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function dashboard()
+    {
+        $user = Auth::user();
+        $testthreestatus = Application::where('student_id',$user->id)->get();
+        if(isset($testthreestatus))
+        {
+            $testthreestatus = 1;
+        }
+        else
+        {
+            $testthreestatus = 0;
+        }
+        return view('auth.home')->with('testthreestatus',$testthreestatus);
+      
+    }
     public function index()
     {
         $user = Auth::user();

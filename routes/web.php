@@ -87,7 +87,7 @@ function ()
 Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], 
 function () 
 {
-    Route::view('','auth.home');
+    Route::get('','HomeController@dashboard');
     Route::get('application/{id}','HomeController@application')->name('home.application');
     Route::post('application','HomeController@storeApplication');
     Route::get('marks','HomeController@index');
