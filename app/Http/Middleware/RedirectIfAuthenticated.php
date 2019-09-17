@@ -17,13 +17,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-<<<<<<< HEAD
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
-        }
-
-=======
-        if ($guard == "admin" && Auth::guard($guard)->check()) {
+        if($guard == "admin" && Auth::guard($guard)->check()) {
             return redirect('/admin');
         }
         if ($guard == "teacher" && Auth::guard($guard)->check()) {
@@ -32,7 +26,6 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
         }
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
         return $next($request);
     }
 }

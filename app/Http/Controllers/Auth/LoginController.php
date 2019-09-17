@@ -1,17 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-<<<<<<< HEAD
-
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-=======
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
 class LoginController extends Controller
 {
     /*
@@ -42,8 +35,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-<<<<<<< HEAD
-=======
         $this->middleware('guest:admin')->except('logout');
         $this->middleware('guest:teacher')->except('logout');
     }
@@ -84,6 +75,5 @@ class LoginController extends Controller
             return redirect()->intended('/teacher')->with('success','You are successfully logged in!');
         }
         return back()->withInput($request->only('email', 'remember'));
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     }
 }

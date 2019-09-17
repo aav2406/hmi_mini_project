@@ -1,11 +1,5 @@
 <?php
-<<<<<<< HEAD
-
 return [
-
-=======
-return [
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Mail Driver
@@ -19,13 +13,7 @@ return [
     |            "sparkpost", "postmark", "log", "array"
     |
     */
-<<<<<<< HEAD
-
     'driver' => env('MAIL_DRIVER', 'smtp'),
-
-=======
-    'driver' => env('MAIL_DRIVER', 'smtp'),
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -36,13 +24,7 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-<<<<<<< HEAD
-
     'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-
-=======
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Port
@@ -53,13 +35,7 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-<<<<<<< HEAD
-
     'port' => env('MAIL_PORT', 587),
-
-=======
-    'port' => env('MAIL_PORT', 587),
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -70,19 +46,10 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-<<<<<<< HEAD
-
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
-    ],
-
-=======
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'iars.vesit@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'iars.vesit'),
     ],
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol
@@ -93,13 +60,7 @@ return [
     | transport layer security protocol should provide great security.
     |
     */
-<<<<<<< HEAD
-
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-
-=======
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Username
@@ -110,16 +71,8 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */
-<<<<<<< HEAD
-
-    'username' => env('MAIL_USERNAME'),
-
-    'password' => env('MAIL_PASSWORD'),
-
-=======
     'username' => 'iars.vesit@gmail.com',
     'password' => 'gjkdvmwjntwuzkvn',
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
@@ -130,13 +83,7 @@ return [
     | been provided here, which will work well on most of your systems.
     |
     */
-<<<<<<< HEAD
-
     'sendmail' => '/usr/sbin/sendmail -bs',
-
-=======
-    'sendmail' => '/usr/sbin/sendmail -bs',
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
@@ -147,23 +94,12 @@ return [
     | of the emails. Or, you may simply stick with the Laravel defaults!
     |
     */
-<<<<<<< HEAD
-
     'markdown' => [
         'theme' => 'default',
-
-=======
-    'markdown' => [
-        'theme' => 'default',
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
     ],
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Log Channel
@@ -174,12 +110,5 @@ return [
     | for simpler reading. Otherwise, the default channel will be used.
     |
     */
-<<<<<<< HEAD
-
-    'log_channel' => env('MAIL_LOG_CHANNEL'),
-
-];
-=======
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 ];
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d

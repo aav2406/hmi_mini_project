@@ -49,14 +49,14 @@ class AdminsController extends Controller
             $application->status = 1;
             $application->remark = $request['remark'];
             $application->save();
-           // $this->send($student,"Accepted",$request->session()->get('Subject_name','Error'));   
+            $this->send($student,"Accepted",$request->session()->get('Subject_name','Error'));   
         }
         elseif(isset($request['Reject']))
         {
             $application->status = 0;
             $application->remark = $request['remark'];
             $application->save();
-           // $this->send($student,"Rejected",$request->session()->get('Subject_name','Error'));   
+            $this->send($student,"Rejected",$request->session()->get('Subject_name','Error'));   
         }
         return redirect('/admin/applications');
     }

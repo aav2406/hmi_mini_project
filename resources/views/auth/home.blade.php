@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </a>
-            @if($testthreestatus)
+            @if($status)
             <a href="/home/marks">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">

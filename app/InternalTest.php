@@ -3,7 +3,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 class InternalTest extends Model
 {
-    protected $table = 'internal_tests';
+    protected $table = 'internal_test';
     public $timestamps = false;
     protected $fillable = [
          'ia1','subject_id','student_id','division_id','ia2','status1','status2','Avg'

@@ -1,11 +1,5 @@
 <?php
-<<<<<<< HEAD
-
 return [
-
-=======
-return [
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -16,18 +10,10 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
     ],
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -44,10 +30,6 @@ return [
     | Supported: "session", "token"
     |
     */
-<<<<<<< HEAD
-
-    'guards' => [
-=======
     'guards' => [
         'admin' => [
             'driver' => 'session',
@@ -57,25 +39,16 @@ return [
             'driver' => 'session',
             'provider' => 'teachers',
         ],
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
         ],
     ],
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -92,18 +65,11 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-<<<<<<< HEAD
-
-=======
        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
@@ -112,16 +78,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Teacher::class,
         ],
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -136,21 +97,12 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     'passwords' => [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-<<<<<<< HEAD
-    ],
-
-];
-=======
         'teachers' => [
             'provider' => 'teachers',
             'table' => 'password_resets',
@@ -158,4 +110,3 @@ return [
         ],
     ],
 ];
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d

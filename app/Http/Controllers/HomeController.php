@@ -31,16 +31,25 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $testthreestatus = Application::where('student_id',$user->id)->get();
-        if(isset($testthreestatus))
+        $status = 0;
+        if($testthreestatus == null)
         {
-            $testthreestatus = 1;
+            $status = 0;
         }
         else
         {
-            $testthreestatus = 0;
+            $status = 1;
         }
-        return view('auth.home')->with('testthreestatus',$testthreestatus);
+      //  return $status;
+        return view('auth.home')->with('status',$status);
       
+    }
+    public function testThreeMarks()
+    {
+        $user = Auth::user();
+        $test = Application::where('student_id',$user->id)->with('subject')->get();
+      //  return $test;
+        return view('auth.testthreemarks')->with('test',$test);
     }
     public function index()
     {
@@ -134,15 +143,15 @@ class HomeController extends Controller
             // return $teacher;
             $record =   InternalTest::where('student_id',$student->id)->where('subject_id',$request->session()->get('subject_id','Error'))->first();
             $teacher_id = DivisionTeacher::where('division_id',$student->division)->where('subject_id',$request->session()->get('subject_id','Error'))->first()->value('teacher_id'); 
-            if($record['IA1'] == -2 && $record['IA2'] == -2 )
+            if($record['ia1'] == -2 && $record['ia2'] == -2 )
             {
                 $ans = 3;
             }
-            elseif($record['IA1'] == -2)
+            elseif($record['ia1'] == -2)
             {
                 $ans = 1;
             }
-            elseif($record['IA2'] == -2)
+            elseif($record['ia2'] == -2)
             {
                 $ans = 2;
             }

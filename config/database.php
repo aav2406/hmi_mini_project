@@ -123,18 +123,10 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'predis'),
-<<<<<<< HEAD
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
-        ],
-
-        'default' => [
-            'url' => env('REDIS_URL'),
-=======
             'prefix' => Str::slug(env('APP_NAME', 'laravel'), '_').'_database_',
         ],
 
         'default' => [
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
@@ -142,10 +134,6 @@ return [
         ],
 
         'cache' => [
-<<<<<<< HEAD
-            'url' => env('REDIS_URL'),
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),

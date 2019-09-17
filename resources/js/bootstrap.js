@@ -24,8 +24,6 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
-<<<<<<< HEAD
-=======
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
  * a simple convenience so we don't have to attach every token manually.
@@ -40,17 +38,12 @@ if (token) {
 }
 
 /**
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
 
-<<<<<<< HEAD
-// import Echo from 'laravel-echo';
-=======
 // import Echo from 'laravel-echo'
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
 
 // window.Pusher = require('pusher-js');
 

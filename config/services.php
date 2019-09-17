@@ -8,15 +8,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-<<<<<<< HEAD
-    | as Mailgun, SparkPost and others. This file provides a sane default
-    | location for this type of information, allowing packages to have
-    | a conventional file to locate the various service credentials.
-=======
     | as Stripe, Mailgun, SparkPost and others. This file provides a sane
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
     |
     */
 
@@ -40,8 +34,6 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
-<<<<<<< HEAD
-=======
     'stripe' => [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
@@ -52,5 +44,4 @@ return [
         ],
     ],
 
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
 ];

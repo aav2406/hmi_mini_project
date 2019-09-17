@@ -18,9 +18,9 @@ class CreateInternalTestsTable extends Migration
             $table->integer('division_id');
             $table->integer('subject_id');
             $table->integer('student_id');
-            $table->integer('IA1')->default(-1);
+            $table->integer('ia1')->default(-1);
             $table->integer('status1')->default(0);
-            $table->integer('IA2')->default(-1);
+            $table->integer('ia2')->default(-1);
             $table->integer('status2')->default(0);;
             $table->integer('Avg')->default(-1);;
         });
@@ -33,6 +33,6 @@ class CreateInternalTestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('internal_tests');
+        Schema::dropIfExists('internal_test');
     }
 }

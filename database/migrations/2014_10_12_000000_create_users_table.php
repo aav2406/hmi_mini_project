@@ -12,15 +12,6 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function up()
-<<<<<<< HEAD
-    {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-=======
     { 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
@@ -35,10 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('parentname1',100);
             $table->string('parentemail1',100);
             $table->string('parentphone_no1',20);
-            $table->string('parentname2',100);
-            $table->string('parentemail2',100);
-            $table->string('parentphone_no2',20);
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
+            $table->string('parentname2',100)->nullable();
+            $table->string('parentemail2',100)->nullable();
+            $table->string('parentphone_no2',20)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

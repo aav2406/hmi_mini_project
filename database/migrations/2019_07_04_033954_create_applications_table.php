@@ -21,7 +21,6 @@ class CreateApplicationsTable extends Migration
             $table->Integer('student_id');
             $table->Integer('subject_id');
             $table->Integer('test_no');
-
             $table->text('reason');
             $table->text('remark')->nullable();
             $table->timestamps();

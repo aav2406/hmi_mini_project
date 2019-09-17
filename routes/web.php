@@ -1,8 +1,4 @@
 <?php
-<<<<<<< HEAD
-
-=======
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,20 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
-
-Route::get('/', function () {
-    return view('welcome');
-});
-=======
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
-Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
-*/
-// Auth::routes();
 Auth::routes(['verify'=>true]);
 
 Route::view('/about','pages.about');
@@ -98,6 +80,7 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']],
 function () 
 {
     Route::get('','HomeController@dashboard');
+    Route::get('testthree','HomeController@testThreeMarks');
     Route::get('application/{id}','HomeController@application')->name('home.application');
     Route::post('application','HomeController@storeApplication');
     Route::get('marks','HomeController@index');
@@ -120,4 +103,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
 );
 Route::get('/download','TestController@export');
 Route::get('/download1','UserController@export');
->>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d

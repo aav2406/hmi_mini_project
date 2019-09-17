@@ -157,8 +157,8 @@ class TeachersController extends Controller
         $subject = Subject::where('id',$subject_id)->first();
         $division = Division::where('id',$division_id)->first();
         session()->forget(['division_no'.$user->id, 'subject_no'.$user->id,'test_no'.$user->id]);
-
-        return $this->send($subject,$division);
+        return redirect('teacher/putmarks');
+    //    return $this->send($subject,$division);
     }
     public function editMarks()
     {
@@ -264,9 +264,9 @@ class TeachersController extends Controller
         $teacher = Auth::user();
         $test_no = session()->get('test_no'.$teacher->id,"Error");
         $students =  DB::table('users')
-                        ->join('internal_tests', 'users.id', '=', 'internal_tests.student_id')
+                        ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
                         ->join('divisions', 'users.division', '=', 'divisions.id')
-                        ->select('users.name','users.name','users.roll_no', 'internal_tests.*', 'divisions.*')
+                        ->select('users.name','users.name','users.roll_no', 'internal_test.*', 'divisions.*')
                         ->where('users.division',session()->get('division_no'.$teacher->id,'Error'))
                         ->orderBy('users.roll_no')
                         ->get();
