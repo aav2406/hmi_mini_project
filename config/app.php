@@ -161,6 +161,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+<<<<<<< HEAD
+=======
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+>>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
 
         /*
          * Package Service Providers...
@@ -225,7 +229,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+<<<<<<< HEAD
 
     ],
 
+=======
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+    ],
+>>>>>>> 49a2da52f01bfe480968e3127d13be8a72d8e06d
 ];
