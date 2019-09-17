@@ -9,14 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
-Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
-*/
-// Auth::routes();
 Auth::routes(['verify'=>true]);
 
 Route::view('/about','pages.about');
@@ -88,6 +80,7 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']],
 function () 
 {
     Route::get('','HomeController@dashboard');
+    Route::get('testthree','HomeController@testThreeMarks');
     Route::get('application/{id}','HomeController@application')->name('home.application');
     Route::post('application','HomeController@storeApplication');
     Route::get('marks','HomeController@index');

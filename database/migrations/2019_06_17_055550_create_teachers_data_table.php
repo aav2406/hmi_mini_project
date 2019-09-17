@@ -15,7 +15,6 @@ class CreateTeachersDataTable extends Migration
             $table->increments('id');
             $table->string('email');
             $table->string('emp_id');
-            $table->timestamps();
         });
     }
     /**

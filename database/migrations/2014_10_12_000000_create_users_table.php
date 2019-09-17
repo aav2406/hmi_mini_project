@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('parentname1',100);
             $table->string('parentemail1',100);
             $table->string('parentphone_no1',20);
-            $table->string('parentname2',100);
-            $table->string('parentemail2',100);
-            $table->string('parentphone_no2',20);
+            $table->string('parentname2',100)->nullable();
+            $table->string('parentemail2',100)->nullable();
+            $table->string('parentphone_no2',20)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

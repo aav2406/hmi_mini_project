@@ -17,7 +17,6 @@ class CreateSubjectsTable extends Migration
             $table->integer('semester');
             $table->string('subject',100);
             $table->integer('max_marks');
-            $table->timestamps();
         });
     }
     /**
