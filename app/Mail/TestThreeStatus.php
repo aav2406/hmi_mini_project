@@ -14,13 +14,15 @@ class TestThreeStatus extends Mailable
      * @return void
      */
     public $student;
-    public $subject;
+    public $subj;
+    public $reason;
     public $status;
-    public function __construct(User $student,$status,$subject)
+    public function __construct($reason,User $student,$status,$subject)
     {
+        $this->reason = $reason;
         $this->student = $student;
         $this->status = $status;
-        $this->subject = $subject;
+        $this->subj = $subject;
     }
     /**
      * Build the message.
@@ -29,6 +31,6 @@ class TestThreeStatus extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.testThree');
+        return $this->subject('Test Three Application '.$this->status)->view('mails.testThree');
     }
 }

@@ -39,7 +39,7 @@
                             {{$loop->index+1}}
                         </td>
                         <td>
-                                {{$new->Notification}}
+                                {{$new->news}}
                         </td>
                         <td>
                               {{$new->created_at}}
