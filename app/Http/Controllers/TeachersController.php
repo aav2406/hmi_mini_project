@@ -154,11 +154,11 @@ class TeachersController extends Controller
             $divtoteacher->Expiry_2 = now()->addHours(48);
             $divtoteacher->save();  
         }
-        $subject = Subject::where('id',$subject_id)->first();
+        $subject = Subject::where('id',$subject_id)->first()->value('subject');
         $division = Division::where('id',$division_id)->first();
         session()->forget(['division_no'.$user->id, 'subject_no'.$user->id,'test_no'.$user->id]);
-        return redirect('teacher/putmarks');
-    //    return $this->send($subject,$division);
+      //  return redirect('teacher/putmarks');
+        return $this->send($subject,$division);
     }
     public function editMarks()
     {
@@ -172,7 +172,7 @@ class TeachersController extends Controller
         $request->session()->put('subject_no'.$teacher->id,$request['subject_no']);
         $request->session()->put('division_no'.$teacher->id,$request['division_id']);
         $request->session()->put('test_no'.$teacher->id,$request['test_no']);
-        return redirect('teacher/editt');
+        return redirect('teacher/editmarkslist');
     }
     public function storeMarks(Request $request)
     {
@@ -204,7 +204,7 @@ class TeachersController extends Controller
             \DB::update("UPDATE `{$table}` SET {$put} = CASE `id` {$cases} END WHERE `id` in ({$ids})");
             return redirect('teacher/editmarks')->with('success','You have edited marks successfully!!');
     }
-    public function showStudents1()
+    public function showStudentList()
     {
         $teacher = Auth::user();
         $subject_id = session()->get('subject_no'.$teacher->id,'Error');
@@ -218,10 +218,10 @@ class TeachersController extends Controller
                                  ->get();
         if(isset($exists))
         {
-        $users = DB::select("select users.roll_no,users.name,internal_tests.id,internal_tests.".$test." FROM users INNER JOIN internal_tests ON internal_tests.student_id = users.id WHERE internal_tests.division_id = ? AND internal_tests.subject_id = ? ORDER BY internal_tests.student_id"
+        $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY internal_test.student_id"
                              ,[session()->get('division_no'.$teacher->id,'Error'),
                              session()->get('subject_no'.$teacher->id,'Error')]);
-          return view('Teacher.editt')->with('users',$users)->with('test_no',$test_no);
+          return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
         }
         else
         {

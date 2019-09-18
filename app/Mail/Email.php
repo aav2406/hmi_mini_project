@@ -13,7 +13,7 @@ class Email extends Mailable
      *
      * @return void
      */
-    public $subject;
+    public $subj;
     public $division;
     /**
      * Create a new message instance.
@@ -22,7 +22,7 @@ class Email extends Mailable
      */
     public function __construct($subject,Division $division)
     {
-        $this->subject = $subject;
+        $this->subj = $subject;
         $this->division = $division;
     }
  
@@ -33,7 +33,7 @@ class Email extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.demo')->with('Subject',$this->subject);
+        return $this->subject('Marks Updated For '.$this->subj)->view('mails.demo');
         
     }
 }

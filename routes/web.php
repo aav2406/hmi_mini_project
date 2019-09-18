@@ -72,8 +72,8 @@ function ()
     Route::post('marks','TeachersController@marks');
     Route::get('editmarks','TeachersController@editMarks');
     Route::post('editmarks','TeachersController@editMarksCreateSession');
-    Route::get('editt','TeachersController@showStudents1');
-    Route::post('editt','TeachersController@storeMarks');
+    Route::get('editmarkslist','TeachersController@showStudentList');
+    Route::post('editmarkslist','TeachersController@storeMarks');
 }
 );
 Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], 
