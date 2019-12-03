@@ -109,8 +109,9 @@ class HomeController extends Controller
     public function application($id)
     {
         $student = Auth::user();
-        $record = Application::where('student_id',$student->id)->where('subject_id',$id)->first();
-        if($record == NULL)
+        $record = Application::where('student_id',$student->id)->where('subject_id',$id)->get();
+        $countOfApplication = $record->count();
+        if($countOfApplication < 3)
         {
             $failed = InternalTest::where('student_id',$student->id)
                         ->where('subject_id',$id)
@@ -128,7 +129,7 @@ class HomeController extends Controller
         }
         else
         {
-            return redirect('home/marks')->with('error','You have already applied for test 3 of this subject.');
+            return redirect('home/marks')->with('error','You Have exceeded the Maximum number of times you can apply');
         }
     }
     public function storeApplication(Request $request)
