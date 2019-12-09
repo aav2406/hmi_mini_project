@@ -17,6 +17,7 @@ class CreateNewsTable extends Migration
             $table->increments('id');
             $table->text('news');
             $table->string('news_image')->nullable();
+            $table->timestamp('expiry');
             $table->timestamps();
         });
     }

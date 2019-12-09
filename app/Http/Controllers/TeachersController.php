@@ -211,22 +211,31 @@ class TeachersController extends Controller
         $division_id = session()->get('division_no'.$teacher->id,'Error');
         $test_no = session()->get('test_no'.$teacher->id,'Error');
         $test = $test_no == 1 ? 'ia1':'ia2';
-        
         $search = $test_no==1?'Expiry_1':'Expiry_2';
         $exists = DivisionTeacher::where('division_id',$division_id)
                                  ->where('subject_id',$subject_id)
-                                 ->get();
-        if(isset($exists))
+                                 ->whereNotNull($search)->first();
+        $timeExpired = $exists[$search];
+        // return now();
+        // return Carbon::parse($timeExpired);
+        $exists = isset($exists)?$exists->count():0;
+        if($exists > 0)
         {
-        $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY internal_test.student_id"
-                             ,[session()->get('division_no'.$teacher->id,'Error'),
-                             session()->get('subject_no'.$teacher->id,'Error')]);
-          return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
-        }
+            if(Carbon::parse($timeExpired) < (Carbon::now()))
+            {
+                return redirect('teacher/editmarks')->with('error',"Time to edit marks for this subject, test, class combination has expired.");
+            }
+            $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY internal_test.student_id"
+            ,[session()->get('division_no'.$teacher->id,'Error'),
+            session()->get('subject_no'.$teacher->id,'Error')]);
+            return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
+        }                        
         else
-        {
-            return redirect('teacher/editmarks')->with('error',"You haven't put marks for this test of this subject yet.");
-        }
+            {
+                return redirect('teacher/editmarks')->with('error',"You haven't put marks for this test of this subject yet.");
+
+            }
+    
     }
     /**
      * Display the specified resource.

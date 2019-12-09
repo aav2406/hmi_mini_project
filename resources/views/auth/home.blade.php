@@ -103,7 +103,7 @@
             </a>
             @endif
     
-            <a href="http://www.vesitrail.ves.ac.in/index.php/user/student_profile">
+            <a href="#">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
                         <div class="card-body">
