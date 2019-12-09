@@ -109,8 +109,17 @@ class HomeController extends Controller
     public function application($id)
     {
         $student = Auth::user();
-        $record = Application::where('student_id',$student->id)->where('subject_id',$id)->first();
-        if($record == NULL)
+        $record = Application::where('student_id',$student->id)->where('subject_id',$id)->get();
+        $countOfApplication = $record->count();
+        $date = DivisionTeacher::where('division_id',$student->division)->first();
+        
+        //$date1 = Carbon::parse($date['Expiry_2']);
+       
+        
+
+        $exp1 = (Carbon::parse($date['Expiry_1'])->addHours(72)->gt(Carbon::now()) or Carbon::parse($date['Expiry_2'])->addHours(72)->gt(Carbon::now()));
+        //return $exp1;
+        if($countOfApplication < 3 and $exp1)
         {
             $failed = InternalTest::where('student_id',$student->id)
                         ->where('subject_id',$id)
@@ -128,7 +137,7 @@ class HomeController extends Controller
         }
         else
         {
-            return redirect('home/marks')->with('error','You have already applied for test 3 of this subject.');
+            return redirect('home/marks')->with('error','You Have exceeded the Maximum number of times you can apply OR Time limit Exceeded');
         }
     }
     public function storeApplication(Request $request)
@@ -175,6 +184,7 @@ class HomeController extends Controller
                     'test_no' => $ans,
                     'teacher_id' => $teacher_id,
                     'division_id' => $student->division,
+                    'created_at' => now(),
                 ]
             );
             $request->session()->forget('subject_id');
