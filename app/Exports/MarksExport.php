@@ -16,11 +16,9 @@ class MarksExport implements FromView
     }
     public function view(): View
     {
+        $marks = InternalTest::where('division_id', $this->div)->where('subject_id',$this->sub)->orderBy('student_id', 'asc')->get();
         return view('exports.marks', [
-             'marks' => InternalTest::where('division_id', $this->div)->where('subject_id',$this->sub)->orderBy('student_id', 'asc')->get()
+             'marks' => $marks
          ]);
-        // return view('exports.marks', [
-        //     'marks' => InternalTest::all()
-        // ]);
     }
 }

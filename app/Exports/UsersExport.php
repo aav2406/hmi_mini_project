@@ -18,8 +18,5 @@ class UsersExport implements FromView
         return view('exports.users', [
              'users' => User::where('division', $this->div)->orderBy('roll_no', 'asc')->get()
          ]);
-        // return view('exports.marks', [
-        //     'marks' => InternalTest::all()
-        // ]);
     }
 }
