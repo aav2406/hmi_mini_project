@@ -62,7 +62,8 @@ class TeachersController extends Controller
     {
         $teacher = Auth::user();
         $students = Application::where('status','1')->where('teacher_id',$teacher->id)->with('user:id,name,roll_no,division')->with('division')->with('subject:id,subject')->get();
-        return view('Teacher.test3')->with('students',$students);
+        $rejectstudents = Application::where('status','0')->where('teacher_id',$teacher->id)->with('user:id,name,roll_no,division')->with('division')->with('subject:id,subject')->get();
+        return view('Teacher.test3')->with('students',$students)->with('rejectstudents',$rejectstudents);
     }
     public function storeTestThree(Request $request)
     {
