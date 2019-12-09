@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5748f8f748fdf062cf28c7234cffcca1",
+    "content-hash": "e9e9d6ea2c41e04e52fca7d0a5a66410",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -761,31 +761,26 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.17",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "bd377ad37b285d9bc25c9adca360e4392041dea6"
+                "reference": "e8b3649481248fb87ac11eb8b9db747ec89ec0a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/bd377ad37b285d9bc25c9adca360e4392041dea6",
-                "reference": "bd377ad37b285d9bc25c9adca360e4392041dea6",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/e8b3649481248fb87ac11eb8b9db747ec89ec0a9",
+                "reference": "e8b3649481248fb87ac11eb8b9db747ec89ec0a9",
                 "shasum": ""
             },
             "require": {
-                "ext-json": "*",
-                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0",
-                "opis/closure": "^3.1",
+                "illuminate/support": "^5.5",
                 "php": "^7.0",
-                "phpoffice/phpspreadsheet": "^1.6"
+                "phpoffice/phpspreadsheet": "^1.2"
             },
             "require-dev": {
-                "mockery/mockery": "^1.1",
-                "orchestra/database": "^4.0",
-                "orchestra/testbench": "^4.0",
-                "phpunit/phpunit": "^8.0",
-                "predis/predis": "^1.1"
+                "orchestra/testbench": "^3.6",
+                "phpunit/phpunit": "~7.0"
             },
             "type": "library",
             "extra": {
@@ -813,7 +808,7 @@
                     "email": "patrick@maatwebsite.nl"
                 }
             ],
-            "description": "Supercharged Excel exports and imports in Laravel",
+            "description": "An eloquent way of importing and exporting Excel and CSV",
             "keywords": [
                 "PHPExcel",
                 "batch",
@@ -825,7 +820,7 @@
                 "php",
                 "phpspreadsheet"
             ],
-            "time": "2019-09-04T19:28:20+00:00"
+            "time": "2018-03-18T19:44:31+00:00"
         },
         {
             "name": "markbaker/complex",

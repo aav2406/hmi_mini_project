@@ -252,9 +252,9 @@ class TeachersController extends Controller
     public function send($subject,Division $division)
     {
         $teacher = Auth::user();
-        Mail::to($division['email'])
-        ->cc($teacher->email)
-        ->send(new Email($subject , $division));
+        // Mail::to($division['email'])
+        // ->cc($teacher->email)
+        // ->send(new Email($subject , $division));
        // return $this->index();
       // session()->forget(['division_no'.$user->id, 'subject_no'.$user->id,'test_no'.$user->id]);
       return redirect('teacher/putmarks');

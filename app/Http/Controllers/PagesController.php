@@ -8,7 +8,7 @@ class PagesController extends Controller
 {
     public function index(){
         $title='Internal Assessment Record System';
-        $news = News::where('expiry', '>=', now()->toDateTimeString())->orderBy('created_at', 'desc')->get();
+        $news = News::where('updated_at', '>=', now()->toDateTimeString())->orderBy('created_at', 'desc')->get();
         $length = $news->count();
         for( $i = 0 ; $i < $length ; $i++)
         {

@@ -2,8 +2,7 @@
 
 <style>
 body{
-   background-image: url("http://ves.ac.in/vesit/wp-content/uploads/sites/3/2015/11/IMG_93121-optimized.jpg");
-   background-repeat: no-repeat;
+   background:linear-gradient(rgba(16,29,44,.85),rgba(16,29,44,.85)),url("http://ves.ac.in/vesit/wp-content/uploads/sites/3/2015/11/IMG_93121-optimized.jpg") center no-repeat;
    background-size: cover; 
    font-size: 0.9rem;
    padding: 0px;
@@ -42,7 +41,7 @@ body{
 <div class="text-center" style="font-size:3em;margin-top:20%;color:yellow">
    <b>{{$title}}</b>
 </div>
-<div class="holder">
+<!-- <div class="holder">
    <ul id="ticker01">
       @foreach($news as $news1)
          <li><a href="{{$news1->news_image}}">{{$news1->Notification}}</a></li> 
@@ -87,7 +86,7 @@ body{
        $("ul#ticker01").liScroll();
    });
    
-   </script>
+   </script> -->
    
 @endsection
 
