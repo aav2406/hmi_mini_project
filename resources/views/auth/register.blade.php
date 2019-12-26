@@ -121,6 +121,28 @@
         </style>
 @extends('layouts.app')
 @section('content')
+
+<script>
+    $(document).ready(function(){
+    $('#submitB').click(function () {
+        $('input:invalid').each(function () {
+            // Find the tab-pane that this element is inside, and get the id
+            var $closest = $(this).closest('.tab-pane');
+            var id = $closest.attr('id');
+
+            // Find the link that corresponds to the pane and have it show
+            $('.nav a[href="#' + id + '"]').tab('show');
+
+            // Only want to do it once
+            return false;
+        });
+    });
+
+    });
+    
+    </script>
+
+
 <div class="container">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
@@ -288,7 +310,7 @@
                 <div class="form-group">
                         <a class="btn previous_btn btnPrevious float-left" ><i class="fas fa-backward"></i>Previous</a>
                         
-                        <button type="submit" class="btn register_btn ">Create Account</button>
+                        <button type="submit" id = "submitB" class="btn register_btn ">Create Account</button>
                         
                 </div>
                 </form>

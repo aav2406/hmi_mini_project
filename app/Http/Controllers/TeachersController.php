@@ -49,6 +49,7 @@ class TeachersController extends Controller
         if(!isset($expiry))
         {
             $teacher = Auth::user();
+            //Change for Elective
             $test_no = session()->get('test_no'.$teacher->id,'Error');
             $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))->orderBy('roll_no')                       
                                 ->get();
@@ -199,7 +200,6 @@ class TeachersController extends Controller
                 {
                         $id = (int) $id;
                         $requiredIds[] = $id;
-
                         $cases[] = "WHEN {$id} then $mark";
                         $ids[] = $id;
                 }
@@ -208,9 +208,11 @@ class TeachersController extends Controller
             $cases = implode(' ', $cases);
             \DB::update("UPDATE `{$table}` SET {$put} = CASE `id` {$cases} END WHERE `id` in ({$ids})");
             $students = InternalTest::whereIn('id', $requiredIds)->with('user')->with('subject')->get();
+            $i = -1;
             foreach($students as $user)
             {
-                dispatch(new SendEmailJob($teacher->email,$user->user->email,$user->subject->subject,$user->user->name));
+                $i++;
+                dispatch(new SendEmailJob($teacher->email,$user->user->email,$user->subject->subject,$user->user->name))->delay($i*7);
             }
             return redirect('teacher/editmarks')->with('success','You have edited marks successfully!!');
     }
@@ -226,8 +228,6 @@ class TeachersController extends Controller
                                  ->where('subject_id',$subject_id)
                                  ->whereNotNull($search)->first();
         $timeExpired = $exists[$search];
-        // return now();
-        // return Carbon::parse($timeExpired);
         $exists = isset($exists)?$exists->count():0;
         if($exists > 0)
         {
@@ -235,6 +235,7 @@ class TeachersController extends Controller
             {
                 return redirect('teacher/editmarks')->with('error',"Time to edit marks for this subject, test, class combination has expired.");
             }
+            //change for elective
             $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no"
                                                                                                                                             ,[session()->get('division_no'.$teacher->id,'Error'),
                                                                                                                                             session()->get('subject_no'.$teacher->id,'Error')]);
@@ -282,6 +283,7 @@ class TeachersController extends Controller
     {
         $teacher = Auth::user();
         $test_no = session()->get('test_no'.$teacher->id,"Error");
+        //change for electives
         $students =  DB::table('users')
                         ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
                         ->join('divisions', 'users.division', '=', 'divisions.id')
