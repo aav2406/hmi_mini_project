@@ -3,18 +3,38 @@
     function disable(num)
     {
         var x = document.getElementById(':'+num).checked;
+        var y = document.getElementById('a'+num);
+        y.disabled = false;
         if(x)
         {
-            document.getElementById(num).value = "-2";
-            document.getElementById(num).style.display = 'none';
-            document.getElementById(num).required = false;
+            document.getElementById('a'+num).value = "-2";
+            document.getElementById('a'+num).style.display = 'none';
+            document.getElementById('a'+num).required = false;
         }
         else
         {
-            document.getElementById(num).value = "";
-            document.getElementById(num).required = true;
-            document.getElementById(num).style.display = 'inline';
+            y.disabled = true;
+            document.getElementById('a'+num).value = "";
+            document.getElementById('a'+num).required = true;
+            document.getElementById('a'+num).style.display = 'inline';
         }
+    }
+    function edit(num)
+    {
+
+        var x = document.getElementById('b'+num);
+        if(x.checked)
+        {
+            var y = document.getElementById('a'+num);
+            y.disabled = false;
+
+        }
+        else
+        {
+            var y = document.getElementById('a'+num);
+            y.disabled = true;
+        }
+
     }
     </script>
 <style>
@@ -64,6 +84,7 @@
                             <th>Roll No</th>
                             <th>Student Name</th>
                             <th>Marks</th>
+                            <th>Edit</th>
                             <th>Absent</th>
                         </tr>
                         </thead>
@@ -75,15 +96,21 @@
                                 <td>{{$student->name }}</td>
                             <td>
                                         @if($test_no == 1)
-                                            <input id = "{{$loop->index}}" value = "{{$student->ia1}}" type = "number" min = '-2' max = '30' name = "{{$student->id}}" required {{ $student->ia1 == -2 ?'style=display:none;': "" }}   ></td>
+                                            <input disabled id = "a{{$loop->index}}" value = "{{$student->ia1}}" type = "number" min = '-2' max = '30' name = "{{$student->id}}" required {{ $student->ia1 == -2 ?'style=display:none;': "" }}   >
+                                                <td><input id = "b{{$loop->index}}" type="checkbox" onclick = "edit({{$loop->index}})" class = "btn btn-primary"></td>
+                                                </td>
                                             <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->ia1 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
                                         @elseif($test_no == 2)
                                             @if($student->ia2 == -1)
-                                                <input  id = "{{$loop->index}}" type = "number" min = '-2' max = '30' name = {{$student->roll_no}} required></td>
+                                                <input  disabled id = "a{{$loop->index}}" type = "number" min = '-2' max = '30' name = {{$student->roll_no}} required>
+                                                <td><input type="checkbox" onclick = "edit({{$loop->index}})" class = "btn btn-primary"></td>
+                                            </td>
                                                 <td><input id = ":{{$loop->index}}"type="checkbox"  onchange = "disable({{$loop->index}})"></td>
                                             @else
-                                                <input  id = "{{$loop->index}}" value = "{{$student->ia2}}" type = "number" min = '-2' max = '30' name = {{$student->id}} required {{ $student->ia2 == -2?'style=display:none;': "" }} ></td>
-                                                <td><input id = ":{{$loop->index}}"type="checkbox" {{ $student->ia2 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
+                                                <input  disabled id = "a{{$loop->index}}" value = "{{$student->ia2}}" type = "number" min = '-2' max = '30' name = {{$student->id}} required {{ $student->ia2 == -2?'style=display:none;': "" }} >
+                                                <td><input type="checkbox" onclick = "edit({{$loop->index}})" class = "btn btn-primary"></td>
+                                            </td>
+                                                <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->ia2 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
                                             @endif
                                         @endif
 
