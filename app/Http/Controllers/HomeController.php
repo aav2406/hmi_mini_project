@@ -106,39 +106,48 @@ class HomeController extends Controller
         }
         return back();
     }
-    public function application($id)
+    public function application($id,$testno)
     {
         $student = Auth::user();
         $record = Application::where('student_id',$student->id)->where('subject_id',$id)->get();
         $countOfApplication = $record->count();
         $date = DivisionTeacher::where('division_id',$student->division)->first();
         
-        //$date1 = Carbon::parse($date['Expiry_2']);
-       
-        
+        $search = $testno==1?'Expiry_1':'Expiry_2';
+        if($testno != 1 and $testno != 2)
+        {
+            return redirect('home/marks')->with('error','Access Denied');
+        }
+        if(is_null($date[$search]))
+        {
+            return redirect('home/marks')->with('error','Access Denied');
+        }
+        if($countOfApplication >= 3)
+        {
+            return redirect('home/marks')->with('error','You Have exceeded the Maximum number of times you can apply');
+        }
 
-        $exp1 = (Carbon::parse($date['Expiry_1'])->addHours(72)->gt(Carbon::now()) or Carbon::parse($date['Expiry_2'])->addHours(72)->gt(Carbon::now()));
-        //return $exp1;
-        if($countOfApplication < 3 and $exp1)
+        if(Carbon::parse($date[$search])->addHours(72)->lt(Carbon::now()) )
         {
-            $failed = InternalTest::where('student_id',$student->id)
-                        ->where('subject_id',$id)
-                        ->where('IA1','-2')->orWhere('IA2','-2')->first();
-            $number = $failed->count();
-            if($number > 0)
-            {
-                session()->put('subject_id',$id);
-                $failed['subject_name'] = Subject::where('id',$failed['subject_id'])->first()['subject'];
-                return view('auth.application')->with('failed',$failed);
-            }
-            else{
-            return redirect('home/marks');
-            }
+            return redirect('home/marks')->with('error','You Have exceeded the time to apply for test '.$testno);
         }
-        else
+
+        else{
+        $failed = InternalTest::where('student_id',$student->id)
+                    ->where('subject_id',$id)
+                    ->where('IA1','-2')->orWhere('IA2','-2')->first();
+        $number = $failed->count();
+        if($number > 0)
         {
-            return redirect('home/marks')->with('error','You Have exceeded the Maximum number of times you can apply OR Time limit Exceeded');
+            session()->put('subject_id',$id);
+            $failed['subject_name'] = Subject::where('id',$failed['subject_id'])->first()['subject'];
+            return view('auth.application')->with('failed',$failed);
         }
+        else{
+        return redirect('home/marks');
+        }
+    }
+    
     }
     public function storeApplication(Request $request)
     {

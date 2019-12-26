@@ -81,7 +81,7 @@ function ()
 {
     Route::get('','HomeController@dashboard');
     Route::get('testthree','HomeController@testThreeMarks');
-    Route::get('application/{id}','HomeController@application')->name('home.application');
+    Route::get('application/{id}/{testno}','HomeController@application')->name('home.application');
     Route::post('application','HomeController@storeApplication');
     Route::get('marks','HomeController@index');
     Route::get('profile', 'ProfileController@indexStudent');

@@ -113,14 +113,14 @@ class TeachersController extends Controller
             {
                 if(is_numeric($id))
                 {
-                        $data[] = array( 'student_id' => $id, 
-                                         'division_id' => $division_id, 
-                                         'subject_id' => $subject_id, 
-                                         'IA1' => $mark,
-                                           'status1'=> 0,
-                                           'IA2' => -1, 
-                                           'status2' => 0,
-                                           'Avg' => -1);
+                        $data[] =array( 'student_id' => $id, 
+                                        'division_id' => $division_id, 
+                                        'subject_id' => $subject_id, 
+                                        'IA1' => $mark,
+                                        'status1'=> 0,
+                                        'IA2' => -1, 
+                                        'status2' => 0,
+                                        'Avg' => -1);
                 }
             }
             InternalTest::insert($data);
@@ -150,8 +150,8 @@ class TeachersController extends Controller
                 \DB::update("UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})");
             
             $divtoteacher = DivisionTeacher::where('teacher_id',$user->id)
-                                             ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
-                                             ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
+                                            ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
+                                            ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
             $divtoteacher->Expiry_2 = now()->addHours(48);
             $divtoteacher->save();  
         }
@@ -213,9 +213,9 @@ class TeachersController extends Controller
         $test_no = session()->get('test_no'.$teacher->id,'Error');
         $test = $test_no == 1 ? 'ia1':'ia2';
         $search = $test_no==1?'Expiry_1':'Expiry_2';
-        $exists = DivisionTeacher::where('division_id',$division_id)
-                                 ->where('subject_id',$subject_id)
-                                 ->whereNotNull($search)->first();
+        $exists =DivisionTeacher::where('division_id',$division_id)
+                                ->where('subject_id',$subject_id)
+                                ->whereNotNull($search)->first();
         $timeExpired = $exists[$search];
         // return now();
         // return Carbon::parse($timeExpired);
