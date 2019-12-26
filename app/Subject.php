@@ -10,4 +10,9 @@ class Subject extends Model
     {
         return $this->belongsToMany('App\Teacher','division_teacher');
     }
+    public function users()
+    {
+
+        return $this->belongsToMany('App\Subject','user_subject','subject_id','user_id');
+    }
 }

@@ -5,6 +5,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 namespace App\Http\Controllers;
 use Auth;
 use App\Application;
+use App\User;
 use App\DivisionTeacher;
 use App\InternalTest;
 use App\Division;
@@ -29,7 +30,10 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
+
         $user = Auth::user();
+        // $chetas = User::where('id',$user->id)->with('subjects')->get();
+        // return $chetas;
         $testthreestatus = Application::where('student_id',$user->id)->get();
         $status = 0;
         if($testthreestatus == null)
