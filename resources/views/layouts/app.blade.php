@@ -42,7 +42,7 @@
 
 </head>
 
-<body>
+<body style="overflow-x:hidden">
         @include('inc.pracnav')
         @include('inc.messages')
         <div class="container">
