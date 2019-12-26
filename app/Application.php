@@ -7,7 +7,7 @@ class Application extends Model
     public $timestamps = false;
     protected $table = 'applications';
     protected $fillable = [
-        'reason', 'certificate', 'subject_id','student_id','status','test_no','teacher_id','division_id',
+        'reason', 'certificate', 'subject_id','student_id','status','test_no','teacher_id','division_id','created_at',
     ];
      public function user()
      {

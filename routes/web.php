@@ -81,7 +81,7 @@ function ()
 {
     Route::get('','HomeController@dashboard');
     Route::get('testthree','HomeController@testThreeMarks');
-    Route::get('application/{id}','HomeController@application')->name('home.application');
+    Route::get('application/{id}/{testno}','HomeController@application')->name('home.application');
     Route::post('application','HomeController@storeApplication');
     Route::get('marks','HomeController@index');
     Route::get('profile', 'ProfileController@indexStudent');
@@ -103,3 +103,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
 );
 Route::get('/download','TestController@export');
 Route::get('/download1','UserController@export');
+Route::get('/marks/{div}/{sub}', 'PDFController@getmarks');
+Route::get('/parent/{div}', 'PDFController@getparent');
