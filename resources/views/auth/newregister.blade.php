@@ -182,6 +182,7 @@
                                 </select>   
                         </div>
                     </div> <!-- form-group end.// --> 
+                    
                     <hr style="border:1px solid yellow;padding:0px;margin-top:0px">
                     <h5 class="float-left" style="color: white;margin-bottom:0px">Parent/Guardian Information</h5><p>&nbsp;</p>
                     <h6 class="float-left" style="color:white">Parent 1</h6>
