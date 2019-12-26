@@ -2,7 +2,6 @@
 <style>
 
 #mySidenav a {
-
   position: absolute;
   left: -110px;
   transition: 0.3s;

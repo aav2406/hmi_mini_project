@@ -64,7 +64,8 @@ class TeachersController extends Controller
     {
         $teacher = Auth::user();
         $students = Application::where('status','1')->where('teacher_id',$teacher->id)->with('user:id,name,roll_no,division')->with('division')->with('subject:id,subject')->get();
-        return view('Teacher.test3')->with('students',$students);
+        $rejectstudents = Application::where('status','0')->where('teacher_id',$teacher->id)->with('user:id,name,roll_no,division')->with('division')->with('subject:id,subject')->get();
+        return view('Teacher.test3')->with('students',$students)->with('rejectstudents',$rejectstudents);
     }
     public function storeTestThree(Request $request)
     {
@@ -114,14 +115,14 @@ class TeachersController extends Controller
             {
                 if(is_numeric($id))
                 {
-                        $data[] = array( 'student_id' => $id, 
-                                         'division_id' => $division_id, 
-                                         'subject_id' => $subject_id, 
-                                         'IA1' => $mark,
-                                           'status1'=> 0,
-                                           'IA2' => -1, 
-                                           'status2' => 0,
-                                           'Avg' => -1);
+                        $data[] =array( 'student_id' => $id, 
+                                        'division_id' => $division_id, 
+                                        'subject_id' => $subject_id, 
+                                        'IA1' => $mark,
+                                        'status1'=> 0,
+                                        'IA2' => -1, 
+                                        'status2' => 0,
+                                        'Avg' => -1);
                 }
             }
             InternalTest::insert($data);
@@ -151,8 +152,8 @@ class TeachersController extends Controller
                 \DB::update("UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})");
             
             $divtoteacher = DivisionTeacher::where('teacher_id',$user->id)
-                                             ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
-                                             ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
+                                            ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
+                                            ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
             $divtoteacher->Expiry_2 = now()->addHours(48);
             $divtoteacher->save();  
         }
@@ -224,9 +225,9 @@ class TeachersController extends Controller
         $test_no = session()->get('test_no'.$teacher->id,'Error');
         $test = $test_no == 1 ? 'ia1':'ia2';
         $search = $test_no==1?'Expiry_1':'Expiry_2';
-        $exists = DivisionTeacher::where('division_id',$division_id)
-                                 ->where('subject_id',$subject_id)
-                                 ->whereNotNull($search)->first();
+        $exists =DivisionTeacher::where('division_id',$division_id)
+                                ->where('subject_id',$subject_id)
+                                ->whereNotNull($search)->first();
         $timeExpired = $exists[$search];
         $exists = isset($exists)?$exists->count():0;
         if($exists > 0)
@@ -263,9 +264,9 @@ class TeachersController extends Controller
     public function send($subject,Division $division)
     {
         $teacher = Auth::user();
-        Mail::to($division['email'])
-        ->cc($teacher->email)
-        ->send(new Email($subject , $division));
+        // Mail::to($division['email'])
+        // ->cc($teacher->email)
+        // ->send(new Email($subject , $division));
        // return $this->index();
       // session()->forget(['division_no'.$user->id, 'subject_no'.$user->id,'test_no'.$user->id]);
       return redirect('teacher/putmarks');

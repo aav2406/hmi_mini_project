@@ -95,7 +95,7 @@
                                 <td><input type="radio" name="{{$t->subject_id.'_1'}}" onclick="this.form.submit()" value =  '0' {{ $t->status1 == 0 ? 'checked':'' }}></td>
                             @elseif($t->ia1 == -2)
                             <td colspan="2">
-                            <a href = "/home/application/{{$t->subject_id}}">Apply for test 3</a>
+                            <a href = "/home/application/{{$t->subject_id}}/1">Apply for test 3</a>
                             </td>
                             {{-- @elseif( ) --}}
                             @else
@@ -116,7 +116,7 @@
                                     <td><input type="radio" name="{{$t->subject_id.'_2'}}" onclick="this.form.submit()" value =  '1' {{ $t->status2 == 1 ?'checked' :'' }} ></td>                     
                                     <td><input type="radio" name="{{$t->subject_id.'_2'}}" onclick="this.form.submit()" value =  '0' {{ $t->status2 == 0 ?'checked' :'' }}></td>
                                 @elseif($t->ia2 == -2)
-                                 <td colspan = "2"><a href = "/home/application/{{$t->subject_id}}">Apply for test 3</a></td>
+                                 <td colspan = "2"><a href = "/home/application/{{$t->subject_id}}/2">Apply for test 3</a></td>
                                 {{-- @elseif( ) --}}
                                 @else
                                     <td colspan="2"></td>

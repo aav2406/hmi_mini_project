@@ -111,30 +111,48 @@ class HomeController extends Controller
         }
         return back();
     }
-    public function application($id)
+    public function application($id,$testno)
     {
         $student = Auth::user();
-        $record = Application::where('student_id',$student->id)->where('subject_id',$id)->first();
-        if($record == NULL)
+        $record = Application::where('student_id',$student->id)->where('subject_id',$id)->get();
+        $countOfApplication = $record->count();
+        $date = DivisionTeacher::where('division_id',$student->division)->first();
+        
+        $search = $testno==1?'Expiry_1':'Expiry_2';
+        if($testno != 1 and $testno != 2)
         {
-            $failed = InternalTest::where('student_id',$student->id)
-                        ->where('subject_id',$id)
-                        ->where('IA1','-2')->orWhere('IA2','-2')->first();
-            $number = $failed->count();
-            if($number > 0)
-            {
-                session()->put('subject_id',$id);
-                $failed['subject_name'] = Subject::where('id',$failed['subject_id'])->first()['subject'];
-                return view('auth.application')->with('failed',$failed);
-            }
-            else{
-            return redirect('home/marks');
-            }
+            return redirect('home/marks')->with('error','Access Denied');
         }
-        else
+        if(is_null($date[$search]))
         {
-            return redirect('home/marks')->with('error','You have already applied for test 3 of this subject.');
+            return redirect('home/marks')->with('error','Access Denied');
         }
+        if($countOfApplication >= 3)
+        {
+            return redirect('home/marks')->with('error','You Have exceeded the Maximum number of times you can apply');
+        }
+
+        if(Carbon::parse($date[$search])->addHours(72)->lt(Carbon::now()) )
+        {
+            return redirect('home/marks')->with('error','You Have exceeded the time to apply for test '.$testno);
+        }
+
+        else{
+        $failed = InternalTest::where('student_id',$student->id)
+                    ->where('subject_id',$id)
+                    ->where('IA1','-2')->orWhere('IA2','-2')->first();
+        $number = $failed->count();
+        if($number > 0)
+        {
+            session()->put('subject_id',$id);
+            $failed['subject_name'] = Subject::where('id',$failed['subject_id'])->first()['subject'];
+            return view('auth.application')->with('failed',$failed);
+        }
+        else{
+        return redirect('home/marks');
+        }
+    }
+    
     }
     public function storeApplication(Request $request)
     {
@@ -180,6 +198,7 @@ class HomeController extends Controller
                     'test_no' => $ans,
                     'teacher_id' => $teacher_id,
                     'division_id' => $student->division,
+                    'created_at' => now(),
                 ]
             );
             $request->session()->forget('subject_id');
