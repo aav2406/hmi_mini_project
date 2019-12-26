@@ -32,7 +32,6 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
-
         // $chetas = User::where('id',$user->id)->with('subjects')->get();
         // return $chetas;
         $testthreestatus = Application::where('student_id',$user->id)->get();
