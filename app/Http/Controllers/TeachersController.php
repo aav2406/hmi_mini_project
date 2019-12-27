@@ -51,9 +51,29 @@ class TeachersController extends Controller
             $teacher = Auth::user();
             //Change for Elective
             $test_no = session()->get('test_no'.$teacher->id,'Error');
-            $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))->orderBy('roll_no')                       
-                                ->get();
-            return view('Teacher.putMarks')->with('students',$students)->with('test_no',$test_no);
+            $allStudents = array();
+
+            $subject = Subject::where('id',session()->get('subject_no'.$teacher->id,'Error'))->first();
+            if ($subject->elective === 1)
+            {
+                $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
+                ->with('subjects')
+                ->orderBy('roll_no')                       
+                ->get();
+                
+                foreach($students as $s){
+                    if ($s->subjects[0]->pivot->subject_id === $subject->id)
+                        $allStudents[] = $s;
+                }
+                return view('Teacher.putMarks')->with('students',$allStudents)->with('test_no',$test_no)->with('subject',$subject);
+            }
+            else{
+                $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
+                ->orderBy('roll_no')                       
+                ->get();
+                return view('Teacher.putMarks')->with('students',$students)->with('test_no',$test_no)->with('subject',$subject);
+            }
+            // return $students[2]->subjects[0]->pivot;
         }
         else
         {
@@ -210,11 +230,11 @@ class TeachersController extends Controller
             \DB::update("UPDATE `{$table}` SET {$put} = CASE `id` {$cases} END WHERE `id` in ({$ids})");
             $students = InternalTest::whereIn('id', $requiredIds)->with('user')->with('subject')->get();
             $i = -1;
-            foreach($students as $user)
-            {
-                $i++;
-                dispatch(new SendEmailJob($teacher->email,$user->user->email,$user->subject->subject,$user->user->name))->delay($i*7);
-            }
+            // foreach($students as $user)
+            // {
+            //     $i++;
+            //     dispatch(new SendEmailJob($teacher->email,$user->user->email,$user->subject->subject,$user->user->name))->delay($i*7);
+            // }
             return redirect('teacher/editmarks')->with('success','You have edited marks successfully!!');
     }
     public function showStudentList()
@@ -290,8 +310,10 @@ class TeachersController extends Controller
                         ->join('divisions', 'users.division', '=', 'divisions.id')
                         ->select('users.name','users.name','users.roll_no', 'internal_test.*', 'divisions.*')
                         ->where('users.division',session()->get('division_no'.$teacher->id,'Error'))
+                        ->where('internal_test.subject_id',session()->get('subject_no'.$teacher->id,'Error'))
                         ->orderBy('users.roll_no')
                         ->get();
+                        // return $students;
         session()->forget(['division_no'.$teacher->id, 'subject_no'.$teacher->id,'test_no'.$teacher->id]);
         return view('Teacher.status')->with('students',$students)->with('test_no',$test_no);
     }
