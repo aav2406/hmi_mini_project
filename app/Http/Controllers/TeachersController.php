@@ -52,31 +52,33 @@ class TeachersController extends Controller
             //Change for Elective
             $test_no = session()->get('test_no'.$teacher->id,'Error');
             $allStudents = array();
-
-            $subject = Subject::where('id',session()->get('subject_no'.$teacher->id,'Error'))->first();
+            $subject = Subject::where('id',session()->get('subject_no'.$teacher->id,'Error'))->with('users')->first();
+            
             if ($subject->elective === 1)
             {
-                $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
-                ->with('subjects')
-                ->orderBy('roll_no')                       
-                ->get();
+                // $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
+                // ->with('subjects')
+                // ->orderBy('roll_no')                       
+                // ->get();
                 // return $students[0]->subjects->count();
-                foreach($students as $s){
-                    if($s->subjects->count()===1){
-                        if ($s->subjects[0]->pivot->subject_id === $subject->id)
-                            $allStudents[] = $s;
-                    }
-                    else{
-                        if ($s->subjects[0]->pivot->subject_id === $subject->id or $s->subjects[1]->pivot->subject_id === $subject->id)
-                            $allStudents[] = $s;
-                    }
-                }
-                return view('Teacher.putMarks')->with('students',$allStudents)->with('test_no',$test_no)->with('subject',$subject);
+                // foreach($students as $s){
+                //     if($s->subjects->count()===1){
+                //         if ($s->subjects[0]->pivot->subject_id === $subject->id)
+                //             $allStudents[] = $s;
+                //     }
+                //     else{
+                //         if ($s->subjects[0]->pivot->subject_id === $subject->id or $s->subjects[1]->pivot->subject_id === $subject->id)
+                //             $allStudents[] = $s;
+                //     }
+                // }
+                
+                return view('Teacher.putMarks')->with('students',$subject->users)->with('test_no',$test_no)->with('subject',$subject);
             }
             else{
                 $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
-                ->orderBy('roll_no')                       
-                ->get();
+                                    ->orderBy('roll_no')                       
+                                    ->get();
+                                    // return $students;
                 return view('Teacher.putMarks')->with('students',$students)->with('test_no',$test_no)->with('subject',$subject);
             }
         }
@@ -174,8 +176,9 @@ class TeachersController extends Controller
                 $ids = implode(',', $ids);
                 $cases = implode(' ', $cases);
                 // If student is absent for any test, set his average to 0
+                return "UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})";
                 \DB::update("UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})");
-            
+            // CASE WHEN SQL Query
             $divtoteacher = DivisionTeacher::where('teacher_id',$user->id)
                                             ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
                                             ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
@@ -252,6 +255,7 @@ class TeachersController extends Controller
         $search = $test_no==1?'Expiry_1':'Expiry_2';
         $exists =DivisionTeacher::where('division_id',$division_id)
                                 ->where('subject_id',$subject_id)
+                                ->where('teacher_id',$teacher->id)
                                 ->whereNotNull($search)->first();
         $timeExpired = $exists[$search];
         $exists = isset($exists)?$exists->count():0;
@@ -263,13 +267,12 @@ class TeachersController extends Controller
             }
             //change for elective
             $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no"
-                                                                                                                                            ,[session()->get('division_no'.$teacher->id,'Error'),                                                                                                                   session()->get('subject_no'.$teacher->id,'Error')]);
+                                                                                                                                            ,[session()->get('division_no'.$teacher->id,'Error'),session()->get('subject_no'.$teacher->id,'Error')]);
             return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
         }                        
         else
             {
                 return redirect('teacher/editmarks')->with('error',"You haven't put marks for this test of this subject yet.");
-
             }
     
     }
@@ -307,18 +310,34 @@ class TeachersController extends Controller
     public function showStatus()
     {
         $teacher = Auth::user();
-        $test_no = session()->get('test_no'.$teacher->id,"Error");
-        $students =  DB::table('users')
-                        ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
-                        ->join('divisions', 'users.division', '=', 'divisions.id')
-                        ->select('users.name','users.name','users.roll_no', 'internal_test.*', 'divisions.*')
-                        ->where('users.division',session()->get('division_no'.$teacher->id,'Error'))
-                        ->where('internal_test.subject_id',session()->get('subject_no'.$teacher->id,'Error'))
-                        ->orderBy('users.roll_no')
-                        ->get();
-                        // return $students;
-        session()->forget(['division_no'.$teacher->id, 'subject_no'.$teacher->id,'test_no'.$teacher->id]);
-        return view('Teacher.status')->with('students',$students)->with('test_no',$test_no);
+
+        $subject_id = session()->get('subject_no'.$teacher->id,'Error');
+        $division_id = session()->get('division_no'.$teacher->id,'Error');
+        $test_no = session()->get('test_no'.$teacher->id,'Error');
+        // $test = $test_no == 1 ? 'ia1':'ia2';
+        $search = $test_no==1?'Expiry_1':'Expiry_2';
+        $exists =DivisionTeacher::where('division_id',$division_id)
+                                ->where('subject_id',$subject_id)
+                                ->where('teacher_id',$teacher->id)
+                                ->whereNotNull($search)->first();
+        // $timeExpired = $exists[$search];
+        $exists = isset($exists)?$exists->count():0;
+        if($exists > 0)
+        {
+            $students =  DB::table('users')
+                            ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
+                            ->join('divisions', 'users.division', '=', 'divisions.id')
+                            ->select('users.name','users.name','users.roll_no', 'internal_test.*', 'divisions.*')
+                            ->where('users.division',session()->get('division_no'.$teacher->id,'Error'))
+                            ->where('internal_test.subject_id',session()->get('subject_no'.$teacher->id,'Error'))
+                            ->orderBy('users.roll_no')
+                            ->get();
+                session()->forget(['division_no'.$teacher->id, 'subject_no'.$teacher->id,'test_no'.$teacher->id]);
+                return view('Teacher.status')->with('students',$students)->with('test_no',$test_no);
+        }
+        else{
+            return redirect('teacher/checkstatus')->with('error',"You haven't put marks for this test of this subject yet.");
+        }
     }
     public function show($id)
     {
