@@ -4,10 +4,10 @@ use App\Teacher;
 use App\Division;
 use App\DivisionTeacher;
 use App\Subject;
+use App\InternalTest;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
@@ -42,8 +42,8 @@ class ProfileController extends Controller
     }
     public function indexStudent()
     {
-        $profile= Auth::user();
-        $elec=Subject::where('elective','1')->get();
+        $profile = Auth::user();
+        $elec = Subject::where('elective','1')->get();
         return view('studentProfile')->with(compact('profile'))->with(compact('elec'));
     }
     /**
@@ -97,6 +97,11 @@ class ProfileController extends Controller
         $teacher = Teacher::find($id);
         $teacher->name = $request['name'];
         $teacher_div = Teacher::where('email', $request['email'])->first();
+        $teacherDivisionSubject = DivisionTeacher::where('teacher_id',$teacher->id)->get();
+        foreach($teacherDivisionSubject as $teach)
+        {
+            InternalTest::where('subject_id',$teach->subject_id )->where('division_id',$teach->division_id)->delete();
+        }    
         $teacher_div->divisions()->detach();
         if($request->has('class_2'))
         {     
@@ -109,6 +114,7 @@ class ProfileController extends Controller
         }
         $teacher->phone_no = $request['phone_no'];
         $teacher->save();
+        
         return redirect("teacher");
     }
     public function updateStudent(Request $request, $id)
