@@ -30,9 +30,9 @@
                             </div>
                         </li>
                         @if (Route::has('register'))
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" >
                             <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font color="blue">Register</font></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown02">
+                            <div class="dropdown-menu"  aria-labelledby="dropdown02">
                                 <a class="dropdown-item" href="{{ route('register') }}">Student</a>
                                 <a class="dropdown-item" href="/register/teacher">Teacher</a>
                             </div>
@@ -46,12 +46,12 @@
                         @if(Auth::guard('teacher')->check())
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                                 <a class="dropdown-item" href="/teacher/profile">
-                                 {{ __('Edit Profile') }}
+                                {{ __('Edit Profile') }}
                                 </a>
                          @else
                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

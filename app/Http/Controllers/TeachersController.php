@@ -79,7 +79,6 @@ class TeachersController extends Controller
                 ->get();
                 return view('Teacher.putMarks')->with('students',$students)->with('test_no',$test_no)->with('subject',$subject);
             }
-            // return $students[2]->subjects[0]->pivot;
         }
         else
         {
@@ -264,8 +263,7 @@ class TeachersController extends Controller
             }
             //change for elective
             $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no"
-                                                                                                                                            ,[session()->get('division_no'.$teacher->id,'Error'),
-                                                                                                                                            session()->get('subject_no'.$teacher->id,'Error')]);
+                                                                                                                                            ,[session()->get('division_no'.$teacher->id,'Error'),                                                                                                                   session()->get('subject_no'.$teacher->id,'Error')]);
             return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
         }                        
         else
@@ -310,7 +308,6 @@ class TeachersController extends Controller
     {
         $teacher = Auth::user();
         $test_no = session()->get('test_no'.$teacher->id,"Error");
-        //change for electives
         $students =  DB::table('users')
                         ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
                         ->join('divisions', 'users.division', '=', 'divisions.id')
