@@ -6,6 +6,7 @@ use App\DivisionTeacher;
 use App\Subject;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
@@ -95,6 +96,7 @@ class ProfileController extends Controller
         $teacher = Teacher::find($id);
         $teacher->name = $request['name'];
         $teacher_div = Teacher::where('email', $request['email'])->first();
+        // return $teacher_div->divisions()->get();
         $teacher_div->divisions()->detach();
         if($request->has('class_2'))
         {     
@@ -107,6 +109,7 @@ class ProfileController extends Controller
         }
         $teacher->phone_no = $request['phone_no'];
         $teacher->save();
+        // DB::table('internal_test')->truncate();
         return redirect("teacher");
     }
     public function updateStudent(Request $request, $id)
