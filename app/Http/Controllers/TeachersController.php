@@ -60,10 +60,16 @@ class TeachersController extends Controller
                 ->with('subjects')
                 ->orderBy('roll_no')                       
                 ->get();
-                
+                // return $students[0]->subjects->count();
                 foreach($students as $s){
-                    if ($s->subjects[0]->pivot->subject_id === $subject->id)
-                        $allStudents[] = $s;
+                    if($s->subjects->count()===1){
+                        if ($s->subjects[0]->pivot->subject_id === $subject->id)
+                            $allStudents[] = $s;
+                    }
+                    else{
+                        if ($s->subjects[0]->pivot->subject_id === $subject->id or $s->subjects[1]->pivot->subject_id === $subject->id)
+                            $allStudents[] = $s;
+                    }
                 }
                 return view('Teacher.putMarks')->with('students',$allStudents)->with('test_no',$test_no)->with('subject',$subject);
             }
