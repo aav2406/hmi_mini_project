@@ -310,6 +310,7 @@ class TeachersController extends Controller
                         ->join('divisions', 'users.division', '=', 'divisions.id')
                         ->select('users.name','users.name','users.roll_no', 'internal_test.*', 'divisions.*')
                         ->where('users.division',session()->get('division_no'.$teacher->id,'Error'))
+                        ->where('internal_test.subject_id',session()->get('subject_no'.$teacher->id,'Error'))
                         ->orderBy('users.roll_no')
                         ->get();
                         // return $students;
