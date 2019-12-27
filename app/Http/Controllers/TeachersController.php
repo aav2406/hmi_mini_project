@@ -60,8 +60,8 @@ class TeachersController extends Controller
                 ->with('subjects')
                 ->orderBy('roll_no')                       
                 ->get();
-                
                 foreach($students as $s){
+                    //to do for two electives
                     if ($s->subjects[0]->pivot->subject_id === $subject->id)
                         $allStudents[] = $s;
                 }
@@ -73,7 +73,6 @@ class TeachersController extends Controller
                 ->get();
                 return view('Teacher.putMarks')->with('students',$students)->with('test_no',$test_no)->with('subject',$subject);
             }
-            // return $students[2]->subjects[0]->pivot;
         }
         else
         {
