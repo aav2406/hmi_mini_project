@@ -96,12 +96,25 @@
                                         </div>
                                       </div>
                                       <div class="form-group row">
+                                        <label for="elec" class="col-md-4 col-form-label text-md-right">{{ __('Elective Subject') }}</label>
+                                        <div class="col-md-6">
+                                            {{-- <input type="text" value="{{$elec}}"> --}}
+                                            <select name="elec" id="elec" class="form-control">
+                                                <option value=""></option>
+                                                @foreach($elec as $ele)
+                                                    <option value="{{$ele->id}}">{{$ele->subject}}</option>
+                                                @endforeach
+                                            </select>
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="offset-4 col-8">
                                                 <button type="submit" class="btn float-left update_btn">
                                                         <i class="fas fa-edit"></i>   {{ __('Update') }}
                                                     </button>
                                         </div>
-                                      </div>
+                                    </div>
                                     </form>
                                 </div>
                             </div>

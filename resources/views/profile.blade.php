@@ -53,6 +53,18 @@
                                 <input id="phone_no" type="text" class="form-control" name="phone_no" value="{{$profile->phone_no }}" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="elec" class="col-md-4 col-form-label text-md-right">{{ __('Elective Subject') }}</label>
+
+                            <div class="col-md-6">
+                                @foreach($elec as $ele)
+                                <select name="elec" id="elec">
+                                    <option value="">{{$ele->subject}}</option>
+                                </select>
+                                @endforeach
+                            
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

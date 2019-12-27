@@ -12,7 +12,6 @@ class Subject extends Model
     }
     public function users()
     {
-
         return $this->belongsToMany('App\Subject','user_subject','subject_id','user_id');
     }
 }

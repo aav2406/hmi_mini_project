@@ -6,6 +6,8 @@ use App\DivisionTeacher;
 use App\Subject;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
@@ -41,8 +43,8 @@ class ProfileController extends Controller
     public function indexStudent()
     {
         $profile= Auth::user();
-        
-        return view('studentProfile',compact('profile'));
+        $elec=Subject::where('elective','1')->get();
+        return view('studentProfile')->with(compact('profile'))->with(compact('elec'));
     }
     /**
      * Show the form for creating a new resource.
@@ -115,6 +117,9 @@ class ProfileController extends Controller
         $user->name = $request['name'];
         $user->phone_no = $request['phone_no'];
         // $user->roll_no = $request['roll_no'];
+        $myelec=DB::table('user_subject')->insert(
+            ['user_id' => $id, 'subject_id' => $request['elec']]
+        );
         $user->save();
         return redirect("home");
     }
