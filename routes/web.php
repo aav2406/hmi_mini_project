@@ -99,9 +99,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
     Route::get('applications','AdminsController@showApplications');
     Route::get('applications/{id}','AdminsController@Application');
     Route::post('applications/{id}','AdminsController@storeApplication');
+    Route::get('/class/{div}', 'PDFController@getclass');
 }  
 );
-Route::get('/download','TestController@export');
-Route::get('/download1','UserController@export');
+//Route::get('/download','TestController@export');
+//Route::get('/download1','UserController@export');
 Route::get('/marks/{div}/{sub}', 'PDFController@getmarks');
 Route::get('/parent/{div}', 'PDFController@getparent');
+Route::get('/class/{div}', 'PDFController@getclass');
