@@ -12,6 +12,6 @@ class Subject extends Model
     }
     public function users()
     {
-        return $this->belongsToMany('App\Subject','user_subject','subject_id','user_id');
+        return $this->belongsToMany('App\User','user_subject','subject_id','user_id')->orderBy('roll_no');
     }
 }
