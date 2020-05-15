@@ -52,14 +52,15 @@ class TeachersController extends Controller
             //Change for Elective
             $test_no = session()->get('test_no'.$teacher->id,'Error');
             $allStudents = array();
+
             $subject = Subject::where('id',session()->get('subject_no'.$teacher->id,'Error'))->with('users')->first();
-            
             if ($subject->elective === 1)
             {
-                // $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
-                // ->with('subjects')
-                // ->orderBy('roll_no')                       
-                // ->get();
+                $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
+                            ->with('subjects')
+                            ->orderBy('roll_no')                       
+                            ->get();
+                //return $students;
                 // return $students[0]->subjects->count();
                 // foreach($students as $s){
                 //     if($s->subjects->count()===1){
@@ -106,6 +107,7 @@ class TeachersController extends Controller
                
                  $data[$roll] = $mark;
             }
+            
         }
         $this->updateTestThreeValues($data);
         return redirect('/teacher/test3')->with('success','Marks Entered successfully!');
@@ -133,7 +135,6 @@ class TeachersController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $data = array();
         $subject_id = $request->session()->get('subject_no'.$user->id,'Error');
         $division_id = $request->session()->get('division_no'.$user->id,'Error');
         if($request->session()->get('test_no'.$user->id) == '1')
@@ -161,27 +162,52 @@ class TeachersController extends Controller
         }
         else if($request->session()->get('test_no'.$user->id) == '2')
         {
-            $table = InternalTest::getModel()->getTable();
-            $cases = [];
-            $ids = [];
+            DB::beginTransaction();
+            // do all your updates here
             foreach($_POST as $id=>$mark)
             {
                 if(is_numeric($id))
                 {
-                    $id = (int) $id;
-                    $cases[] = "WHEN {$id} then $mark";
-                    $ids[] = $id;
-                }
+                   DB::table('internal_test')
+                       ->where('student_id', '=', $id)
+                       ->where('subject_id', '=', $subject_id)
+                       ->where('division_id', '=', $division_id)
+                       ->update([
+                           'ia2' => $mark  // update your field(s) here
+                       ]);
+               }
             }
-                $ids = implode(',', $ids);
-                $cases = implode(' ', $cases);
-                // If student is absent for any test, set his average to 0
-                return "UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})";
-                \DB::update("UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})");
-            // CASE WHEN SQL Query
+           // when done commit
+            DB::commit();
+            $students = InternalTest::where('division_id',$division_id)
+                                    ->where('subject_id',$subject_id)->get();  
+            foreach($students as $student)
+            {
+                $student->Avg = ceil(($student->ia1 + $student->ia2)/2);
+                $student->save();
+            }
+
+            // $table = InternalTest::getModel()->getTable();
+            // $cases = [];
+            // $ids = [];
+            // foreach($_POST as $id=>$mark)
+            // {
+            //     if(is_numeric($id))
+            //     {
+            //         $id = (int) $id;
+            //         $cases[] = "WHEN {$id} then $mark";
+            //         $ids[] = $id;
+            //     }
+            // }
+            //     $ids = implode(',', $ids);
+            //     $cases = implode(' ', $cases);
+            //     // If student is absent for any test, set his average to 0
+            //     return "UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})";
+            //     \DB::update("UPDATE `{$table}` SET `IA2` = CASE `student_id` {$cases} END, `Avg`= CASE WHEN `IA1` = -2 THEN 0 WHEN `IA2` = -2 THEN 0 ELSE CEIL((`IA1`+`IA2`)/2) END WHERE `student_id` in ({$ids})");
+            // // CASE WHEN SQL Query
             $divtoteacher = DivisionTeacher::where('teacher_id',$user->id)
-                                            ->where('division_id',$request->session()->get('division_no'.$user->id,'Error'))
-                                            ->where('subject_id',$request->session()->get('subject_no'.$user->id,'Error'))->first();
+                                            ->where('division_id',$division_id)
+                                            ->where('subject_id',$subject_id)->first();
             $divtoteacher->Expiry_2 = now()->addHours(48);
             $divtoteacher->save();  
         }
@@ -266,15 +292,17 @@ class TeachersController extends Controller
                 return redirect('teacher/editmarks')->with('error',"Time to edit marks for this subject, test, class combination has expired.");
             }
             //change for elective
-            $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no"
-                                                                                                                                            ,[session()->get('division_no'.$teacher->id,'Error'),session()->get('subject_no'.$teacher->id,'Error')]);
+            $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." 
+                        FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE 
+                        internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no",
+                        [session()->get('division_no'.$teacher->id,'Error'),
+                        session()->get('subject_no'.$teacher->id,'Error')]);
             return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
         }                        
         else
             {
                 return redirect('teacher/editmarks')->with('error',"You haven't put marks for this test of this subject yet.");
             }
-    
     }
     /**
      * Display the specified resource.

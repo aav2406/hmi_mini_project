@@ -16,4 +16,8 @@ class DivisionTeacher extends Model
     {
         return $this->belongsTo('App\Division','division_id','id');
     }
+    public function teacher()
+    {
+        return $this->belongsTo('App\Teacher','teacher_id','id');
+    }
 }

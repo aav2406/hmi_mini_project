@@ -32,7 +32,8 @@ class ProfileController extends Controller
     {
         $profile= Auth::user();
         $classes = DivisionTeacher::where('teacher_id',$profile->id)->get();
-        $profile_count = count($classes);   
+
+        $profile_count = count($classes);
         for($i=0;$i<count($classes);$i++)
         {
             $classes[$i]['div_name'] = Division::where('id',$classes[$i]['division_id'])->first()['class'];
@@ -97,12 +98,31 @@ class ProfileController extends Controller
         $teacher = Teacher::find($id);
         $teacher->name = $request['name'];
         $teacher_div = Teacher::where('email', $request['email'])->first();
-        $teacherDivisionSubject = DivisionTeacher::where('teacher_id',$teacher->id)->get();
-        foreach($teacherDivisionSubject as $teach)
+        $teacher_div->divisions()->delete();
+        $Class_One = $request['class_1'];
+        $Class_Two = $request['class_2'];
+        $Subject_One = $request['sub_1'];
+        $Subject_Two = $request['sub_2'];
+        $teacher_div->divisions()->detach(); 
+        $teacher_exists = DivisionTeacher::where('division_id',$Class_One)
+                            ->where('subject_id',$Subject_One)
+                            ->with('teacher')->first();    
+        if(!is_null($teacher_exists))
         {
-            InternalTest::where('subject_id',$teach->subject_id )->where('division_id',$teach->division_id)->delete();
-        }    
-        $teacher_div->divisions()->detach();
+            return redirect('teacher/profile')->with('error','This Division Subject combination is current with Prof.'.$teacher_exists->teacher->name.' If you think this is a mistake then kindly contact Admin for further procedure.');
+        }
+        $teacher_exists = DivisionTeacher::where('division_id',$Class_Two)
+                    ->where('subject_id',$Subject_Two)
+                    ->with('teacher')->first();    
+        if(!is_null($teacher_exists))
+        {
+            return redirect('teacher/profile')->with('error','This Division Subject combination is current with Prof.'.$teacher_exists->teacher->name.' If you think this is a mistake then kindly contact Admin for further procedure.');
+        }
+        // $teacherDivisionSubject = DivisionTeacher::where('teacher_id',$teacher->id)->get();
+        // foreach($teacherDivisionSubject as $teach)
+        // {
+        //     InternalTest::where('subject_id',$teach->subject_id )->where('division_id',$teach->division_id)->delete();
+        // }    
         if($request->has('class_2'))
         {     
             $teacher_div->divisions()->attach($request['class_1'],['subject_id' =>$request['sub_1']]);
@@ -120,13 +140,12 @@ class ProfileController extends Controller
     public function updateStudent(Request $request, $id)
     {
         $user = User::find($id);
-        $user->name = $request['name'];
-        $user->phone_no = $request['phone_no'];
-        // $user->roll_no = $request['roll_no'];
-        $myelec=DB::table('user_subject')->insert(
-            ['user_id' => $id, 'subject_id' => $request['elec']]
-        );
-        $user->save();
+        $user->subjects()->detach();
+        $user->subjects()->attach( $request['elec_first'] );
+        if($request->has('elec_second'))
+        {
+            $user->subjects()->attach( $request['elec_second'] );
+        }
         return redirect("home");
     }
     /**

@@ -1,4 +1,37 @@
 @extends('layouts.app1')
+<script>
+    function enable1()
+    {
+        document.getElementById('class2').style.display = 'none';
+        document.getElementById('class1').style.display = 'inline';
+        document.getElementById("elec_second").required = false;
+        document.getElementById("elec_first").required = true;
+
+        // document.getElementById('class_1').disabled = true;
+        // document.getElementById('class_2').disabled = true;
+        // document.getElementById('sub_1').disabled = true;
+        // document.getElementById('sub_2').disabled = true;
+        // document.getElementById('class_1').disabled = false;
+        // document.getElementById('sub_1').disabled = false;
+    }
+    function enable2()
+    {
+        document.getElementById('class1').style.display = 'inline';
+        document.getElementById('class2').style.display = 'inline';
+
+        
+        document.getElementById("elec_second").required = true;
+        document.getElementById("elec_first").required = true;
+        // document.getElementById('class_1').disabled = true;
+        // document.getElementById('class_2').disabled = true;
+        // document.getElementById('sub_1').disabled = true;
+        // document.getElementById('sub_2').disabled = true;
+        // document.getElementById('class_1').disabled = false;
+        // document.getElementById('class_2').disabled = false;
+        // document.getElementById('sub_1').disabled = false;
+        // document.getElementById('sub_2').disabled = false;
+    }
+    </script>
 <style>    
 .card{
        color: white;
@@ -95,18 +128,55 @@
                                                 <input id="roll_no" type="number" class="form-control" name="roll_no" value="{{$profile->roll_no }}" style="width:60px" disabled>
                                         </div>
                                       </div>
-                                      <div class="form-group row">
+                                      {{-- <div class="form-group row">
                                         <label for="elec" class="col-md-4 col-form-label text-md-right">{{ __('Elective Subject') }}</label>
                                         <div class="col-md-6">
-                                            {{-- <input type="text" value="{{$elec}}"> --}}
                                             <select name="elec" id="elec" class="form-control">
-                                                <option value=""></option>
+                                                <option value="">Choose Elective</option>
                                                 @foreach($elec as $ele)
                                                     <option value="{{$ele->id}}">{{$ele->subject}}</option>
                                                 @endforeach
                                             </select>
                                         
                                         </div>
+                                    </div> --}}
+                                    <div class="form-group row">
+                                        <label for="phone_no" class="col-md-4 col-form-label text-md-right">Select No. of Elective Subjects</label>
+                                        <div class="col-md-6">   
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                                <input type="radio" name="gender" style="margin-right:5px;" value="" onchange = "enable1()"><font color="white">One</font> <br>
+                                                <input type="radio" name="gender" style="margin-right:5px;margin-left:15px" value="" onchange = "enable2()"><font color="white">Two</font>
+                                        </div>
+                                </div>
+                                <div class="form-group input-group" id="class1"  style = "display:none;" >
+                                    <div class="input-group-prepend">
+                                      <p>&nbsp;</p>
+                                      <p>&nbsp;</p>
+                                      <span class="input-group-text"><i class="fas fa-book-open"></i></span>
+                                        <select required name="elec_first" id="elec_first" class="form-control">
+                                            <option   value="">Choose Elective</option>
+                                            @foreach($elec as $ele)
+                                                <option value="{{$ele->id}}">{{$ele->subject}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group input-group" id = "class2" style = "display:none;" >
+                                        <div class="input-group-prepend">
+                                        <p>&nbsp;</p>
+                                        <p>&nbsp;</p>
+                                        <span class="input-group-text"><i class="fas fa-book-open"></i></span> 
+                                        <select required name="elec_second" id="elec_second" class="form-control">
+                                            <option value="">Choose Elective</option>
+                                            @foreach($elec as $ele)
+                                                <option value="{{$ele->id}}">{{$ele->subject}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div> 
+                                </div>                                
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-4 col-8">
