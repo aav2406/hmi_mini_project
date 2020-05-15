@@ -2,8 +2,8 @@
         <div class="container">
                 <img src="https://ves.ac.in/vesit/wp-content/uploads/sites/3/2018/07/Logo.png"  width="48"  height="70"  alt="Institute of Technology Logo"  data-scale="1"  /> 
                         <a  class="navbar-brand" href="https://ves.ac.in/vesit/"  title="Institute of Technology">
-                         <h3 style="margin-left: 10px"><font color="blue">VIVEKANAND EDUCATION SOCIETY'S</font></h3>
-                         <em style="margin-left: 10px"><font color="blue">Institute of Technology</font></em>
+                        <h3 style="margin-left: 10px"><font color="blue">VIVEKANAND EDUCATION SOCIETY'S</font></h3>
+                        <em style="margin-left: 10px"><font color="blue">Institute of Technology</font></em>
                         </a>
                     </p>
 
@@ -11,7 +11,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
 
