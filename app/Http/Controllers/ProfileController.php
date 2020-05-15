@@ -97,6 +97,7 @@ class ProfileController extends Controller
         $teacher = Teacher::find($id);
         $teacher->name = $request['name'];
         $teacher_div = Teacher::where('email', $request['email'])->first();
+        $teacher_div->divisions()->delete();
         $teacher_div->divisions()->detach();
         if($request->has('class_2'))
         {     
@@ -116,7 +117,6 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request['name'];
         $user->phone_no = $request['phone_no'];
-        // $user->roll_no = $request['roll_no'];
         $myelec=DB::table('user_subject')->insert(
             ['user_id' => $id, 'subject_id' => $request['elec']]
         );

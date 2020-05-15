@@ -53,13 +53,14 @@ class TeachersController extends Controller
             $test_no = session()->get('test_no'.$teacher->id,'Error');
             $allStudents = array();
 
-            $subject = Subject::where('id',session()->get('subject_no'.$teacher->id,'Error'))->first();
+            $subject = Subject::where('id',session()->get('subject_no'.$teacher->id,'Error'))->with('users')->first();
             if ($subject->elective === 1)
             {
                 $students = User::where('division',session()->get('division_no'.$teacher->id,'Error'))
-                ->with('subjects')
-                ->orderBy('roll_no')                       
-                ->get();
+                            ->with('subjects')
+                            ->orderBy('roll_no')                       
+                            ->get();
+                return $students;
                 // return $students[0]->subjects->count();
                 foreach($students as $s){
                     if($s->subjects->count()===1){
@@ -262,16 +263,17 @@ class TeachersController extends Controller
                 return redirect('teacher/editmarks')->with('error',"Time to edit marks for this subject, test, class combination has expired.");
             }
             //change for elective
-            $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no"
-                                                                                                                                            ,[session()->get('division_no'.$teacher->id,'Error'),                                                                                                                   session()->get('subject_no'.$teacher->id,'Error')]);
+            $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." 
+                        FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE 
+                        internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no",
+                        [session()->get('division_no'.$teacher->id,'Error'),
+                        session()->get('subject_no'.$teacher->id,'Error')]);
             return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
         }                        
         else
             {
                 return redirect('teacher/editmarks')->with('error',"You haven't put marks for this test of this subject yet.");
-
             }
-    
     }
     /**
      * Display the specified resource.
