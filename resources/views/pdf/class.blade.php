@@ -86,127 +86,7 @@
                         @php ($var = $mark->user->roll_no)
                         @php ($var1 = $mark->user->roll_no)
                         @foreach($marks as $mark)
-                        @if ($mark->subject_id == '1' && $mark->user->roll_no == $var)
-                            @if ($mark->ia2 == '-1')
-                                @if ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @endif
-                            @else
-                                @if ($mark->ia1 == '-2' && $mark->ia2 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia2 == '-2')
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">{{ $mark->Avg }}</td>
-                                @endif
-                            @endif
-                        @elseif ($mark->subject_id == '2' && $mark->user->roll_no == $var)
-                            @if ($mark->ia2 == '-1')
-                                @if ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @endif
-                            @else
-                                @if ($mark->ia1 == '-2' && $mark->ia2 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia2 == '-2')
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">{{ $mark->Avg }}</td>
-                                @endif
-                            @endif
-                        @elseif ($mark->subject_id == '3' && $mark->user->roll_no == $var)
-                            @if ($mark->ia2 == '-1')
-                                @if ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @endif
-                            @else
-                                @if ($mark->ia1 == '-2' && $mark->ia2 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia2 == '-2')
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">{{ $mark->Avg }}</td>
-                                @endif
-                            @endif
-                        @elseif ($mark->subject_id == '4' && $mark->user->roll_no == $var)
-                            @if ($mark->ia2 == '-1')
-                                @if ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">-</td>
-                                        <td style="text-align:center">-</td>
-                                @endif
-                            @else
-                                @if ($mark->ia1 == '-2' && $mark->ia2 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia1 == '-2')
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">-</td>
-                                @elseif ($mark->ia2 == '-2')
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">Ab</td>
-                                        <td style="text-align:center">-</td>
-                                @else
-                                        <td style="text-align:center">{{ $mark->ia1 }}</td>
-                                        <td style="text-align:center">{{ $mark->ia2 }}</td>
-                                        <td style="text-align:center">{{ $mark->Avg }}</td>
-                                @endif
-                            @endif
-                        @elseif ($mark->subject_id == '5' && $mark->user->roll_no == $var)
+                        @if ($mark->user->roll_no == $var)
                             @if ($mark->ia2 == '-1')
                                 @if ($mark->ia1 == '-2')
                                         <td style="text-align:center">Ab</td>
@@ -243,9 +123,7 @@
                             @php ($var = $mark->user->roll_no)
                             @continue
                         @endif
-                        
                     </tr>
-                    
                 @endforeach
                 </tbody>
             </table>
