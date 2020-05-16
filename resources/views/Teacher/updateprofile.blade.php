@@ -174,7 +174,7 @@
                           <span class="input-group-text"><i class="fas fa-book-open"></i></span>
                           <select id="sub_1" type="text" class="form-control" name="sub_1" required>
                                 <option value = 1 >CMPN: AM4</option>
-                                <option value = 4 >CMPN: AOS</option>
+                                <option value = 4 >CMPN: OS</option>
                                 <option value = 3 >CMPN: AOA</option>
                                 <option value = 5 >CMPN: ECCF</option>
                                 <option value = 6 >CMPN: CG</option>

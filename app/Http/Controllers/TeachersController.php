@@ -88,6 +88,7 @@ class TeachersController extends Controller
             return redirect('teacher/putmarks')->with('error','You have already entered marks for this subject, test and division combination. If you wish to edit them kindly go to edit marks.');
         }
     }
+    
     public function showTestThree()
     {
         $teacher = Auth::user();
