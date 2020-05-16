@@ -7,8 +7,11 @@ use App\Application;
 use App\Subject;
 use Carbon\Carbon;
 use App\Division;
+use App\DivisionTeacher;
 use App\News;
 use App\User;
+use App\teachersData;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 class AdminsController extends Controller
 {
@@ -133,4 +136,21 @@ class AdminsController extends Controller
         $news->delete();
         return redirect('/admin/managenews')->with('success','News Deleted Successfully');
     }
+    public function replace(){
+        $teacher =  DB::table('teachers_data')
+                    ->leftjoin('teachers', 'teachers_data.emp_id', '=', 'teachers.emp_id')
+                    ->select('teachers.name', 'teachers_data.*')
+                    ->get();
+        return view('Admin.replaceteacher')->with('teacher',$teacher); 
+    }
+    public function replaceTeacher(Request $request){
+        $new=DivisionTeacher::where('teacher_id',$request->t1)->get();
+        foreach($new as $n){
+            $n->teacher_id = $request->t2;
+            $n->save();
+        }
+        return redirect('/admin/replace')->with('success','Replaced Successfully');
+
+    }
+
 }

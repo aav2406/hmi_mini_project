@@ -85,7 +85,8 @@ function ()
     Route::post('application','HomeController@storeApplication');
     Route::get('marks','HomeController@index');
     Route::get('profile', 'ProfileController@indexStudent');
-    Route::patch('profile/{id}', 'ProfileController@updateStudent');
+    Route::get('updateprofile','ProfileController@indexStu');
+    Route::patch('updateprofile/{id}', 'ProfileController@updateStudent');
 });
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () 
 {
@@ -100,6 +101,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
     Route::get('applications/{id}','AdminsController@Application');
     Route::post('applications/{id}','AdminsController@storeApplication');
     Route::get('/class/{div}', 'PDFController@getclass');
+    Route::get('replace','AdminsController@replace');
+    Route::post('replace','AdminsController@replaceTeacher');
+
+
 }  
 );
 //Route::get('/download','TestController@export');

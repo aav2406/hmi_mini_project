@@ -45,7 +45,13 @@ class ProfileController extends Controller
     {
         $profile = Auth::user();
         $elec = Subject::where('elective','1')->get();
-        return view('studentProfile')->with(compact('profile'))->with(compact('elec'));
+        $findsub=User::with('subjects')->get();
+        return view('studentProfile')->with(compact('profile'))->with(compact('elec'))->with(compact('findsub'));
+    }
+    public function indexStu(){
+        $profile = Auth::user();
+        $elec = Subject::where('elective','1')->get();
+        return view('updatestudentProfile')->with(compact('profile'))->with(compact('elec'));
     }
     /**
      * Show the form for creating a new resource.
