@@ -109,6 +109,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
 );
 //Route::get('/download','TestController@export');
 //Route::get('/download1','UserController@export');
-Route::get('/marks/{div}/{sub}', 'PDFController@getmarks');
+Route::get('/marks/{div}/{sub}/{sem}', 'PDFController@getmarks');
 Route::get('/parent/{div}', 'PDFController@getparent');
-Route::get('/class/{div}', 'PDFController@getclass');
+Route::get('/class/{div}/{sem}', 'PDFController@getclass');

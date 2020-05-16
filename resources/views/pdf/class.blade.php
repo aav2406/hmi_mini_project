@@ -27,18 +27,37 @@
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Class/Division : D7C</strong></th>
                         </tr>
+                    @elseif ($mark->division_id == 21)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D12A</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 22)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D12B</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 23)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D12C</strong></th>
+                        </tr>
                     @endif
                     @break
                 @endforeach
                 <tr>
                     <th colspan="2"></th>
                     @foreach($marks as $mark)
-                        @if ($mark->division_id >= 12 && $mark->division_id <= 14)
+                        @if ($mark->division_id >= 12 && $mark->division_id <= 14 && $mark->subject->semester == 4)
                             <th style="text-align:center" colspan="3"><strong>Applied Mathematics IV</strong></th>
                             <th style="text-align:center" colspan="3"><strong>Operating System</strong></th>
                             <th style="text-align:center" colspan="3"><strong>Computer Organization and Architecture</strong></th>
                             <th style="text-align:center" colspan="3"><strong>Analysis of Algorithms</strong></th>
                             <th style="text-align:center" colspan="3"><strong>Computer Graphics</strong></th>
+                        @elseif ($mark->division_id >= 12 && $mark->division_id <= 14 && $mark->subject->semester == 3)
+                            <th style="text-align:center" colspan="3"><strong>Applied Mathematics III</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Digital Logic Design and Analysis</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Discrete Mathematics</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Electronic Circuits and Communication Fundamentals
+                            </strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Data Structures</strong></th>
                         @endif
                         @break
                     @endforeach
@@ -64,16 +83,6 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @php ($names = [])
-
-                @foreach ($marks as $mark)
-                    @foreach ($names as $name)
-                        @if ($name == $mark->user->roll_no)
-                            @continue
-                    @endforeach
-                    @if ()
-                    @php ($names[] = $category->name)
-                @endforeach --}}
 
                 @php ($var1=0)
                 @foreach($marks as $mark)
@@ -118,7 +127,7 @@
                             @endif
                         @endif
                         @endforeach
-                        @if ($mark->subject_id != '5')
+                        @if (($mark->subject->semester == 4 && $mark->subject_id != '5') || ($mark->subject->semester == 3 && $mark->subject_id != '10'))
                             @php ($mark->subject_id += 1)
                             @php ($var = $mark->user->roll_no)
                             @continue

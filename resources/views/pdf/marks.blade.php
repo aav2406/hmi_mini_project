@@ -25,30 +25,63 @@
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Class/Division : D7C</strong></th>
                         </tr>
+                    @elseif ($mark->division_id == 21)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D12A</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 22)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D12B</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 23)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D12C</strong></th>
+                        </tr>
                     @endif
                     @break
                 @endforeach
                 @foreach($marks as $mark)
-                    @if ($mark->subject_id == 1)
+                    @if ($mark->subject_id == 1 && $mark->subject->semester == 4)
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Subject : Applied Mathematics IV</strong></th>
                         </tr>
-                    @elseif ($mark->subject_id == 2)
+                    @elseif ($mark->subject_id == 2 && $mark->subject->semester == 4)
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Subject : Operating System</strong></th>
                         </tr>
-                    @elseif ($mark->subject_id == 3)
+                    @elseif ($mark->subject_id == 3 && $mark->subject->semester == 4)
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Subject : Computer Organization and Architecture
                             </strong></th>
                         </tr>
-                    @elseif ($mark->subject_id == 4)
+                    @elseif ($mark->subject_id == 4 && $mark->subject->semester == 4)
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Subject : Analysis of Algorithms</strong></th>
                         </tr>
-                    @elseif ($mark->subject_id == 5)
+                    @elseif ($mark->subject_id == 5 && $mark->subject->semester == 4)
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Subject : Computer Graphics</strong></th>
+                        </tr>
+                    @elseif ($mark->subject_id == 6 && $mark->subject->semester == 3)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Subject : Applied Mathematics III</strong></th>
+                        </tr>
+                    @elseif ($mark->subject_id == 7 && $mark->subject->semester == 3)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Subject : Digital Logic Design and Analysis</strong></th>
+                        </tr>
+                    @elseif ($mark->subject_id == 8 && $mark->subject->semester == 3)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Subject : Discrete Mathematics</strong></th>
+                        </tr>
+                    @elseif ($mark->subject_id == 9 && $mark->subject->semester == 3)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Subject : Electronic Circuits and Communication Fundamentals
+                            </strong></th>
+                        </tr>
+                    @elseif ($mark->subject_id == 10 && $mark->subject->semester == 3)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Subject : Data Structures</strong></th>
                         </tr>
                     @endif
                     @break

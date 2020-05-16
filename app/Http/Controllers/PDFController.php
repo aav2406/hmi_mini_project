@@ -10,20 +10,19 @@ use App\User;
 
 class PDFController extends Controller
 { 
-    public function getmarks($div,$sub)
+    public function getmarks($div,$sub,$sem)
     {
-        $marks = InternalTest::where('division_id',$div)->where('subject_id',$sub)->with('user')->get()->sortBy('user.roll_no');
+        $marks = InternalTest::where('division_id',$div)->where('subject_id',$sub)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('user.roll_no');
         return PDF::loadView('pdf.marks', ['marks' =>$marks])->stream('marks.pdf');
     }
     public function getparent($div)
     {
         return PDF::loadView('pdf.users', ['users' => User::where('division', $div)->orderBy('roll_no', 'asc')->get()])->stream('users.pdf');
     }
-    public function getclass($div)
+    public function getclass($div,$sem)
     {
-        $marks = InternalTest::where('division_id',$div)->with('user')->get()->sortBy('user.roll_no');//->groupBy('user.roll_no');
-        echo $marks;
-
+        $marks = InternalTest::where('division_id',$div)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('user.roll_no');
+        //$marks = InternalTest::where('division_id',$div)->with('user')->get()->sortBy('user.roll_no');
         return PDF::loadView('pdf.class', ['marks' =>$marks])->stream('class.pdf');
     }
 }
