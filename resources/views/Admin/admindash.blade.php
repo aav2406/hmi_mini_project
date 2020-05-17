@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </a>
-    <a href="/admin/applications">
+    <a href="/admin/classReport">
         <div class="col-lg-3 col-md-6">
             <div class="card ">
                 <div class="card-body">
@@ -69,7 +69,7 @@
                             <div class="social_icon">
                                 <span><i class="fas fa-eye"></i></span>
                             </div>
-                            <h4>Entires Class Report</h4>
+                            <h4>Entire Class Report</h4>
                         </div>
                 </div>
                 <div class="card-footer">
@@ -80,27 +80,6 @@
             </div>
         </div>
     </a>
-
-    <a href="/admin/applications">
-        <div class="col-lg-3 col-md-6">
-            <div class="card ">
-                <div class="card-body">
-                         <div class="card-title text-right">
-                            <div class="social_icon">
-                                <span><i class="fas fa-eye"></i></span>
-                            </div>
-                            <h4>Student Wise Report</h4>
-                        </div>
-                </div>
-                <div class="card-footer">
-                    <span class="float-left">View</span>
-                    <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
-                <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    </a>
-
 
     <a href="/admin/replace">
         <div class="col-lg-3 col-md-6">
@@ -111,6 +90,25 @@
                                 <span><i class="fas fa-user"></i></span>
                             </div>
                             <h4>Replace</h4>
+                        </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">View</span>
+                    <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="/admin/managenews">
+        <div class="col-lg-3 col-md-6">
+            <div class="card ">
+                <div class="card-body">
+                         <div class="card-title text-right">
+                            <div class="social_icon">
+                                <span><i class="fas fa-user"></i></span>
+                            </div>
+                            <h4>Mangae News</h4>
                         </div>
                 </div>
                 <div class="card-footer">

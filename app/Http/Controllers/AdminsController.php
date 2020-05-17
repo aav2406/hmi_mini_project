@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use auth;
+use PDF;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestThreeStatus;
 use App\Application;
@@ -11,6 +12,7 @@ use App\DivisionTeacher;
 use App\News;
 use App\User;
 use App\teachersData;
+use App\InternalTest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 class AdminsController extends Controller
@@ -151,6 +153,17 @@ class AdminsController extends Controller
         }
         return redirect('/admin/replace')->with('success','Replaced Successfully');
 
+    }
+    public function classReport(){
+        $div = Division::get();
+        return view('Admin.classReport')->with('div',$div);
+    }
+    public function classReportview(Request $request){
+        $div = $request->t1;
+        $sem=$request->t2;
+
+        $marks = InternalTest::where('division_id',$div)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('user.roll_no');
+        return PDF::loadView('pdf.class', ['marks' =>$marks])->stream('class.pdf');
     }
 
 }

@@ -72,8 +72,8 @@
             <div class="form-group">
                 <label for="image_verifier">Upload Image?</label>
                 <div class="input-group-prepend">
-                                    Yes<input onchange = "enable()" type="radio" name="gender" style="margin-right:5px;" value="" onchange = "enable1()"><font color="white">One</font> <br>
-                                    No<input onchange = "disable()" type="radio" name="gender" style="margin-right:5px;margin-left:15px" value="" onchange = "enable2()"><font color="white">Two</font>
+                                    Yes<input onchange = "enable()" type="radio" name="gender" style="margin-right:5px;margin-left:15px;margin-top:5px;" value="" onchange = "enable1()"><font color="white">One</font> 
+                                    No<input onchange = "disable()" type="radio" name="gender" style="margin-right:5px;margin-left:15px;margin-top:5px;" value="" onchange = "enable2()"><font color="white">Two</font>
                 </div>
             </div>
             <div class="form-group" >

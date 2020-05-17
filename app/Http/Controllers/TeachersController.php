@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
+use PDF;
 use Carbon\Carbon;
 use App\DivisionTeacher;
 use App\Subject;
@@ -40,6 +41,28 @@ class TeachersController extends Controller
         $request->session()->put('division_no'.$teacher->id,$request['division_id']);
         $request->session()->put('test_no'.$teacher->id,$request['test_no']);
         return redirect('teacher/studentmarks');
+    }
+    public function parentDetails(){
+        $div = Division::get();
+        return view('Teacher.parentDetails')->with('div',$div);
+    }
+    public function marksDetails(){
+        $div = Division::get();
+        $sub= Subject::get();
+        return view('Teacher.marksDetails')->with('div',$div)->with('sub',$sub);
+    }
+    public function viewParent(Request $request)
+    {
+        $div = $request->t1;
+        return PDF::loadView('pdf.users', ['users' => User::where('division', $div)->orderBy('roll_no', 'asc')->get()])->stream('users.pdf');
+    }
+    public function viewMarks(Request $request)
+    {
+        $div = $request->t1;
+        $sub = $request->t2;
+        $sem = $request->t3;
+        $marks = InternalTest::where('division_id',$div)->where('subject_id',$sub)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('user.roll_no');
+        return PDF::loadView('pdf.marks', ['marks' =>$marks])->stream('marks.pdf');
     }
     public function showStudents()
     {

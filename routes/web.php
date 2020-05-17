@@ -74,6 +74,13 @@ function ()
     Route::post('editmarks','TeachersController@editMarksCreateSession');
     Route::get('editmarkslist','TeachersController@showStudentList');
     Route::post('editmarkslist','TeachersController@storeMarks');
+    Route::get('parent','TeachersController@parentDetails');
+    Route::post('parent','TeachersController@viewParent');
+    Route::get('marks','TeachersController@marksDetails');
+    Route::post('marks','TeachersController@viewMarks');
+
+
+
 }
 );
 Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], 
@@ -103,6 +110,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
     Route::get('/class/{div}', 'PDFController@getclass');
     Route::get('replace','AdminsController@replace');
     Route::post('replace','AdminsController@replaceTeacher');
+    Route::get('classReport','AdminsController@classReport');
+    Route::post('classReport','AdminsController@classReportview');
+
+
 
 
 }  
