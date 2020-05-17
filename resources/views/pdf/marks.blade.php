@@ -1,7 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Marks Report</title>
+        <title>
+        @foreach($marks as $mark)
+            @if ($mark->division_id == 12)
+                D7A
+            @elseif ($mark->division_id == 13)
+                D7B
+            @elseif ($mark->division_id == 14)
+                D7C
+            @elseif ($mark->division_id == 21)
+                D12A
+            @elseif ($mark->division_id == 22)
+                D12B
+            @elseif ($mark->division_id == 23)
+                D12C
+            @endif
+            @break
+        @endforeach 
+        @foreach($marks as $mark)
+                    @if ($mark->subject_id == 1 && $mark->subject->semester == 4)
+                        AM IV
+                    @elseif ($mark->subject_id == 2 && $mark->subject->semester == 4)
+                        OS
+                    @elseif ($mark->subject_id == 3 && $mark->subject->semester == 4)
+                        COA
+                    @elseif ($mark->subject_id == 4 && $mark->subject->semester == 4)
+                        AOA
+                    @elseif ($mark->subject_id == 5 && $mark->subject->semester == 4)
+                        CG
+                    @elseif ($mark->subject_id == 6 && $mark->subject->semester == 3)
+                        AM III
+                    @elseif ($mark->subject_id == 7 && $mark->subject->semester == 3)
+                        DLDA
+                    @elseif ($mark->subject_id == 8 && $mark->subject->semester == 3)
+                        DIS
+                    @elseif ($mark->subject_id == 9 && $mark->subject->semester == 3)
+                        ECCF
+                    @elseif ($mark->subject_id == 10 && $mark->subject->semester == 3)
+                        DS
+                    @endif
+                    @break
+                @endforeach Marks Report</title>
     </head>
     <body>
         <table style="width:100%" border="1">

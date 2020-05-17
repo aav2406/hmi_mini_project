@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Class Report</title>
+        <title>
+        @foreach($marks as $mark)
+            @if ($mark->division_id == 12)
+                D7A
+            @elseif ($mark->division_id == 13)
+                D7B
+            @elseif ($mark->division_id == 14)
+                D7C
+            @elseif ($mark->division_id == 21)
+                D12A
+            @elseif ($mark->division_id == 22)
+                D12B
+            @elseif ($mark->division_id == 23)
+                D12C
+            @endif
+            @break
+        @endforeach Class Report</title>
     </head>
     <body>
         {{-- <p style="text-align:center"><strong>V.E.S. INSTITUTE OF TECHNOLOGY, CHEMBUR, MUMBAI - 400074</strong></p>
@@ -83,7 +99,6 @@
                 </tr>
             </thead>
             <tbody>
-
                 @php ($var1=0)
                 @foreach($marks as $mark)
                     @if ($var1 == $mark->user->roll_no)
