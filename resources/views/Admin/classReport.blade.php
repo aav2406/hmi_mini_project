@@ -31,6 +31,45 @@
             background-color: white;
             }
 </style>
+<script type="text/javascript">
+    function populate(){
+        document.getElementById('t2').options.length = 0;
+        document.getElementById('t2').disabled = false;
+        var div = document.getElementById('div').value;
+        var sel = document.getElementById("div");
+        var text= sel.options[sel.selectedIndex].text;
+        if(text=='D7A' || text=='D7B' || text=='D7C'){
+                var newOption = document.createElement("option");
+                newOption.value = 3;
+                newOption.innerHTML = 3;
+                t2.options.add(newOption);
+                var newOption1 = document.createElement("option");
+                newOption1.value = 4;
+                newOption1.innerHTML = 4;
+                t2.options.add(newOption1);
+        }
+        else if(text=='D12A' || text=='D12B' || text=='D12C'){
+                var newOption = document.createElement("option");
+                newOption.value = 5;
+                newOption.innerHTML = 5;
+                t2.options.add(newOption);
+                var newOption1 = document.createElement("option");
+                newOption1.value = 6;
+                newOption1.innerHTML = 6;
+                t2.options.add(newOption1);
+        }
+        else if(text=='D17A' || text=='D17B' || text=='D17C'){
+                var newOption = document.createElement("option");
+                newOption.value = 7;
+                newOption.innerHTML = 7;
+                t2.options.add(newOption);
+                var newOption1 = document.createElement("option");
+                newOption1.value = 8;
+                newOption1.innerHTML = 8;
+                t2.options.add(newOption1);
+        }
+    }
+</script>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -49,7 +88,8 @@
                         <label for="t1" class="col-md-4 col-form-label text-md-right">Enter Division</label>
 
                         <div class="col-md-6">
-                            <select id="t1" class="form-control" name="t1">
+                            <select id="div" class="form-control" name="t1" onchange="populate()">
+                                <option value=""> Choose </option>
                                 @foreach($div as $d)
                                     <option value="{{$d->id}}">{{$d->class}}</option>
                                 @endforeach
@@ -62,14 +102,6 @@
 
                         <div class="col-md-6">
                             <select id="t2" class="form-control" name="t2">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
 
                             </select>
                         </div>
