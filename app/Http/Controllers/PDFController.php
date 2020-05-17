@@ -22,7 +22,6 @@ class PDFController extends Controller
     public function getclass($div,$sem)
     {
         $marks = InternalTest::where('division_id',$div)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('user.roll_no');
-        //$marks = InternalTest::where('division_id',$div)->with('user')->get()->sortBy('user.roll_no');
         return PDF::loadView('pdf.class', ['marks' =>$marks])->stream('class.pdf');
     }
 }
