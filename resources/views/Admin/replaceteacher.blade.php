@@ -81,7 +81,43 @@
             </div>
        
     </div>
+
+    
 </div>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="margin-top:20px">
+                <div class="card-body">
+                    <div class="row ">
+                        <div class="col-md-12 text-md-left">
+                            <h4>Empty Division Teacher</h4>
+                            <hr style="border:1px solid #FFC312"> 
+                            </div>
+                    </div>
+                    <form method="POST" action="{{ url('/admin/truncatedivTeacher')}}">
+                    @csrf
+                    <div class="form-group row">
+                        <div class="offset-4 col-8">
+                                <button type="submit" class="btn float-left update_btn">
+                                        <i class="fas fa-edit"></i>  Empty
+                                    </button>
+                        </div>
+                    </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+       
+    </div>
+
+    
+</div>
+
+
 @endsection
 @if ($errors->any())    
     <ul>
