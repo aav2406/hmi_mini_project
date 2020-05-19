@@ -14,6 +14,12 @@
                 D12B
             @elseif ($mark->division_id == 23)
                 D12C
+            @elseif ($mark->division_id == 30)
+                D17A
+            @elseif ($mark->division_id == 31)
+                D17B
+            @elseif ($mark->division_id == 32)
+                D17C
             @endif
             @break
         @endforeach Parent Details</title>
@@ -51,6 +57,18 @@
                     @elseif ($mark->division_id == 23)
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Class/Division : D12C</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 30)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17A</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 31)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17B</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 32)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17C</strong></th>
                         </tr>
                     @endif
                     @break
