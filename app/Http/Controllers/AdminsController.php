@@ -82,6 +82,10 @@ class AdminsController extends Controller
                         ->get();
         return view('Admin.showteacher')->with('teacher',$teacher); 
     }
+    public function truncatedivTeacher(){
+        DivisionTeacher::query()->truncate();
+        return redirect('/admin/replace')->with('Success','Division_Teacher table truncated');
+    }
 
     public function storeTeacher(Request $request){
         $teacher = new teachersData;

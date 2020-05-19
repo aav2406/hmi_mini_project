@@ -67,7 +67,7 @@
                 <div class="form-group row">    
                     <label class="col-md-4 col-form-label text-md-right">Select Class:</label>
                         <div class="col-md-4">  
-                            <select id="div" name="division_id" onchange = "populate()">
+                            <select id="div" name="division_id" onchange = "populate()" class="form-control">
                                 <option value="">Select Class:</option>
                                @foreach($details as $detail)
                                   <option value = "{{$detail->division_id}}" >{{$detail->division->class}}</option>
@@ -78,7 +78,7 @@
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right">Select Subject:</label>
                       <div class="col-md-4">
-                         <select id = "sub" name="subject_no">
+                         <select id = "sub" name="subject_no" class="form-control">
                          @foreach($details as $detail)
                                 <option value="{{$detail->subject->id}}">{{$detail->subject->subject}}</option>
                             @endforeach

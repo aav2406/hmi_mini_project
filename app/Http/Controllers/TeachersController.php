@@ -47,9 +47,9 @@ class TeachersController extends Controller
         return view('Teacher.parentDetails')->with('div',$div);
     }
     public function marksDetails(){
-        $div = Division::get();
-        $sub= Subject::get();
-        return view('Teacher.marksDetails')->with('div',$div)->with('sub',$sub);
+        $user = Auth::user();
+        $details = DivisionTeacher::where('teacher_id',$user->id)->with('division')->with('subject')->get();
+        return view('Teacher.marksDetails')->with('details',$details);
     }
     public function viewParent(Request $request)
     {
@@ -58,8 +58,8 @@ class TeachersController extends Controller
     }
     public function viewMarks(Request $request)
     {
-        $div = $request->t1;
-        $sub = $request->t2;
+        $div = $request->division_id;
+        $sub = $request->subject_no;
         $sem = $request->t3;
         $marks = InternalTest::where('division_id',$div)->where('subject_id',$sub)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('user.roll_no');
         return PDF::loadView('pdf.marks', ['marks' =>$marks])->stream('marks.pdf');
