@@ -15,33 +15,19 @@
                 D12B
             @elseif ($mark->division_id == 23)
                 D12C
+            @elseif ($mark->division_id == 30)
+                D17A
+            @elseif ($mark->division_id == 31)
+                D17B
+            @elseif ($mark->division_id == 32)
+                D17C
             @endif
             @break
         @endforeach 
         @foreach($marks as $mark)
-                    @if ($mark->subject_id == 1 && $mark->subject->semester == 4)
-                        AM IV
-                    @elseif ($mark->subject_id == 2 && $mark->subject->semester == 4)
-                        OS
-                    @elseif ($mark->subject_id == 3 && $mark->subject->semester == 4)
-                        COA
-                    @elseif ($mark->subject_id == 4 && $mark->subject->semester == 4)
-                        AOA
-                    @elseif ($mark->subject_id == 5 && $mark->subject->semester == 4)
-                        CG
-                    @elseif ($mark->subject_id == 6 && $mark->subject->semester == 3)
-                        AM III
-                    @elseif ($mark->subject_id == 7 && $mark->subject->semester == 3)
-                        DLDA
-                    @elseif ($mark->subject_id == 8 && $mark->subject->semester == 3)
-                        DIS
-                    @elseif ($mark->subject_id == 9 && $mark->subject->semester == 3)
-                        ECCF
-                    @elseif ($mark->subject_id == 10 && $mark->subject->semester == 3)
-                        DS
-                    @endif
-                    @break
-                @endforeach Marks Report</title>
+            {{$mark->subject->subject}}
+        @break
+        @endforeach Marks Report</title>
     </head>
     <body>
         <table style="width:100%" border="1">
@@ -77,53 +63,25 @@
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Class/Division : D12C</strong></th>
                         </tr>
+                    @elseif ($mark->division_id == 30)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17A</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 31)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17B</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 32)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17C</strong></th>
+                        </tr>
                     @endif
                     @break
                 @endforeach
                 @foreach($marks as $mark)
-                    @if ($mark->subject_id == 1 && $mark->subject->semester == 4)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Applied Mathematics IV</strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 2 && $mark->subject->semester == 4)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Operating System</strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 3 && $mark->subject->semester == 4)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Computer Organization and Architecture
-                            </strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 4 && $mark->subject->semester == 4)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Analysis of Algorithms</strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 5 && $mark->subject->semester == 4)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Computer Graphics</strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 6 && $mark->subject->semester == 3)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Applied Mathematics III</strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 7 && $mark->subject->semester == 3)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Digital Logic Design and Analysis</strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 8 && $mark->subject->semester == 3)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Discrete Mathematics</strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 9 && $mark->subject->semester == 3)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Electronic Circuits and Communication Fundamentals
-                            </strong></th>
-                        </tr>
-                    @elseif ($mark->subject_id == 10 && $mark->subject->semester == 3)
-                        <tr>
-                            <th style="text-align:center" colspan="17"><strong>Subject : Data Structures</strong></th>
-                        </tr>
-                    @endif
+                    <tr>
+                        <th style="text-align:center" colspan="17"><strong>Subject : {{$mark->subject->subject}}</strong></th>
+                    </tr>
                     @break
                 @endforeach
                 <tr>    

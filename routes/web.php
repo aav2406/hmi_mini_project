@@ -113,10 +113,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
     Route::get('classReport','AdminsController@classReport');
     Route::post('classReport','AdminsController@classReportview');
     Route::post('truncatedivTeacher','AdminsController@truncatedivTeacher');
-
-
-
-
 }  
 );
 //Route::get('/download','TestController@export');
