@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <form method="POST" action='/home/profile/{{ $profile->id }}' >
+                                    <form method="POST" action='/home/updateprofile/{{ $profile->id }}' >
                                         @csrf
                                         {{ method_field('patch')}}
                                         <div class="form-group row">
@@ -118,9 +118,23 @@
                                                 </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label for="div" class="col-md-4 col-form-label text-md-right">Division</label>
+                                            <div class="col-md-6">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-mouse-pointer"></i></span>
+                                                    <select name="div" id="div" class="form-control">
+                                                        <option value="">Choose</option>
+                                                        @foreach($div as $d)
+                                                            <option value="{{$d->id}}">{{$d->class}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                                 <label for="roll_no" class="col-md-4 col-form-label text-md-right">{{ __('Roll No') }}</label> 
                                                 <div class="col-8">
-                                                        <input id="roll_no" type="number" class="form-control" name="roll_no" value="{{$profile->roll_no }}" style="width:60px" disabled>
+                                                        <input id="roll_no" type="number" class="form-control" name="roll_no" value="{{$profile->roll_no }}" style="width:60px">
                                                 </div>
                                         </div>
                                     <div class="form-group row">

@@ -46,12 +46,16 @@ class ProfileController extends Controller
         $profile = Auth::user();
         $elec = Subject::where('elective','1')->get();
         $findsub=User::with('subjects')->get();
-        return view('studentProfile')->with(compact('profile'))->with(compact('elec'))->with(compact('findsub'));
+        $div=Division::find($profile->division)->first();
+
+        return view('studentProfile')->with(compact('profile'))->with(compact('elec'))->with(compact('findsub'))->with(compact('div'));
     }
     public function indexStu(){
         $profile = Auth::user();
         $elec = Subject::where('elective','1')->get();
-        return view('updatestudentProfile')->with(compact('profile'))->with(compact('elec'));
+        $div=Division::get();
+
+        return view('updatestudentProfile')->with(compact('profile'))->with(compact('elec'))->with(compact('div'));
     }
     /**
      * Show the form for creating a new resource.
@@ -146,12 +150,16 @@ class ProfileController extends Controller
     public function updateStudent(Request $request, $id)
     {
         $user = User::find($id);
+        $user->roll_no=$request['roll_no'];
+        $user->phone_no=$request['phone_no'];
+        $user->division=$request['div'];
         $user->subjects()->detach();
         $user->subjects()->attach( $request['elec_first'] );
         if($request->has('elec_second'))
         {
             $user->subjects()->attach( $request['elec_second'] );
         }
+        $user->save();
         return redirect("home");
     }
     /**

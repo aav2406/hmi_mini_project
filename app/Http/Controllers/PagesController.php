@@ -8,17 +8,8 @@ class PagesController extends Controller
 {
     public function index(){
         $title='Internal Assessment Record System';
-        // $news = News::where('updated_at', '>=', now()->toDateTimeString())->orderBy('created_at', 'desc')->get();
-        // $length = $news->count();
-        // for( $i = 0 ; $i < $length ; $i++)
-        // {
-        //         if(!isset($news[$i]['news_image']))
-        //         {s
-        //             $news[$i]['news_image'] = '#'; 
-        //         }
-
-        // }
-        return view('pages.index',compact('title'));
+        $news=News::get();
+        return view('pages.index',compact('title'))->with('news',$news);
     }
 
     public function index1(){

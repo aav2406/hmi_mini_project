@@ -81,6 +81,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="div" class="col-md-4 col-form-label text-md-right">Division</label>
+                            <div class="col-md-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    <input id="div" disabled type="text" class="form-control" name="div" value="{{$div->class}}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="roll_no" class="col-md-4 col-form-label text-md-right">{{ __('Roll No') }}</label>
 
                             <div class="col-md-6">
