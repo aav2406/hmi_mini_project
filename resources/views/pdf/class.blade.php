@@ -15,6 +15,12 @@
                 D12B
             @elseif ($mark->division_id == 23)
                 D12C
+            @elseif ($mark->division_id == 30)
+                D17A
+            @elseif ($mark->division_id == 31)
+                D17B
+            @elseif ($mark->division_id == 32)
+                D17C
             @endif
             @break
         @endforeach Class Report</title>
@@ -55,6 +61,18 @@
                         <tr>
                             <th style="text-align:center" colspan="17"><strong>Class/Division : D12C</strong></th>
                         </tr>
+                    @elseif ($mark->division_id == 30)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17A</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 31)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17B</strong></th>
+                        </tr>
+                    @elseif ($mark->division_id == 32)
+                        <tr>
+                            <th style="text-align:center" colspan="17"><strong>Class/Division : D17C</strong></th>
+                        </tr>
                     @endif
                     @break
                 @endforeach
@@ -74,32 +92,73 @@
                             <th style="text-align:center" colspan="3"><strong>Electronic Circuits and Communication Fundamentals
                             </strong></th>
                             <th style="text-align:center" colspan="3"><strong>Data Structures</strong></th>
+                        @elseif ($mark->division_id >= 21 && $mark->division_id <= 23 && $mark->subject->semester == 6)
+                            <th style="text-align:center" colspan="3"><strong>Software Engineering</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>System Programming & Compiler Construction</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Data Warehousing & Mining</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Cryptography & System Security</strong></th>
+                        @elseif ($mark->division_id >= 21 && $mark->division_id <= 23 && $mark->subject->semester == 5)
+                            <th style="text-align:center" colspan="3"><strong>Microprocessor</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Database Management System</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Computer Network</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Theory of Computer Science</strong></th>
+                        @elseif ($mark->division_id >= 30 && $mark->division_id <= 32 && $mark->subject->semester == 8)
+                            <th style="text-align:center" colspan="3"><strong>Human Machine Interaction</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Distributed Computing</strong></th>
+                        @elseif ($mark->division_id >= 30 && $mark->division_id <= 32 && $mark->subject->semester == 7)
+                            <th style="text-align:center" colspan="3"><strong>Digital Signal & Image Processing</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Mobile Communication & Computing</strong></th>
+                            <th style="text-align:center" colspan="3"><strong>Artificial Intelligence & Soft Computing</strong></th>
                         @endif
                         @break
                     @endforeach
                 </tr>
                 <tr>    
-                    <th style="text-align:center"><strong>Roll No</strong></th>
-                    <th style="text-align:center"><strong>Name</strong></th>
-                    <th style="text-align:center"><strong>Test 1</strong></th>
-                    <th style="text-align:center"><strong>Test 2</strong></th>
-                    <th style="text-align:center"><strong>Avg</strong></th>
-                    <th style="text-align:center"><strong>Test 1</strong></th>
-                    <th style="text-align:center"><strong>Test 2</strong></th>
-                    <th style="text-align:center"><strong>Avg</strong></th>
-                    <th style="text-align:center"><strong>Test 1</strong></th>
-                    <th style="text-align:center"><strong>Test 2</strong></th>
-                    <th style="text-align:center"><strong>Avg</strong></th>
-                    <th style="text-align:center"><strong>Test 1</strong></th>
-                    <th style="text-align:center"><strong>Test 2</strong></th>
-                    <th style="text-align:center"><strong>Avg</strong></th>
-                    <th style="text-align:center"><strong>Test 1</strong></th>
-                    <th style="text-align:center"><strong>Test 2</strong></th>
-                    <th style="text-align:center"><strong>Avg</strong></th>
+                    @foreach ($marks as $mark)
+                        @if ($mark->division_id >= 12 && $mark->division_id <= 14)
+                            <th style="text-align:center"><strong>Roll No</strong></th>
+                            <th style="text-align:center"><strong>Name</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                        @elseif ($mark->division_id >= 21 && $mark->division_id <= 23)
+                            <th style="text-align:center"><strong>Roll No</strong></th>
+                            <th style="text-align:center"><strong>Name</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                            <th style="text-align:center"><strong>Test 1</strong></th>
+                            <th style="text-align:center"><strong>Test 2</strong></th>
+                            <th style="text-align:center"><strong>Avg</strong></th>
+                        @endif
+                        @break
+                    @endforeach
                 </tr>
             </thead>
             <tbody>
                 @php ($var1=0)
+                @php ($c1=0)
+                @foreach($marks as $mark)
+                    @php ($c1 += 1)
+                @endforeach
                 @foreach($marks as $mark)
                     @if ($var1 == $mark->user->roll_no)
                         @continue
@@ -109,8 +168,42 @@
                         <td style="text-align:center">{{ $mark->user->name}}</td>
                         @php ($var = $mark->user->roll_no)
                         @php ($var1 = $mark->user->roll_no)
+                            @if ($mark->subject->semester == 3)
+                                @php ($var2 = 5)
+                                @php ($var3 = 5)
+                            @elseif ($mark->subject->semester == 4)
+                                @php ($var2 = 0)
+                                @php ($var3 = 5)
+                            @elseif ($mark->subject->semester == 5)
+                                @php ($var2 = 18)
+                                @php ($var3 = 7)
+                            @elseif ($mark->subject->semester == 6)
+                                @php ($var2 = 10)
+                                @php ($var3 = 8)
+                            @elseif ($mark->subject->semester == 7)
+                                @php ($var2 = 25)
+                                @php ($var3 = 15)
+                            @elseif ($mark->subject->semester == 8)
+                                @php ($var2 = 39)
+                                @php ($var3 = 14)
+                            @endif
+                            @php ($count = 0)
+                            @php ($c2=0)
                         @foreach($marks as $mark)
+                            @php ($c2 += 1)
+                            @if ($var > $mark->user->roll_no)
+                                @continue
+                            @endif
                         @if ($mark->user->roll_no == $var)
+                            @while ($var2 < $mark->subject_id - 1)
+                                <td style="text-align:center">-</td>
+                                <td style="text-align:center">-</td>
+                                <td style="text-align:center">-</td>
+                                @php ($var2 += 1)
+                                @php ($count += 1)
+                            @endwhile
+                            @php ($var2 = $mark->subject_id)
+                            @php ($count += 1)
                             @if ($mark->ia2 == '-1')
                                 @if ($mark->ia1 == '-2')
                                         <td style="text-align:center">Ab</td>
@@ -141,12 +234,19 @@
                                 @endif
                             @endif
                         @endif
-                        @endforeach
-                        @if (($mark->subject->semester == 4 && $mark->subject_id != '5') || ($mark->subject->semester == 3 && $mark->subject_id != '10'))
-                            @php ($mark->subject_id += 1)
-                            @php ($var = $mark->user->roll_no)
-                            @continue
+                        @if (($var < $mark->user->roll_no && $count != $var3) || ($c2 == $c1))
+                                @for ($i = $var3 - $count; $i > 0; $i--)
+                                    <td style="text-align:center">-</td>
+                                    <td style="text-align:center">-</td>
+                                    <td style="text-align:center">-</td>
+                                @endfor
                         @endif
+                        @endforeach
+                        {{-- @if (($mark->subject->semester == 4 && $mark->subject_id != 5) || ($mark->subject->semester == 3 && $mark->subject_id != '10'))
+                            @php ($var = $mark->user->roll_no)
+                            @php ($var2 = $mark->subject_id)
+                            @continue
+                        @endif --}}
                     </tr>
                 @endforeach
                 </tbody>
