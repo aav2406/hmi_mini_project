@@ -113,7 +113,7 @@ body{
 <div class="text-center" style="font-size:3em;margin-top:20%;color:yellow">
    <b>{{$title}}</b>
 </div>
-
+@if(count($news)>0)
 <div class="onoffswitch3">
   <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="myonoffswitch3" checked>
   <label class="onoffswitch3-label" for="myonoffswitch3">
@@ -143,6 +143,7 @@ body{
       </span>
   </label>
 </div>
+@endif
 
 @endsection
 
