@@ -120,3 +120,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
 Route::get('/marks/{div}/{sub}/{sem}', 'PDFController@getmarks');
 Route::get('/parent/{div}', 'PDFController@getparent');
 Route::get('/class/{div}/{sem}', 'PDFController@getclass');
+Route::get('/student/{div}/{stu}/{sem}', 'PDFController@getstudent');

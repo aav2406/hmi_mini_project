@@ -234,6 +234,7 @@
                                 @endif
                             @endif
                         @endif
+                        @endforeach
                         @if (($var < $mark->user->roll_no && $count != $var3) || ($c2 == $c1))
                                 @for ($i = $var3 - $count; $i > 0; $i--)
                                     <td style="text-align:center">-</td>
@@ -241,7 +242,6 @@
                                     <td style="text-align:center">-</td>
                                 @endfor
                         @endif
-                        @endforeach
                         {{-- @if (($mark->subject->semester == 4 && $mark->subject_id != 5) || ($mark->subject->semester == 3 && $mark->subject_id != '10'))
                             @php ($var = $mark->user->roll_no)
                             @php ($var2 = $mark->subject_id)
