@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>VESIT</title>
 <style>
 body{
    background:linear-gradient(rgba(16,29,44,.85),rgba(16,29,44,.85)),url("http://ves.ac.in/vesit/wp-content/uploads/sites/3/2015/11/IMG_93121-optimized.jpg") center no-repeat;
@@ -137,7 +137,7 @@ body{
                     @endif
                 @endforeach
               </marquee>
-              <span class="onoffswitch3-switch" style="color:black">BREAKING NEWS <i class="fas fa-times"></i></span>
+              <span class="onoffswitch3-switch" style="color:black">IMPORTANT NOTICES <i class="fas fa-times"></i></span>
           </span>
           <span class="onoffswitch3-inactive"><span class="onoffswitch3-switch" style="color:#000 ">SHOW <i class="fas fa-forward"></i></span></span>
       </span>

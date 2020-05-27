@@ -42,20 +42,18 @@
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>S.N.</th>
-                            <th>Roll No</th>
-                            <th>Student Name</th>
-                            <th>Marks</th>
-                            <th>Status</th>
+                            <th style="text-align:center">Roll No</th>
+                            <th style="text-align:center">Student Name</th>
+                            <th style="text-align:center">Marks</th>
+                            <th style="text-align:center">Status</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($students as $student)
                             <tr>
-                                <td>{{$loop -> index+1 }}</td>
-                                <td>{{$student->roll_no }}</td>
-                                <td>{{$student->name }}</td>
-                                <td>
+                                <td style="text-align:center">{{$student->roll_no }}</td>
+                                <td style="text-align:center">{{$student->name }}</td>
+                                <td style="text-align:center">
                                     {{
                                      $test_no == 1 
                                     ? 
@@ -76,7 +74,7 @@
                                      )
                                      }}
                                 </td>
-                                <td>
+                                <td style="text-align:center">
                                 
                                 {{ 
                                 (

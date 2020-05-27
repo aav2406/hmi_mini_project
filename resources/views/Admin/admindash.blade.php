@@ -50,7 +50,7 @@
                                     <div class="social_icon">
                                         <span><i class="fas fa-eye"></i></span>
                                     </div>
-                                    <h4>Application's for test 3</h4>
+                                    <h4>Applications for Test 3</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
@@ -69,7 +69,7 @@
                             <div class="social_icon">
                                 <span><i class="fas fa-eye"></i></span>
                             </div>
-                            <h4>Entire Class Report</h4>
+                            <h4>Class Report</h4>
                         </div>
                 </div>
                 <div class="card-footer">
@@ -89,7 +89,7 @@
                             <div class="social_icon">
                                 <span><i class="fas fa-user"></i></span>
                             </div>
-                            <h4>Replace</h4>
+                            <h4>Replace Teacher</h4>
                         </div>
                 </div>
                 <div class="card-footer">
@@ -108,7 +108,7 @@
                             <div class="social_icon">
                                 <span><i class="fas fa-user"></i></span>
                             </div>
-                            <h4>Mangae News</h4>
+                            <h4>Manage News</h4>
                         </div>
                 </div>
                 <div class="card-footer">
