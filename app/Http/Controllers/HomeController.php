@@ -4,6 +4,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 namespace App\Http\Controllers;
 use Auth;
+use PDF;
 use App\Application;
 use App\User;
 use App\DivisionTeacher;
@@ -109,6 +110,20 @@ class HomeController extends Controller
             }
         }
         return back();
+    }
+    public function studentpdf(){
+        $find=Auth::user()->division;
+        $div=Division::where('id',$find)->first();
+        return view('auth.studentpdf')->with('div',$div);
+    }
+    public function studentpdfview(Request $request){
+        $find=Auth::user();
+        $div=$find->division;
+        $stu=$find->id;
+        $sem=$request['sem'];
+        $marks = InternalTest::where('division_id',$div)->where('student_id',$stu)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('subject.id');
+        return PDF::loadView('pdf.student', ['marks' =>$marks])->stream('marks.pdf');
+
     }
     public function application($id,$testno)
     {

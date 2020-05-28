@@ -83,7 +83,7 @@
                                     <a id="navbarDropdown" style="color:blue" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-menu dropdown-menu-right bg-primary" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">
@@ -96,10 +96,10 @@
                 @else
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" style="color:blue" href="">Contact Us</a>
+                            <a class="nav-link" style="color:blue" href="/contact">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:blue" href="">About</a>
+                            <a class="nav-link" style="color:blue" href="/about">About</a>
                         </li>
                         <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font color="blue">Login</font></a>
@@ -113,7 +113,7 @@
                                 @if (Route::has('register'))
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font color="blue">Register</font></a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                    <div class="dropdown-menu bg-primary" aria-labelledby="dropdown02">
                                         <a class="dropdown-item" href="{{ route('register') }}">Student</a>
                                         <a class="dropdown-item" href="/register/teacher">Teacher</a>
                                     </div>

@@ -12,6 +12,8 @@
 Auth::routes(['verify'=>true]);
 
 Route::view('/about','pages.about');
+Route::view('/contact','pages.contact');
+
 Route::get('download/{filename}', function($filename)
 {
     // Check if file exists in public/storage/news folder
@@ -89,6 +91,8 @@ function ()
     Route::get('','HomeController@dashboard');
     Route::get('testthree','HomeController@testThreeMarks');
     Route::get('application/{id}/{testno}','HomeController@application')->name('home.application');
+    Route::get('studentMarkspdf','HomeController@studentpdf');
+    Route::post('studentMarkspdf','HomeController@studentpdfview');
     Route::post('application','HomeController@storeApplication');
     Route::get('marks','HomeController@index');
     Route::get('profile', 'ProfileController@indexStudent');
