@@ -46,11 +46,11 @@ class TeachersController extends Controller
         $div = Division::get();
         return view('Teacher.parentDetails')->with('div',$div);
     }
-    public function marksDetails(){
-        $user = Auth::user();
-        $details = DivisionTeacher::where('teacher_id',$user->id)->with('division')->with('subject')->get();
-        return view('Teacher.marksDetails')->with('details',$details);
-    }
+    // public function marksDetails(){
+    //     $user = Auth::user();
+    //     $details = DivisionTeacher::where('teacher_id',$user->id)->with('division')->with('subject')->get();
+    //     return view('Teacher.marksDetails')->with('details',$details);
+    // }
     public function viewParent(Request $request)
     {
         $div = $request->t1;
@@ -58,10 +58,15 @@ class TeachersController extends Controller
     }
     public function viewMarks(Request $request)
     {
-        $div = $request->division_id;
-        $sub = $request->subject_no;
-        $sem = $request->t3;
-        $marks = InternalTest::where('division_id',$div)->where('subject_id',$sub)->with('user')->with('subject')->get()->where('subject.semester',$sem)->sortBy('user.roll_no');
+        $teacher = Auth::user();
+        $div = session()->get('division_no'.$teacher->id);
+        // $request->session()->put('subject_no'.$teacher->id,$request['subject_no']);
+        // $request->session()->put(''.$teacher->id,$request['division_id']);
+        // $request->session()->put('test_no'.$teacher->id,$request['test_no']);
+        // $request->division_id;
+        $sub = session()->get('subject_no'.$teacher->id);;
+        //$sem = $request->t3;
+        $marks = InternalTest::where('division_id',$div)->where('subject_id',$sub)->with('user')->with('subject')->get()->sortBy('user.roll_no');
         return PDF::loadView('pdf.marks', ['marks' =>$marks])->stream('marks.pdf');
     }
     public function showStudents()
@@ -254,7 +259,7 @@ class TeachersController extends Controller
         $request->session()->put('division_no'.$teacher->id,$request['division_id']);
         $request->session()->put('test_no'.$teacher->id,$request['test_no']);
         return redirect('teacher/editmarkslist');
-    }
+    } 
     public function storeMarks(Request $request)
     {
     
@@ -316,12 +321,19 @@ class TeachersController extends Controller
                 return redirect('teacher/editmarks')->with('error',"Time to edit marks for this subject, test, class combination has expired.");
             }
             //change for elective
-            $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." 
-                        FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE 
-                        internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no",
-                        [session()->get('division_no'.$teacher->id,'Error'),
-                        session()->get('subject_no'.$teacher->id,'Error')]);
-            return view('Teacher.editmarkslist')->with('users',$users)->with('test_no',$test_no);
+            // $users = DB::select("select users.roll_no,users.name,internal_test.id,internal_test.".$test." 
+            //             FROM users INNER JOIN internal_test ON internal_test.student_id = users.id WHERE 
+            //             internal_test.division_id = ? AND internal_test.subject_id = ? ORDER BY users.roll_no",
+            //             [session()->get('division_no'.$teacher->id,'Error'),
+            //             session()->get('subject_no'.$teacher->id,'Error')]);
+        $students =  DB::table('users')
+                            ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
+                            ->select('users.name','users.name','users.roll_no', 'internal_test.*')
+                            ->where('internal_test.division_id',session()->get('division_no'.$teacher->id,'Error'))
+                            ->where('internal_test.subject_id',session()->get('subject_no'.$teacher->id,'Error'))
+                            ->orderBy('users.roll_no')
+                            ->get();
+            return view('Teacher.editmarkslist')->with('users',$students)->with('test_no',$test_no);
         }                        
         else
             {
@@ -359,38 +371,39 @@ class TeachersController extends Controller
         $request->session()->put('test_no'.$teacher->id,$request['test_no']);
         return redirect('teacher/status');
     }
-    public function showStatus()
-    {
-        $teacher = Auth::user();
+    // public function showStatus()
+    // {
+    //     $teacher = Auth::user();
 
-        $subject_id = session()->get('subject_no'.$teacher->id,'Error');
-        $division_id = session()->get('division_no'.$teacher->id,'Error');
-        $test_no = session()->get('test_no'.$teacher->id,'Error');
-        // $test = $test_no == 1 ? 'ia1':'ia2';
-        $search = $test_no==1?'Expiry_1':'Expiry_2';
-        $exists =DivisionTeacher::where('division_id',$division_id)
-                                ->where('subject_id',$subject_id)
-                                ->where('teacher_id',$teacher->id)
-                                ->whereNotNull($search)->first();
-        // $timeExpired = $exists[$search];
-        $exists = isset($exists)?$exists->count():0;
-        if($exists > 0)
-        {
-            $students =  DB::table('users')
-                            ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
-                            ->join('divisions', 'users.division', '=', 'divisions.id')
-                            ->select('users.name','users.name','users.roll_no', 'internal_test.*', 'divisions.*')
-                            ->where('users.division',session()->get('division_no'.$teacher->id,'Error'))
-                            ->where('internal_test.subject_id',session()->get('subject_no'.$teacher->id,'Error'))
-                            ->orderBy('users.roll_no')
-                            ->get();
-                session()->forget(['division_no'.$teacher->id, 'subject_no'.$teacher->id,'test_no'.$teacher->id]);
-                return view('Teacher.status')->with('students',$students)->with('test_no',$test_no);
-        }
-        else{
-            return redirect('teacher/checkstatus')->with('error',"You haven't put marks for this test of this subject yet.");
-        }
-    }
+    //     $subject_id = session()->get('subject_no'.$teacher->id,'Error');
+    //     $division_id = session()->get('division_no'.$teacher->id,'Error');
+    //     $test_no = session()->get('test_no'.$teacher->id,'Error');
+    //     // $test = $test_no == 1 ? 'ia1':'ia2';
+    //     $search = $test_no==1?'Expiry_1':'Expiry_2';
+    //     $exists =DivisionTeacher::where('division_id',$division_id)
+    //                             ->where('subject_id',$subject_id)
+    //                             ->where('teacher_id',$teacher->id)
+    //                             ->whereNotNull($search)->first();
+    //     // $timeExpired = $exists[$search];
+    //     $exists = isset($exists)?$exists->count():0;
+    //     if($exists > 0)
+    //     {
+    //         $students =  DB::table('users')
+    //                         ->join('internal_test', 'users.id', '=', 'internal_test.student_id')
+    //                         ->join('divisions', 'users.division', '=', 'divisions.id')
+    //                         ->select('users.name','users.name','users.roll_no', 'internal_test.*', 'divisions.*')
+    //                         ->where('users.division',session()->get('division_no'.$teacher->id,'Error'))
+    //                         ->where('internal_test.subject_id',session()->get('subject_no'.$teacher->id,'Error'))
+    //                         ->orderBy('users.roll_no')
+    //                         ->get();
+                            
+    //             session()->forget(['division_no'.$teacher->id, 'subject_no'.$teacher->id,'test_no'.$teacher->id]);
+    //             return view('Teacher.status')->with('students',$students)->with('test_no',$test_no);
+    //     }
+    //     else{
+    //         return redirect('teacher/checkstatus')->with('error',"You haven't put marks for this test of this subject yet.");
+    //     }
+    // }
     public function show($id)
     {
     }

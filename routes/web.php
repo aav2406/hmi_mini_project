@@ -56,15 +56,15 @@ Route::get('/teacher/password/reset/{token}', 'Auth\TeacherResetPasswordControll
 Route::group(['prefix' => 'teacher', 'middleware' => 'auth:teacher'], 
 function () 
 {
-    Route::get('checkstatus', 'TeachersController@checkstatus');
+    // Route::get('checkstatus', 'TeachersController@checkstatus');
     Route::get('test3','TeachersController@showTestThree')->name('test3');
     Route::post('test3','TeachersController@storeTestThree');
     // Route::get('send', 'MailsController@send');
     Route::view('','Teacher.dashboard');
     Route::get('putmarks', 'TeachersController@showClassesSubjects');
     Route::get('password/teacher', 'TeachersController@resetPassword');
-    Route::post('status','TeachersController@status');
-    Route::get('status','TeachersController@showStatus');
+    // Route::post('status','TeachersController@status');
+    // Route::get('status','TeachersController@showStatus');
     Route::get('profile', 'ProfileController@index');
     Route::get('updateprofile','ProfileController@indexTeacher');
     Route::patch('updateprofile/{id}', 'ProfileController@update');
@@ -78,13 +78,15 @@ function ()
     Route::post('editmarkslist','TeachersController@storeMarks');
     Route::get('parent','TeachersController@parentDetails');
     Route::post('parent','TeachersController@viewParent');
-    Route::get('marks','TeachersController@marksDetails');
-    Route::post('marks','TeachersController@viewMarks');
+    Route::get('classpdf','TeachersController@viewMarks');
+
+    // Route::get('marks','TeachersController@marksDetails');
+    // Route::post('marks','TeachersController@viewMarks');
 
 
 
 }
-);
+);  
 Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], 
 function () 
 {
