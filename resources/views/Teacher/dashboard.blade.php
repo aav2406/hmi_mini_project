@@ -81,26 +81,6 @@
                     </div>
                 </div>
             </a>
-
-            <a href="/teacher/checkstatus">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card ">
-                        <div class="card-body">
-                                 <div class="card-title text-right">
-                                    <div class="social_icon">
-                                     <span><i class="fas fa-search"></i></span>
-                                    </div>
-                                    <h4>Check Status</h4>
-                                </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="float-left">Check</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
             <a href="/teacher/test3">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
@@ -172,26 +152,6 @@
                         </div>
                         <div class="card-footer">
                             <span class="float-left">Check</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/teacher/marks">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card ">
-                        <div class="card-body">
-                                 <div class="card-title text-right">
-                                    <div class="social_icon">
-                                     <span><i class="fas fa-search"></i></span>
-                                    </div>
-                                    <h4>View Marks</h4>
-                                </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="float-left">View</span>
                             <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>

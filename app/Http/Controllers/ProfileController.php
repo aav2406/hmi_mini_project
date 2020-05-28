@@ -144,8 +144,7 @@ class ProfileController extends Controller
         }
         $teacher->phone_no = $request['phone_no'];
         $teacher->save();
-        
-        return redirect("teacher");
+        return redirect("teacher")->with('success','Profile updated successfully.');
     }
     public function updateStudent(Request $request, $id)
     {
@@ -160,7 +159,7 @@ class ProfileController extends Controller
             $user->subjects()->attach( $request['elec_second'] );
         }
         $user->save();
-        return redirect("home");
+        return redirect("home")->with('success','Profile updated successfully.');
     }
     /**
      * Remove the specified resource from storage.

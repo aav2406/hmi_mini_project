@@ -85,37 +85,49 @@
                             <th>Marks</th>
                             <th>Edit</th>
                             <th>Absent</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($users as $student)
                             <tr>
                                 <td>{{$student->roll_no }}</td>
-                                <td>{{$student->name }}</td>
-                            <td>
+                                <td>{{$student->name }}</td>                           
                                         @if($test_no == 1)
-                                            <input disabled id = "a{{$loop->index}}" value = "{{$student->ia1}}" type = "number" min = '-2' max = '30' name = "{{$student->id}}" required {{ $student->ia1 == -2 ?'style=display:none;': "" }}   >
-                                                <td><input id = "b{{$loop->index}}" type="checkbox" onclick = "edit({{$loop->index}})" class = "btn btn-primary"></td>
-                                                </td>
-                                            <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->ia1 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
+                                        <td><input disabled id = "a{{$loop->index}}" value = "{{$student->ia1}}" type = "number" min = '-2' max = '30' name = "{{$student->id}}" required {{ $student->ia1 == -2 ?'style=display:none;': "" }}></td>
+                                        <td><input id = "b{{$loop->index}}" type="checkbox" onclick = "edit({{$loop->index}})" class = "btn btn-primary"></td>                                        
+                                        <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->ia1 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
+                                        <td style="text-align:center">
+                                            {{ 
+                                                    $student->ia1 != -2 ? ($student->status1 != -1 ?($student->status1 == 0 ? 'INCORRECT': 'Correct'): 'Not yet checked'): 'ABSENT'
+                                            }}
+                                        </td>
                                         @elseif($test_no == 2)
                                             @if($student->ia2 == -1)
-                                                <input  disabled id = "a{{$loop->index}}" type = "number" min = '-2' max = '30' name = {{$student->roll_no}} required>
+                                                <td><input  disabled id = "a{{$loop->index}}" type = "number" min = '-2' max = '30' name = {{$student->roll_no}} required></td>
                                                 <td><input type="checkbox" onclick = "edit({{$loop->index}})" class = "btn btn-primary"></td>
-                                            </td>
                                                 <td><input id = ":{{$loop->index}}"type="checkbox"  onchange = "disable({{$loop->index}})"></td>
+                                                <td style="text-align:center">
+                                                    {{ 
+                                                            $student->ia2 != -2? ($student->status2 != -1 ?($student->status2 == 0 ? 'INCORRECT': 'Correct'): 'Not yet checked'): 'ABSENT'
+                                                    }}
+                                                </td>
                                             @else
-                                                <input  disabled id = "a{{$loop->index}}" value = "{{$student->ia2}}" type = "number" min = '-2' max = '30' name = {{$student->id}} required {{ $student->ia2 == -2?'style=display:none;': "" }} >
+                                                <td><input  disabled id = "a{{$loop->index}}" value = "{{$student->ia2}}" type = "number" min = '-2' max = '30' name = {{$student->id}} required {{ $student->ia2 == -2?'style=display:none;': "" }} ></td>
                                                 <td><input type="checkbox" onclick = "edit({{$loop->index}})" class = "btn btn-primary"></td>
-                                            </td>
                                                 <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->ia2 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
+                                                <td style="text-align:center">
+                                                    {{ 
+                                                            $student->ia2 != -2? ($student->status2 != -1 ?($student->status2 == 0 ? 'INCORRECT': 'Correct'): 'Not yet checked'): 'ABSENT'
+                                                    }}
+                                                </td>
                                             @endif
                                         @endif
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <button type ="submit" class ="btn sub_btn" >Submit<i class="fas fa-paper-plane"></i></button>
+                <a type ="submit" href = "/teacher/classpdf" class ="btn sub_btn" >Show PDF.<i class="fas fa-paper-plane"></i></a>
                     </form>
                     
                 </div>
