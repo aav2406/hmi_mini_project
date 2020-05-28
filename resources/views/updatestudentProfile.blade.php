@@ -6,30 +6,22 @@
         document.getElementById('class1').style.display = 'inline';
         document.getElementById("elec_second").required = false;
         document.getElementById("elec_first").required = true;
-        // document.getElementById('class_1').disabled = true;
-        // document.getElementById('class_2').disabled = true;
-        // document.getElementById('sub_1').disabled = true;
-        // document.getElementById('sub_2').disabled = true;
-        // document.getElementById('class_1').disabled = false;
-        // document.getElementById('sub_1').disabled = false;
     }
     function enable2()
     {
         document.getElementById('class1').style.display = 'inline';
         document.getElementById('class2').style.display = 'inline';
-        
         document.getElementById("elec_second").required = true;
         document.getElementById("elec_first").required = true;
-        // document.getElementById('class_1').disabled = true;
-        // document.getElementById('class_2').disabled = true;
-        // document.getElementById('sub_1').disabled = true;
-        // document.getElementById('sub_2').disabled = true;
-        // document.getElementById('class_1').disabled = false;
-        // document.getElementById('class_2').disabled = false;
-        // document.getElementById('sub_1').disabled = false;
-        // document.getElementById('sub_2').disabled = false;
     }
-    </script>
+    function enable3()
+    {
+        document.getElementById('class1').style.display = 'none';
+        document.getElementById('class2').style.display = 'none';
+        document.getElementById("elec_second").required = false;
+        document.getElementById("elec_first").required = false;
+    }
+</script>
 <style>    
 .card{
        color: white;
@@ -142,6 +134,7 @@
                                         <div class="col-md-6">   
                                             <div class="form-group input-group">
                                                 <div class="input-group-prepend">
+                                                        <input type="radio" name="gender" style="margin-right:5px;" value="" onchange = "enable3()"><font color="white">No Elective</font> <br>
                                                         <input type="radio" name="gender" style="margin-right:5px;" value="" onchange = "enable1()"><font color="white">One</font> <br>
                                                         <input type="radio" name="gender" style="margin-right:5px;margin-left:15px" value="" onchange = "enable2()"><font color="white">Two</font>
                                                 </div>

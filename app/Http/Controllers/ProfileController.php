@@ -45,10 +45,13 @@ class ProfileController extends Controller
     {
         $profile = Auth::user();
         $elec = Subject::where('elective','1')->get();
-        $findsub=User::with('subjects')->get();
+        $findsub=$profile->subjects;
         $div=Division::find($profile->division)->first();
+        if(count($findsub)>0)
+            return view('studentProfile')->with(compact('profile'))->with(compact('elec'))->with(compact('findsub'))->with(compact('div'));
+        else
+            return view('studentProfile1')->with(compact('profile'))->with(compact('elec'))->with(compact('div'));
 
-        return view('studentProfile')->with(compact('profile'))->with(compact('elec'))->with(compact('findsub'))->with(compact('div'));
     }
     public function indexStu(){
         $profile = Auth::user();

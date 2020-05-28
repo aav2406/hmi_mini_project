@@ -55,7 +55,7 @@
             .sub_btn{
             color: black;
             background-color: #FFC312;
-            width: 90px;
+            width: 120px;
             margin-top: 10px;
             }
             

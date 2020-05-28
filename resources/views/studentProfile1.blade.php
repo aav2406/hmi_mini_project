@@ -96,18 +96,6 @@
                                 <input id="roll_no" disabled type="text" class="form-control" name="roll_no" value="{{$profile->roll_no }}" required>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            @php($i = 1)
-    
-                            @foreach($findsub as $find)
-                            <label for="elec_sub" class="col-md-4 col-form-label text-md-right">Elective Subject {{$i}}</label>
-                                        <div class="col-md-6">
-                                            <input style="margin-bottom:15px" id="phone_no" disabled type="text" class="form-control" name="phone_no" value="{{$find->subject}}" required>
-                                        </div>
-                                        @php($i=$i+1)
-                                @endforeach
-                                
-                        </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <a href="/home/updateprofile"> <button type="submit" class="btn float-left update_btn">
