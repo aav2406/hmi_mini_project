@@ -80,7 +80,6 @@
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>S.N.</th>
                             <th>Roll No</th>
                             <th>Student Name</th>
                             <th>Marks</th>
@@ -91,7 +90,6 @@
                         <tbody>
                         @foreach($users as $student)
                             <tr>
-                                <td>{{$loop -> index+1 }}</td>
                                 <td>{{$student->roll_no }}</td>
                                 <td>{{$student->name }}</td>
                             <td>
@@ -113,7 +111,6 @@
                                                 <td><input id = ":{{$loop->index}}" type="checkbox" {{ $student->ia2 == -2 ? "checked" :"" }}  onchange = "disable({{$loop->index}})"></td>
                                             @endif
                                         @endif
-
                             </tr>
                         @endforeach
                     </tbody>

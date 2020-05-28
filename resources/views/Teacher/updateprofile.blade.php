@@ -132,7 +132,7 @@
                         <span class="input-group-text"><i class="fas fa-chalkboard"></i></span>
                          <select id="class_1" type="text" class="form-control"  name="class_1"  disabled>
                             <option value= "" >Class1</option>
-                            <option value="1">D1A</option>
+                            {{-- <option value="1">D1A</option>
                             <option value="2">D1B</option>
                             <option value="3">D2A</option>
                             <option value="4">D2B</option>
@@ -142,48 +142,47 @@
                             <option value="8">D4B</option>
                             <option value="9">D5</option>
                             <option value="10">D6A</option>
-                            <option value="11">D6B</option>
+                            <option value="11">D6B</option> --}}
                             <option value="12">D7A</option>
                             <option value="13">D7B</option>
                             <option value="14">D7C</option>
-                            <option value="15">D8</option>
+                            {{-- <option value="15">D8</option>
                             <option value="16">D9A</option>
                             <option value="17">D9B</option>
                             <option value="18">D10</option>
                             <option value="19">D11A</option>
-                            <option value="20">D11B</option>
+                            <option value="20">D11B</option> --}}
                             <option value="21">D12A</option>
                             <option value="22">D12B</option>
                             <option value="23">D12C</option>
-                            <option value="24">D13</option>
+                            {{-- <option value="24">D13</option>
                             <option value="25">D14A</option>
                             <option value="26">D14B</option>
                             <option value="27">D15</option>
                             <option value="28">D16A</option>
-                            <option value="29">D16B</option>
+                            <option value="29">D16B</option> --}}
                             <option value="30">D17A</option>
                             <option value="31">D17B</option>
                             <option value="32">D17C</option>
-                            <option value="33">D18</option>
+                            {{-- <option value="33">D18</option>
                             <option value="34">D19A</option>
                             <option value="35">D19B</option>
-                            <option value="36">D20</option>
+                            <option value="36">D20</option> --}}
                           </select>
                           <p>&nbsp;</p>
                           <p>&nbsp;</p>
                           <span class="input-group-text"><i class="fas fa-book-open"></i></span>
                           <select id="sub_1" type="text" class="form-control" name="sub_1" required>
                                 <option value = 1 >CMPN: AM4</option>
-                                <option value = 4 >CMPN: OS</option>
-                                <option value = 3 >CMPN: AOA</option>
-                                <option value = 5 >CMPN: ECCF</option>
-                                <option value = 6 >CMPN: CG</option>
-                                <option value = 7 >CMPN: DS</option>
-                                <option value = 8 >CMPN: AM3</option>
-                                <option value = 9 >CMPN: DLDA</option>
-                                <option value = 10 >CMPN: DM</option>
-                                <option value = 11 >CMPN: PHYSICS </option>
-                                <option value = 12 >CMPN: CHEMISTRY</option>
+                                <option value = 2 >CMPN: OS</option>
+                                <option value = 3 >CMPN: COA</option>
+                                <option value = 4 >CMPN: AOA</option>
+                                <option value = 5 >CMPN: CG</option>
+                                <option value = 6 >CMPN: AM3</option>
+                                <option value = 7 >CMPN: DLDA</option>
+                                <option value = 8 >CMPN: DIS</option>
+                                <option value = 9 >CMPN: ECCF</option>
+                                <option value = 10 >CMPN: DS</option>
                         </select>
                         </div>
                     </div>

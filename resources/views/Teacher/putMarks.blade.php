@@ -60,22 +60,22 @@
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>S.N.</th>
-                            <th>Roll No</th>
-                            <th>Student Name</th>
-                            <th>Marks</th>
-                            <th>Absent</th>
+                            {{-- <th>S.N.</th> --}}
+                            <th style="text-align:center">Roll No</th>
+                            <th style="text-align:center">Student Name</th>
+                            <th style="text-align:center">Marks</th>
+                            <th style="text-align:center">Absent</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($students as $student)
                             <tr>
-                                <td>{{$loop -> index+1 }}</td>
-                                <td>{{$student->roll_no }}</td>
-                                <td>{{$student->name }}</td>
-                            <td>
+                                {{-- <td>{{$loop -> index+1 }}</td> --}}
+                                <td style="text-align:center">{{$student->roll_no }}</td>
+                                <td style="text-align:center">{{$student->name }}</td>
+                            <td style="text-align:center">
                             <input  id = "{{$loop->index}}" type = "number" min = '-2' max = '30' name = {{$student->id}} required></td>
-                             <td><input id = ":{{$loop->index}}"type="checkbox"  onchange = "disable({{$loop->index}})"></td>
+                             <td style="text-align:center"><input id = ":{{$loop->index}}"type="checkbox"  onchange = "disable({{$loop->index}})"></td>
                                         
                             </tr>
                         @endforeach

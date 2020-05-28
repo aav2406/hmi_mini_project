@@ -50,7 +50,7 @@
                                     <div class="social_icon">
                                         <span><i class="fas fa-user"></i></span>
                                     </div>
-                                    <h4>Edit Profile</h4>
+                                    <h4>Edit Profile/ Class</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
