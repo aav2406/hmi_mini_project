@@ -58,7 +58,7 @@
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Test No:</label>
                             <div class="col-md-4">
-                                <select name="test_no">
+                                <select name="test_no" class="form-control">
                                    <option value="1">Test 1</option>
                                    <option value="2">Test 2</option>
                                 </select>
