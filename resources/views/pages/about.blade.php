@@ -171,17 +171,17 @@ h6 {
 					<div class="team-hover">
 						<div class="desk">
 							<h4>Developer</h4>
-							<p>estibulum ac diam sit amet quam.</p>
+							<p>D12A VESIT</p>
 						</div>
 						<div class="s-link">
 							<a href="#">
-								<span class="fa fa-facebook"></span>
+								<span class="fab fa-facebook"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-twitter"></span>
+								<span class="fab fa-twitter"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-google-plus"></span>
+								<span class="fab fa-google-plus"></span>
 							</a>
 						</div>
 					</div>
@@ -194,22 +194,22 @@ h6 {
 			<div class="col-lg-3 col-sm-6 mb-5">
 				<div class="team-member">
 					<div class="team-img">
-						<img src="images/t2.jpg" alt="team member" class="img-fluid">
+						<img src="images/IMG_6390.JPG" alt="team member" class="img-fluid">
 					</div>
 					<div class="team-hover">
 						<div class="desk">
 							<h4>Developer</h4>
-							<p>estibulum ac diam sit amet quam.</p>
+							<p>D12A VESIT</p>
 						</div>
 						<div class="s-link">
 							<a href="#">
 								<span class="fab fa-facebook-f"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-twitter"></span>
+								<span class="fab fa-twitter"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-google-plus"></span>
+								<span class="fab fa-google-plus"></span>
 							</a>
 						</div>
 					</div>
@@ -227,17 +227,17 @@ h6 {
 					<div class="team-hover">
 						<div class="desk">
 							<h4>Developer</h4>
-							<p>estibulum ac diam sit amet quam.</p>
+							<p>D12A VESIT</p>
 						</div>
 						<div class="s-link">
 							<a href="#">
-								<span class="fa fa-facebook"></span>
+								<span class="fab fa-facebook"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-twitter"></span>
+								<span class="fab fa-twitter"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-google-plus"></span>
+								<span class="fab fa-google-plus"></span>
 							</a>
 						</div>
 					</div>
@@ -255,17 +255,17 @@ h6 {
 					<div class="team-hover">
 						<div class="desk">
 							<h4>Developer</h4>
-							<p>estibulum ac diam sit amet quam.</p>
+							<p>D12A VESIT</p>
 						</div>
 						<div class="s-link">
 							<a href="#">
-								<span class="fa fa-facebook"></span>
+								<span class="fab fa-facebook"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-twitter"></span>
+								<span class="fab fa-twitter"></span>
 							</a>
 							<a href="#">
-								<span class="fa fa-google-plus"></span>
+								<span class="fab fa-google-plus"></span>
 							</a>
 						</div>
 					</div>
@@ -288,18 +288,18 @@ h6 {
                         </div>
                         <div class="team-hover">
                             <div class="desk">
-                                <h4>Developer</h4>
-                                <p>estibulum ac diam sit amet quam.</p>
+                                <h4>Mentor</h4>
+                                <p>Assistant Professor</p>
                             </div>
                             <div class="s-link">
                                 <a href="#">
-                                    <span class="fa fa-facebook"></span>
+                                    <span class="fab fa-facebook"></span>
                                 </a>
                                 <a href="#">
-                                    <span class="fa fa-twitter"></span>
+                                    <span class="fab fa-twitter"></span>
                                 </a>
                                 <a href="#">
-                                    <span class="fa fa-google-plus"></span>
+                                    <span class="fab fa-google-plus"></span>
                                 </a>
                             </div>
                         </div>
@@ -317,18 +317,18 @@ h6 {
                         </div>
                         <div class="team-hover">
                             <div class="desk">
-                                <h4>Developer</h4>
-                                <p>estibulum ac diam sit amet quam.</p>
+                                <h4>Co - Mentor</h4>
+                                <p>Assistant Professor</p>
                             </div>
                             <div class="s-link">
                                 <a href="#">
-                                    <span class="fa fa-facebook"></span>
+                                    <span class="fab fa-facebook"></span>
                                 </a>
                                 <a href="#">
-                                    <span class="fa fa-twitter"></span>
+                                    <span class="fab fa-twitter"></span>
                                 </a>
                                 <a href="#">
-                                    <span class="fa fa-google-plus"></span>
+                                    <span class="fab fa-google-plus"></span>
                                 </a>
                             </div>
                         </div>
@@ -337,7 +337,7 @@ h6 {
                         <h5>Abha Tiwari</h5>
                         <span>Web Developer</span>
                     </div>
-                </div>
+				</div>
             </div>
         </div>
 
