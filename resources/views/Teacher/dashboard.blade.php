@@ -22,7 +22,7 @@
         .social_icon span{
             font-size: 60px;
             margin-right: 10px;
-            color: #FFC312;
+            color: pink;
             }
         .social_icon{
             position: absolute;
@@ -35,9 +35,9 @@
     <div class="row">
         <div class="col-lg-12">
             
-            <h1 style="color:blue"><i class="fas fa-tachometer-alt" style="color: blue;"></i> <strong>Teacher's Dashboard</strong></h1>
+            <h1 style="color:blue"><i class="fas fa-tachometer-alt" style="color: blue;"></i> <strong>Professor's Dashboard</strong></h1>
             
-            <hr  style="border: solid #FFC312">
+            <hr  style="border: solid pink">
         </div>
     </div>
     
@@ -50,12 +50,12 @@
                                     <div class="social_icon">
                                         <span><i class="fas fa-user"></i></span>
                                     </div>
-                                    <h4>Edit Profile/ Class</h4>
+                                    <h4>Update Profile</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <span class="float-left">View</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <span class="float-left" style="color:pink">View</span>
+                            <span class="float-right" style="color:pink"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>
                     </div>
@@ -70,18 +70,18 @@
                                     <div class="social_icon">
                                     <span><i class="far fa-arrow-alt-circle-right"></i></span>
                                     </div>
-                                    <h4>Enter Marks</h4>
+                                    <h4>Enter Score</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <span class="float-left">View</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <span class="float-left" style="color:pink">View</span>
+                            <span class="float-right" style="color:pink"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="/teacher/test3">
+            <!-- <a href="/teacher/test3">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
                         <div class="card-body">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </a> -->
             <a href="/teacher/editmarks">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
@@ -108,18 +108,18 @@
                                     <div class="social_icon">
                                         <span><i class="fas fa-edit"></i></span>
                                     </div>
-                                    <h4>Edit Marks</h4>
+                                    <h4>Update Score</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <span class="float-left">Edit</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <span class="float-left" style="color:pink">Edit</span>
+                            <span class="float-right" style="color:pink"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="#">
+            <!-- <a href="#">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
                         <div class="card-body">
@@ -137,9 +137,9 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </a> -->
 
-            <a href="/teacher/parent">
+            <!-- <a href="/teacher/parent">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
                         <div class="card-body">
@@ -157,7 +157,7 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </a> -->
     
            
 </div>

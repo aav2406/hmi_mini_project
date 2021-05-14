@@ -44,7 +44,7 @@
             
             .input-group-prepend span{
             width: 50px;
-            background-color: #FFC312;
+            background-color: pink;
             color: black;
             border:0 !important;
             }
@@ -69,19 +69,19 @@
             
             .register_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 150px;
             margin-left:10px ;
             }
             .next_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 100px;
             margin-left: 37%;
             }
             .previous_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 100px;
             margin-left: 20%;
             }
@@ -116,7 +116,7 @@
             font:black;
            }
            .card-header-tabs .nav-item .nav-link{
-           color: #FFC312;
+           color: pink;
            }
         </style>
 @extends('layouts.app')

@@ -1,26 +1,15 @@
 <?php
-<<<<<<< HEAD
-
-namespace App\Http\Controllers\Auth;
-
-use App\User;
-=======
 namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Admin;
 use App\Teacher;
 use App\teachersData;
->>>>>>> 400c5d64ebc4b18bc46194f7d73eca1bedcfd2b5
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-<<<<<<< HEAD
-
-=======
 use Illuminate\Http\Request;
 use Auth;
->>>>>>> 400c5d64ebc4b18bc46194f7d73eca1bedcfd2b5
 class RegisterController extends Controller
 {
     /*
@@ -33,23 +22,13 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-<<<<<<< HEAD
-
     use RegistersUsers;
-
-=======
-    use RegistersUsers;
->>>>>>> 400c5d64ebc4b18bc46194f7d73eca1bedcfd2b5
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = '/home';
-<<<<<<< HEAD
-
-=======
->>>>>>> 400c5d64ebc4b18bc46194f7d73eca1bedcfd2b5
     /**
      * Create a new controller instance.
      *
@@ -58,31 +37,15 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-<<<<<<< HEAD
-    }
-
-=======
         $this->middleware('guest:admin');
         $this->middleware('guest:teacher');
     }
->>>>>>> 400c5d64ebc4b18bc46194f7d73eca1bedcfd2b5
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-<<<<<<< HEAD
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
-
-=======
     public function showAdminRegisterForm()
     {
         return view('auth.register', ['url' => 'admin']);
@@ -150,7 +113,6 @@ class RegisterController extends Controller
                 // 'class_2' => ['string'],
         ]);
     }
->>>>>>> 400c5d64ebc4b18bc46194f7d73eca1bedcfd2b5
     /**
      * Create a new user instance after a valid registration.
      *
@@ -163,8 +125,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-<<<<<<< HEAD
-=======
             'roll_no' => $data['roll_no'],
             'phone_no' => $data['phone_no'],
             'division' => $data['division'],
@@ -185,7 +145,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone_no'=>$data['phone_no'],
             'emp_id'=>$data['emp_id'],
->>>>>>> 400c5d64ebc4b18bc46194f7d73eca1bedcfd2b5
         ]);
     }
 }

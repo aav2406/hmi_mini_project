@@ -4,15 +4,16 @@
     }
 
 </style>
-    <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color:pink;">
             
         <div class="row">
-                <div class="col-sm-1">
+                <!-- <div class="col-sm-1">
                     <img src="https://ves.ac.in/vesit/wp-content/uploads/sites/3/2018/07/Logo.png" width="42" height="72" alt="Institute of Technology Logo"  data-scale="1"  /> 
-                </div>
+                </div> -->
                 <div class="col-md-11">
-                    <a href="https://ves.ac.in/vesit/"  title="Institute of Technology">
-                        <h3 style="color: blue;margin-left:5px">VIVEKANAND EDUCATION SOCIETY'S<br><i>Institute of Technology</i></h3>
+                    <!-- <a href="https://ves.ac.in/vesit/"  title="Institute of Technology"> -->
+                        <!-- <h3 style="color: blue;margin-left:5px">VIVEKANAND EDUCATION SOCIETY'S<br><i>Institute of Technology</i></h3> -->
+                        <h3 style="color: blue;margin-left:5px">IARS</i></h3>
                     </a>
                 </div>
             </div>
@@ -33,11 +34,14 @@
                                 <a class="nav-link" style="color:blue" href="/teacher">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color:blue" href="/teacher/putmarks">Enter Marks</a>
+                                <a class="nav-link" style="color:blue" href="/teacher/putmarks">Enter Score</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color:blue" href="/teacher/checkstatus">Check Status</a>
+                                <a class="nav-link" style="color:blue" href="/teacher/editmarks">Update Score</a>
                             </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" style="color:blue" href="/teacher/checkstatus">Check Status</a>
+                            </li> -->
                             <li>
                             <a id="navbarDropdown" style="color:blue" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{Auth::guard('teacher')->user()->name}} <span class="caret"></span>
@@ -77,7 +81,7 @@
                                 <a class="nav-link" style="color:blue" href="/home">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color:blue" href="/home/marks">Check Marks</a>
+                                <a class="nav-link" style="color:blue" href="/home/marks">Check Score</a>
                             </li>
                             <li class="nav-item dropdown">
                                     <a id="navbarDropdown" style="color:blue" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -95,18 +99,18 @@
                        
                 @else
                     @guest
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" style="color:blue" href="/contact">Contact Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color:blue" href="/about">About</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font color="blue">Login</font></a>
                                     <div class="dropdown-menu bg-primary" aria-labelledby="dropdown01" >
                                         <a class="dropdown-item" href="{{ route('login') }}">Student</a>
                                         <a class="dropdown-item" href="/login/teacher">Teacher</a>
-                                        <a class="dropdown-item" href="/login/admin">Admin</a>
+                                        <!-- <a class="dropdown-item" href="/login/admin">Admin</a> -->
                                     </div>
                                 </li>
                                 

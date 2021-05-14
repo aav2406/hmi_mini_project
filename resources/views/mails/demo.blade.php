@@ -3,8 +3,8 @@ Hello <i>{{ $division->class }}</i>,
  
 <p>Your Marks for {{ $subj}} have been updated at www.iars.test </p>
 
-<p>Kindly Login and confirm them within <b>2 days</b>. Failure to do so will result in your marks being marked CORRECT</p>
+<!-- <p>Kindly Login and confirm them within <b>2 days</b>. Failure to do so will result in your marks being marked CORRECT</p> -->
 
 Thank You,
 <br/>
-<i>iars.vesit@gmail.com</i>
+<b><i>IARS</i></b>

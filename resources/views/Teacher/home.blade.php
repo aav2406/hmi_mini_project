@@ -11,7 +11,7 @@
             }
             .sub_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 90px;
             margin-top: 10px;
             }
@@ -49,8 +49,8 @@
                 <div class="card-body">
                         <div class="row ">
                                 <div class="col-md-12 text-md-left">
-                                    <h4 >Enter Marks</h4>
-                                   <hr style="border:1px solid #FFC312"> 
+                                    <h4 >Enter Score</h4>
+                                   <hr style="border:1px solid pink"> 
                                 </div>
                             </div>
                     <form method="POST" action = "{{action('TeachersController@createSessionForTeacher')}}" >

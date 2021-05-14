@@ -3,7 +3,7 @@
         color: white;
     }
     th{
-        color: yellow;
+        color: pink;
     }
     .card{
        color: white;
@@ -34,7 +34,7 @@
             top: 2px;
             left: -1px;
             position: relative;
-            background-color: #ffa500;
+            background-color: pink;
             content: '';
             display: inline-block;
             visibility: visible;
@@ -42,7 +42,7 @@
          }
          .sub_btn{
         color: black;
-        background-color: #FFC312;
+        background-color: pink;
         width: 100px;
         }
         
@@ -59,8 +59,8 @@
         <div class="card-body">
                 <div class="row ">
                         <div class="col-md-12 text-md-left">
-                            <h4 >Confirm Marks</h4>
-                           <hr style="border:1px solid #FFC312"> 
+                            <h4 >Confirm Score</h4>
+                           <hr style="border:1px solid pink"> 
                         </div>
                     </div>
             <div class="table-responsive">

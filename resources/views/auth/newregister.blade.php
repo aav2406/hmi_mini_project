@@ -44,7 +44,7 @@
             
             .input-group-prepend span{
             width: 50px;
-            background-color: #FFC312;
+            background-color: pink;
             color: black;
             border:0 !important;
             }
@@ -69,7 +69,7 @@
             
             .register_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 150px;
             margin-left: 32%;
             }

@@ -26,16 +26,16 @@
         @endforeach Class Report</title>
     </head>
     <body>
-        {{-- <p style="text-align:center"><strong>V.E.S. INSTITUTE OF TECHNOLOGY, CHEMBUR, MUMBAI - 400074</strong></p>
-        <p style="text-align:center"><strong>DEPARTMENT OF COMPUTER ENGINEERING</strong></p> --}}
+        <!-- <p style="text-align:center"><strong>V.E.S. INSTITUTE OF TECHNOLOGY, CHEMBUR, MUMBAI - 400074</strong></p>
+        <p style="text-align:center"><strong>DEPARTMENT OF COMPUTER ENGINEERING</strong></p> -->
         <table style="width:100%" border="1">
             <thead>
-                <tr>
+                <!-- <tr>
                     <th style="text-align:center" colspan="17"><strong>V.E.S. INSTITUTE OF TECHNOLOGY, CHEMBUR, MUMBAI - 400074</strong></th>
                 </tr>
                 <tr>
                     <th style="text-align:center" colspan="17"><strong>DEPARTMENT OF COMPUTER ENGINEERING</strong></th>
-                </tr>
+                </tr> -->
                 @foreach($marks as $mark)
                     @if ($mark->division_id == 12)
                         <tr>

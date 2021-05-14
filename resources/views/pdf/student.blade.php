@@ -10,12 +10,12 @@
     <body>
         <table style="width:100%;border: 1px solid black">
             <thead>
-                <tr>
+                <!-- <tr>
                     <th style="text-align:center;border: 1px solid black" colspan="17"><strong>V.E.S. INSTITUTE OF TECHNOLOGY, CHEMBUR, MUMBAI - 400074</strong></th>
                 </tr>
                 <tr>
                     <th style="text-align:center;border: 1px solid black" colspan="17"><strong>DEPARTMENT OF COMPUTER ENGINEERING</strong></th>
-                </tr>
+                </tr> -->
                 @foreach($marks as $mark)
                     @if ($mark->division_id == 12)
                         <tr>

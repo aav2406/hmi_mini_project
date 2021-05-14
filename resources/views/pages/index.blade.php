@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>VESIT</title>
+<title>IARS</title>
 <style>
 body{
    background:linear-gradient(rgba(16,29,44,.85),rgba(16,29,44,.85)),url("http://ves.ac.in/vesit/wp-content/uploads/sites/3/2015/11/IMG_93121-optimized.jpg") center no-repeat;
@@ -84,7 +84,7 @@ body{
     position: absolute; top: 0; bottom: 0;
 }
 .onoffswitch3-active .onoffswitch3-switch {
-    background: #f7ca00; left: 0;
+    background: pink; left: 0;
     width: 160px;
 }
 .onoffswitch3-inactive{
@@ -110,7 +110,7 @@ body{
 }
 </style>
 @section('content')
-<div class="text-center" style="font-size:3em;margin-top:20%;color:yellow">
+<div class="text-center" style="font-size:3em;margin-top:20%;color:pink">
    <b>{{$title}}</b>
 </div>
 @if(count($news)>0)

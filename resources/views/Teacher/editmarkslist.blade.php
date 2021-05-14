@@ -50,11 +50,11 @@
                 color:white;
             }
             th{
-                color:yellow;
+                color:pink;
             }
             .sub_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 120px;
             margin-top: 10px;
             }
@@ -71,7 +71,7 @@
          <div class="row ">
                                 <div class="col-md-12 text-md-left">
                                     <h4 >Update Marks {{$test_no}}</h4>
-                                   <hr style="border:1px solid #FFC312"> 
+                                   <hr style="border:1px solid pink"> 
                                 </div>
                             </div>
                 <div class="table-responsive">
@@ -127,7 +127,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a type ="submit" href = "/teacher/classpdf" class ="btn sub_btn" >Show PDF.<i class="fas fa-paper-plane"></i></a>
+                            <button type ="submit" class ="btn sub_btn" >Submit <i class="fas fa-paper-plane"></i></button>                                     
+                <a type ="submit" href = "/teacher/classpdf" class ="btn sub_btn" >Show PDF <i class="fas fa-paper-plane"></i></a>
                     </form>
                     
                 </div>

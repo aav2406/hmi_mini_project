@@ -14,7 +14,7 @@
             background-color:rgba(0,0,255,0.6) !important;
         }
         .card-footer:hover{
-            color:yellow;
+            color:pink;
         }
         .card:hover{
             color:blue;
@@ -22,7 +22,7 @@
         .social_icon span{
             font-size: 60px;
             margin-right: 10px;
-            color: #FFC312;
+            color: pink;
             }
         .social_icon{
             position: absolute;
@@ -37,7 +37,7 @@
             
             <h1 style="color:blue"><i class="fas fa-tachometer-alt" style="color: blue;"></i> <strong>Student's Dashboard</strong></h1>
             
-            <hr  style="border: solid #FFC312">
+            <hr  style="border: solid pink">
         </div>
     </div>
     
@@ -54,8 +54,8 @@
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <span class="float-left">View</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <span class="float-left"  style="color:pink">View</span>
+                            <span class="float-right"  style="color:pink"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>
                     </div>
@@ -69,12 +69,12 @@
                                     <div class="social_icon">
                                         <span><i class="fas fa-eye"></i></span>
                                     </div>
-                                    <h4>View Marks</h4>
+                                    <h4>View Score</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <span class="float-left">View</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <span class="float-left" style="color:pink">View</span>
+                            <span class="float-right"  style="color:pink"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>
                     </div>
@@ -89,18 +89,18 @@
                                     <div class="social_icon">
                                     <span><i class="far fa-check-circle"></i></span>
                                     </div>
-                                    <h4>Check Marks</h4>
+                                    <h4>Check Score</h4>
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <span class="float-left">View</span>
-                            <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <span class="float-left" style="color:pink">View</span>
+                            <span class="float-right"  style="color:pink"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
             </a>
-            @if($status)
+            <!-- @if($status)
             <a href="/home/marks">
                 <div class="col-lg-3 col-md-6">
                     <div class="card ">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </a> -->
 </div>
     </div>
 @endsection

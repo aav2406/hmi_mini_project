@@ -44,7 +44,7 @@
             
             .input-group-prepend span{
             width: 50px;
-            background-color: #FFC312;
+            background-color: pink;
             color: black;
             border:0 !important;
             }

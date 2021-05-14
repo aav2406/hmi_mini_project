@@ -76,7 +76,7 @@ span{
 </head>
       @include('inc.pracnav')
       @include('inc.messages')
-      <div id="mySidenav" class="sidenav">
+      <!-- <div id="mySidenav" class="sidenav">
               @if(Auth::guard('teacher')->check())
                 <a href="/teacher" id="dashboard">Dashboard<span><i class="fas fa-tachometer-alt float-right" style="margin-top:5px"></i></span></a>
               @elseif(Auth::guard()->check())
@@ -89,7 +89,7 @@ span{
                 <a href="/teacher/checkstatus" id="check">Status<span><i class="fas fa-search float-right"  style="margin-top:5px"></i></span></a>
                 @endif
                 
-        </div>
+        </div> -->
              @yield('content')
     
 </html>

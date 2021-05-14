@@ -33,7 +33,7 @@
         }
         .input-group-prepend span{
             width: 50px;
-            background-color: #FFC312;
+            background-color: pink;
             color: black;
             border:0 !important;
             }
@@ -44,7 +44,7 @@
             }
             .update_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 90px;
             margin-top: 30px;
             }
@@ -64,7 +64,7 @@
                             <div class="row ">
                                 <div class="col-md-12 text-md-left">
                                     <h4 >Your Profile</h4>
-                                   <hr style="border:1px solid #FFC312"> 
+                                   <hr style="border:1px solid pink"> 
                                 </div>
                             </div>
                             <div class="form-group row">

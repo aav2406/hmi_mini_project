@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm">
         <div class="container">
                 <img src="https://ves.ac.in/vesit/wp-content/uploads/sites/3/2018/07/Logo.png"  width="48"  height="70"  alt="Institute of Technology Logo"  data-scale="1"  /> 
-                        <a  class="navbar-brand" href="https://ves.ac.in/vesit/"  title="Institute of Technology">
-                        <h3 style="margin-left: 10px"><font color="blue">VIVEKANAND EDUCATION SOCIETY'S</font></h3>
-                        <em style="margin-left: 10px"><font color="blue">Institute of Technology</font></em>
+                        <!-- <a  class="navbar-brand" href="https://ves.ac.in/vesit/"  title="Institute of Technology"> -->
+                        <h3 style="margin-left: 10px"><font color="blue">IARS</font></h3>
+                        <!-- <em style="margin-left: 10px"><font color="blue">Institute of Technology</font></em> -->
                         </a>
                     </p>
 

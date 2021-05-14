@@ -10,7 +10,7 @@
             }
             .input-group-prepend span{
             width: 50px;
-            background-color: #FFC312;
+            background-color: pink;
             color: black;
             border:0 !important;
             }
@@ -21,7 +21,7 @@
             }
             .update_btn{
             color: black;
-            background-color: #FFC312;
+            background-color: pink;
             width: 130px;
             margin-top: 30px;
             }
@@ -39,8 +39,8 @@
                 <div class="card-body">
                     <div class="row ">
                         <div class="col-md-12 text-md-left">
-                            <h4>View Marks</h4>
-                            <hr style="border:1px solid #FFC312"> 
+                            <h4>View Score</h4>
+                            <hr style="border:1px solid pink"> 
                             </div>
                     </div>
                     <form method="POST" action="{{action('HomeController@studentpdfview')}}">
